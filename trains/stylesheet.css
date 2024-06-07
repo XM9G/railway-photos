@@ -1,9 +1,15 @@
+
+
 p, h1 {
     text-align: center;
 }
 
 img {
     width: 1000px;
+}
+
+.X {
+  padding: 20px;
 }
 
 /* Mobile */
