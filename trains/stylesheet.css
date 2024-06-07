@@ -8,9 +8,6 @@ img {
     width: 1000px;
 }
 
-.X {
-  padding: 20px;
-}
 
 /* Mobile */
 @media only screen and (max-width: 767px) {
