@@ -1,7 +1,10 @@
 
-
 p, h1 {
     text-align: center;
+}
+
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 img {
@@ -15,3 +18,8 @@ img {
       width: 100%;
     }
   }
+
+iframe, img {
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Horizontal offset, vertical offset, blur radius, and color */
+}
