@@ -5,10 +5,18 @@ p, h1 {
 
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #313536;
+  color: white;
 }
 
 img {
     width: 1000px;
+}
+
+img:hover, frame:hover {
+  box-shadow: 0 20px 8px rgba(0, 0, 0, 0.5);
+  transform: translate(-5px, -5px);
+
 }
 
 
@@ -21,5 +29,10 @@ img {
 
 iframe, img {
   border-radius: 20px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Horizontal offset, vertical offset, blur radius, and color */
+  border: 5px solid wheat;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  
+}
+
+a:visited, a {
+  color: wheat;
 }
