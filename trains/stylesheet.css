@@ -14,7 +14,7 @@ img {
 }
 
 img:hover, frame:hover {
-  box-shadow: 0 20px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
   transform: translate(-5px, -5px);
 
 }
