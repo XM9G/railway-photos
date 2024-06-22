@@ -5,7 +5,7 @@ p, h1 {
 
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #313536;
+  background-color: #000000;
   color: white;
 }
 
@@ -28,11 +28,11 @@ img:hover, frame:hover {
   }
 
 iframe, img {
-  border-radius: 20px;
-  border: 5px solid wheat;
+  border-radius: 0px;
+  border: 1px solid white;
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  
 }
 
 a:visited, a {
-  color: wheat;
+  color: white;
 }
