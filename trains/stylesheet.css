@@ -10,7 +10,8 @@ body {
 }
 
 img {
-    width: 1000px;
+    max-width: 1000px;
+    max-height: 800px;
 }
 
 img:hover, frame:hover {
