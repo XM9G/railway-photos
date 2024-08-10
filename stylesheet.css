@@ -33,17 +33,16 @@ iframe, img {
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  
 }
 
-a:visited {
-    color: rgb(255, 0, 0);
-}
+
 
 a {
-  color: rgb(255, 0, 0);
+  color: #1e80db;
 }
 
 .metro {
   display: flex;
-  gap: 5px; /* Adjust space between tables */
+  gap: 30px; /* Adjust space between tables */
+  margin-left: 5%;
 }
 table {
   border-collapse: collapse;
@@ -53,4 +52,8 @@ th, td {
   border: 1px solid rgb(255, 255, 255);
   padding: 5px;
   /* text-align: left; */
+}
+
+tr:nth-child(even) {
+  background-color: #112b2b;
 }
