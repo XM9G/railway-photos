@@ -43,6 +43,7 @@ a {
   display: flex;
   gap: 30px; /* Adjust space between tables */
   margin-left: 5%;
+  align-items: flex-start;
 }
 table {
   border-collapse: collapse;
@@ -55,5 +56,5 @@ th, td {
 }
 
 tr:nth-child(even) {
-  background-color: #112b2b;
+  background-color: #008ed046;
 }
