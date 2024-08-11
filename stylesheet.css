@@ -1,11 +1,15 @@
 
-p, h1 {
+p, h1, h2, h3 {
     text-align: center;
+    color: black
 }
 
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #000000;
+  background-image: url(/photos/N461-5.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   color: white;
 }
 
@@ -34,27 +38,42 @@ iframe, img {
 }
 
 
-
 a {
   color: #1e80db;
 }
 
 .metro {
   display: flex;
-  gap: 30px; /* Adjust space between tables */
+  gap: 30px;
   margin-left: 5%;
   align-items: flex-start;
 }
 table {
   border-collapse: collapse;
-  /* width: auto; Adjust table width as needed */
+  background-color: rgba(0, 0, 0, 0.418);
 }
 th, td {
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
   padding: 5px;
   /* text-align: left; */
 }
 
+td {
+  font-family: monospace;
+  max-width: 250px;
+}
+
 tr:nth-child(even) {
   background-color: #008ed046;
+}
+
+.table-container, .map {
+  backdrop-filter: blur(10px); 
+}
+.scrapped {
+  background-color: rgba(255, 0, 0, 0.411);
+}
+
+.map {
+  background-color: rgba(0, 0, 0, 0.459);
 }
