@@ -11,6 +11,8 @@
     <meta name="author" content="XM9G">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
@@ -38,23 +40,39 @@
     <script>
         // Function to update the background based on the toggle state
         function updateBackground() {
-            const isEnabled = localStorage.getItem('backgroundEnabled') === 'true';
+            let isEnabled = localStorage.getItem('backgroundEnabled');
+
+            // Default to 'true' if there's no stored value
+            if (isEnabled === null) {
+                isEnabled = 'true';
+                localStorage.setItem('backgroundEnabled', isEnabled);
+            }
+
+            // Convert the string to a boolean
+            isEnabled = isEnabled === 'true';
+
+            // Apply the class and set the checkbox state
             document.body.classList.toggle('background-image', isEnabled);
             document.getElementById('background-toggle').checked = isEnabled;
         }
 
+        // Event listener for the toggle switch
         document.getElementById('background-toggle').addEventListener('change', function () {
             const isEnabled = this.checked;
             localStorage.setItem('backgroundEnabled', isEnabled);
             updateBackground();
         });
 
+        // Initialize the background on page load
         document.addEventListener('DOMContentLoaded', updateBackground);
     </script>
     <!-- <div data-netlify-identity-menu></div> -->
 
     <!-- <a href="#stations">Jump to station photos</a> -->
-    <h2>Metro Trains Melbourne</h2>
+    <div class="sub-heading">
+        <h2>Metro Trains Melbourne</h2>
+    </div>
+    
     <div class="metro">
     <div class="table-container">
         <table>
@@ -764,7 +782,9 @@
     </div>
     
     <br>
+    <div class="sub-heading">
     <h2>V/Line</h2>
+</div>
     <br>
     <div class="metro">
     <div class="table-container">
@@ -1168,10 +1188,10 @@
                 <td></td>
               </tr>
               <tr>
-                <td>7019</td>
-                <td>Danni Roche</td>
+                <td class="scrapped">7019</td>
+                <td class="scrapped">Danni Roche</td>
                 <td class="scrapped">Scrapped</td>
-                <td></td>
+                <td class="scrapped"></td>
               </tr>
               <tr>
                 <td><a href="trains/melbourne/v/line/sprinter/7020.html">7020</a></td>

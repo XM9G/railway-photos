@@ -11,12 +11,30 @@ body {
   background-position: center;
   transition: background-image 0.5s ease;
   color: white;
+  background-color: darkgrey;
 }
 
 .heading {
   backdrop-filter: blur(30px); 
   background-color: rgba(0, 0, 0, 0.589);
   color: white;
+  margin-left: 40%;
+  margin-right: 40%;
+  padding: 20px;
+  border: 1px solid black;
+  /* white-space: nowrap; */
+  text-align: center;
+}
+.sub-heading {
+  backdrop-filter: blur(30px); 
+  background-color: rgba(0, 0, 0, 0.589);
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 10px;
+  border: 1px solid black;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .background-image {
@@ -31,6 +49,11 @@ body {
   right: 20px;
   display: flex;
   align-items: center;
+  backdrop-filter: blur(30px); 
+  padding: 10px;
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.589);
+  z-index: 10;
 }
 
 img {
@@ -49,7 +72,19 @@ img:hover, frame:hover {
     img {
       width: 100%;
     }
+    
+    .heading {
+      margin-left: 5%;
+      margin-right: 5%;
+    }
   }
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+  .metro {
+    display: flex;
+  }
+}
 
 iframe, img {
   border-radius: 0px;
@@ -63,7 +98,6 @@ a {
 }
 
 .metro {
-  display: flex;
   gap: 30px;
   margin-left: 5%;
   align-items: flex-start;
@@ -71,6 +105,8 @@ a {
 table {
   border-collapse: collapse;
   background-color: rgba(0, 0, 0, 0.589);
+  margin-top: 10px;
+
 }
 th, td {
   border: 1px solid rgb(0, 0, 0);
