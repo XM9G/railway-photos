@@ -1,16 +1,36 @@
 
 p, h1, h2, h3 {
     text-align: center;
-    color: black
+    /* color: black */
 }
 
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url(/photos/N461-5.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+  transition: background-image 0.5s ease;
   color: white;
+}
+
+.heading {
+  backdrop-filter: blur(30px); 
+  background-color: rgba(0, 0, 0, 0.589);
+  color: white;
+}
+
+.background-image {
+  background-image: url('/photos/N461-5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.toggle-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 img {

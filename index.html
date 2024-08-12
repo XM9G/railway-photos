@@ -27,8 +27,30 @@
 
 
 <body>
-    <h1>XM9G's Railway Photos</h1>
-    <h3 class="subheading">706 photos of 462 trains</h3>
+    <div class="heading">
+        <h1>XM9G's Railway Photos</h1>
+        <h3 class="subheading">706 photos of 462 trains</h3>
+    </div>
+    <div class="toggle-switch">
+        <label for="background-toggle">Background Image</label>
+        <input type="checkbox" id="background-toggle">
+    </div>
+    <script>
+        // Function to update the background based on the toggle state
+        function updateBackground() {
+            const isEnabled = localStorage.getItem('backgroundEnabled') === 'true';
+            document.body.classList.toggle('background-image', isEnabled);
+            document.getElementById('background-toggle').checked = isEnabled;
+        }
+
+        document.getElementById('background-toggle').addEventListener('change', function () {
+            const isEnabled = this.checked;
+            localStorage.setItem('backgroundEnabled', isEnabled);
+            updateBackground();
+        });
+
+        document.addEventListener('DOMContentLoaded', updateBackground);
+    </script>
     <!-- <div data-netlify-identity-menu></div> -->
 
     <!-- <a href="#stations">Jump to station photos</a> -->
