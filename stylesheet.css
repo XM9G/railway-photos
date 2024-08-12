@@ -11,7 +11,7 @@ body {
   background-position: center;
   transition: background-image 0.5s ease;
   color: white;
-  background-color: darkgrey;
+  background-color: rgb(53, 53, 53);
 }
 
 .heading {
