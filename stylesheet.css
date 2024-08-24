@@ -88,6 +88,12 @@ img:hover, frame:hover {
   }
 }
 
+.blurbg {
+  background-color: rgba(0, 0, 0, 0.589);
+  backdrop-filter: blur(30px); 
+
+}
+
 iframe, img {
   border-radius: 0px;
   border: 1px solid white;
