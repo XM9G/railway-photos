@@ -11,6 +11,8 @@
     <meta name="author" content="XM9G">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
@@ -34,9 +36,16 @@
         <input type="checkbox" id="background-toggle">
     </div>
     <script>
-        // Function to update the background based on the toggle state
         function updateBackground() {
-            const isEnabled = localStorage.getItem('backgroundEnabled') === 'true';
+            let isEnabled = localStorage.getItem('backgroundEnabled');
+
+            if (isEnabled === null) {
+                isEnabled = 'true';
+                localStorage.setItem('backgroundEnabled', isEnabled);
+            }
+
+            isEnabled = isEnabled === 'true';
+
             document.body.classList.toggle('background-image', isEnabled);
             document.getElementById('background-toggle').checked = isEnabled;
         }
@@ -52,7 +61,10 @@
     <!-- <div data-netlify-identity-menu></div> -->
 
     <!-- <a href="#stations">Jump to station photos</a> -->
-    <h2>Metro Trains Melbourne</h2>
+    <div class="sub-heading">
+        <h2>Metro Trains Melbourne</h2>
+    </div>
+    
     <div class="metro">
     <div class="table-container">
         <table>
@@ -448,7 +460,7 @@
             <tr><td><a href="trains/melbourne/xtrapolis-100/951M.html">951M</a>-1676T-952M</td><td></td></tr>
             <tr><td>953M-1677T-954M</td><td></td></tr>
             <tr><td>955M-1678T-956M</td><td></td></tr>
-            <tr><td>957M-1679T-958M</td><td></td></tr>
+            <tr><td>957M-1679T-<a href="trains/melbourne/xtrapolis-100/958M.html">958M</a></td><td></td></tr>
             <tr><td>959M-1680T-<a href="trains/melbourne/xtrapolis-100/960M.html">960M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/961M.html">961M</a>-1681T-962M</td><td></td></tr>
             <tr><td>963M-1682T-964M</td><td></td></tr>
@@ -755,14 +767,16 @@
     <div class="table-container">
         <table>
             <tr><th><h4>X'Trapolis 2.0</h4></th><th>Notes</th></tr>
-            <tr><td>8101-8201-</td><td>Mockup</td></tr>
+            <tr><td>8101-8201</td><td>Mockup</td></tr>
             <tr><td>Expected 2025</td><td></td></tr>
         </table>
     </div>
     </div>
     
     <br>
+    <div class="sub-heading">
     <h2>V/Line</h2>
+</div>
     <br>
     <div class="metro">
     <div class="table-container">
@@ -1166,10 +1180,10 @@
                 <td></td>
               </tr>
               <tr>
-                <td>7019</td>
-                <td>Danni Roche</td>
+                <td class="scrapped">7019</td>
+                <td class="scrapped">Danni Roche</td>
                 <td class="scrapped">Scrapped</td>
-                <td></td>
+                <td class="scrapped"></td>
               </tr>
               <tr>
                 <td><a href="trains/melbourne/v/line/sprinter/7020.html">7020</a></td>
@@ -1192,13 +1206,16 @@
         </table>
     </div>
 
-    <h4>Y Class</h4>
-    <ul>
-        <li><a href="trains/melbourne/v/line/Y-Class/Y133.html">Y133</a> - Victorian Goldfields Railway</li>
-        <li><a href="trains/melbourne/v/line/Y-Class/Y161.html">Y161</a></li>
-        <li><a href="trains/melbourne/v/line/Y-Class/Y163.html">Y163</a></li>
-        <li><a href="trains/melbourne/v/line/Y-Class/Y156.html">Y156</a></li>
-    </ul>
+    <div class="table-container">
+        <table>
+            <tr><th>Y Class</th><th>Operator</th><th>Only ones with photos listed</th></tr>
+            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y133.html">Y133</a></td><td>Victorian Goldfields Railway</td></tr>
+            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y156.html">Y156</a></td><td>V/Line</td></tr>
+            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y161.html">Y161</a></td><td>V/Line</td></tr>
+            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y163.html">Y163</a></td><td>V/Line</td></tr>
+
+        </table>
+    </div>
     <h4>Harris/H set</h4>
     <ul>
         H sets
@@ -1251,6 +1268,7 @@
     </ul>
 
     <br><br>
+    <!--
     <h1 id="stations">Stations</h1>
         <h2>Victoria</h2>
             <h3><a href=''>Bendigo Line</a></h3>
@@ -1294,7 +1312,7 @@
             <li><a href='/other/vicstations.txt'>Text file list of all stations in Victoria</a></li>
             <li><a href='/other/nswstations.txt'>Text file list of all stations in New South Wales</a></li>
 
-        </ul>
+        </ul>-->
         <img class='map' src="map.svg" style="width: 100%;border: 0px;">
 
     <div class="counter">
