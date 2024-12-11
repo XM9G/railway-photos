@@ -35,6 +35,7 @@
         <label for="background-toggle">Background Image</label>
         <input type="checkbox" id="background-toggle">
     </div>
+
     <script>
         function updateBackground() {
             let isEnabled = localStorage.getItem('backgroundEnabled');
@@ -59,6 +60,38 @@
         document.addEventListener('DOMContentLoaded', updateBackground);
     </script>
     <!-- <div data-netlify-identity-menu></div> -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('.hover-image');
+  const popupImage = document.getElementById('popup-image');
+  const popupImg = popupImage.querySelector('img');
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', function(e) {
+      const imagePath = this.getAttribute('data-image');
+      if (imagePath) {
+        popupImg.src = imagePath;
+        popupImage.style.display = 'block';
+        updatePopupPosition(e);
+      }
+    });
+
+    link.addEventListener('mouseleave', function() {
+      popupImage.style.display = 'none';
+    });
+
+    link.addEventListener('mousemove', updatePopupPosition);
+  });
+
+  function updatePopupPosition(e) {
+    // Position the popup image near the mouse cursor
+    popupImage.style.left = (e.pageX + 10) + 'px'; // 10px to the right of the cursor
+    popupImage.style.top = (e.pageY + 10) + 'px';  // 10px below the cursor
+  }
+});
+</script>
 
     <!-- <a href="#stations">Jump to station photos</a> -->
     <div class="sub-heading">
@@ -264,111 +297,113 @@
     <div class="table-container">
         <table>
             <tr><th><h4>X'trapolis 100</h4></th><th>Notes</th></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/1M.html">1M</a>-1301T-2M</td><td></td></tr>
-            <tr><td>3M-1302T-<a href="trains/melbourne/xtrapolis-100/4M.html">4M</a></td><td></td></tr>
-            <tr><td>5M-1303T-<a href="trains/melbourne/xtrapolis-100/6M.html">6M</a></td><td></td></tr>
-            <tr><td>7M-1304T-<a href="trains/melbourne/xtrapolis-100/8M.html">8M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/9M.html">9M</a>-1305T-10M</td><td></td></tr>
-            <tr><td>11M-1306T-<a href="trains/melbourne/xtrapolis-100/12M.html">12M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/13M.html">13M</a>-1307T-<a href="trains/melbourne/xtrapolis-100/14M.html">14M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/15M.html">15M</a>-1308T-16M</td><td></td></tr>
-            <tr><td>17M-1309T-<a href="trains/melbourne/xtrapolis-100/18M.html">18M</a></td><td></td></tr>
+            
+            <tr><td><a href="trains/melbourne/xtrapolis-100/1M.html" class="hover-image" style="--image-url: url(photos/1M.webp);">1M</a>-1301T-2M</td></tr>
+            <tr><td>3M-1302T-<a href="trains/melbourne/xtrapolis-100/4M.html" class="hover-image" style="--image-url: url(photos/4M.webp);">4M</a></td><td></td></tr>
+            <tr><td>5M-1303T-<a href="trains/melbourne/xtrapolis-100/6M.html" class="hover-image" style="--image-url: url(photos/6M.webp);">6M</a></td><td></td></tr>
+            <tr><td>7M-1304T-<a href="trains/melbourne/xtrapolis-100/8M.html" class="hover-image" style="--image-url: url(photos/8M.webp);">8M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/9M.html"class="hover-image" style="--image-url: url(photos/9M.webp);">9M</a>-1305T-10M</td><td></td></tr>
+            <tr><td>11M-1306T-<a href="trains/melbourne/xtrapolis-100/12M.html"class="hover-image" style="--image-url: url(photos/12M.webp);">12M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/13M.html"class="hover-image" style="--image-url: url(photos/13M.webp);">13M</a>-1307T-<a href="trains/melbourne/xtrapolis-100/14M.html"class="hover-image" style="--image-url: url(photos/14M.webp);">14M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/15M.html"class="hover-image" style="--image-url: url(photos/15M.webp);">15M</a>-1308T-16M</td><td></td></tr>
+            <tr><td>17M-1309T-<a href="trains/melbourne/xtrapolis-100/18M.html"class="hover-image" style="--image-url: url(photos/18M.webp);">18M</a></td><td></td></tr>
             <tr><td>19M-1310T-20M</td><td></td></tr>
             <tr><td>21M-1311T-22M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/23M.html">23M</a>-1312T-<a href="trains/melbourne/xtrapolis-100/24M.html">24M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/23M.html"class="hover-image" style="--image-url: url(photos/23M.webp);">23M</a>-1312T-<a href="trains/melbourne/xtrapolis-100/24M.html"class="hover-image" style="--image-url: url(photos/24M.webp);">24M</a></td><td></td></tr>
             <tr><td>25M-1313T-26M</td><td></td></tr>
-            <tr><td>27M-1314T-<a href="trains/melbourne/xtrapolis-100/28M.html">28M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/29M.html">29M</a>-1315T-<a href="trains/melbourne/xtrapolis-100/30M.html">30M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/31M.html">31M</a>-1316T-32M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/33M.html">33M</a>-1317T-<a href="trains/melbourne/xtrapolis-100/34M.html">34M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/35M.html">35M</a>-1318T-<a href="trains/melbourne/xtrapolis-100/36M.html">36M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/37M.html">37M</a>-1319T-<a href="trains/melbourne/xtrapolis-100/38M.html">38M</a></td><td></td></tr>
-            <tr><td>39M-1320T-<a href="trains/melbourne/xtrapolis-100/40M.html">40M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/41M.html">41M</a>-1321T-42M</td><td></td></tr>
-            <tr><td>43M-1322T-<a href="trains/melbourne/xtrapolis-100/44M.html">44M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/45M.html">45M</a>-1323T-<a href="trains/melbourne/xtrapolis-100/46M.html">46M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/47M.html">47M</a>-1324T-<a href="trains/melbourne/xtrapolis-100/48M.html">48M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/49M.html">49M</a>-1325T-<a href="trains/melbourne/xtrapolis-100/50M.html">50M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/51M.html">51M</a>-1326T-<a href="trains/melbourne/xtrapolis-100/52M.html">52M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/53M.html">53M</a>-1327T-<a href="trains/melbourne/xtrapolis-100/54M.html">54M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/55M.html">55M</a>-1328T-56M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/57M.html">57M</a>-1329T-<a href="trains/melbourne/xtrapolis-100/58M.html">58M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/59M.html">59M</a>-1330T-<a href="trains/melbourne/xtrapolis-100/60M.html">60M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/61M.html">61M</a>-1331T-<a href="trains/melbourne/xtrapolis-100/62M.html">62M</a></td><td></td></tr>
-            <tr><td>63M-1332T-<a href="trains/melbourne/xtrapolis-100/64M.html">64M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/65M.html">65M</a>-1333T-66M</td><td></td></tr>
-            <tr><td>67M-<a href="trains/melbourne/xtrapolis-100/1334T.html">1334T</a>-<a href="trains/melbourne/xtrapolis-100/68M.html">68M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/69M.html">69M</a>-1335T-70M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/71M.html">71M</a>-1336T-72M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/73M.html">73M</a>-1337T-<a href="trains/melbourne/xtrapolis-100/74M.html">74M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/75M.html">75M</a>-1338T-<a href="trains/melbourne/xtrapolis-100/76M.html">76M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/77M.html">77M</a>-1339T-<a href="trains/melbourne/xtrapolis-100/78M.html">78M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/79M.html">79M</a>-1340T-<a href="trains/melbourne/xtrapolis-100/80M.html">80M</a></td><td></td></tr>
+            <tr><td>27M-1314T-<a href="trains/melbourne/xtrapolis-100/28M.html"class="hover-image" style="--image-url: url(photos/28M.webp);">28M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/29M.html"class="hover-image" style="--image-url: url(photos/29M.webp);">29M</a>-1315T-<a href="trains/melbourne/xtrapolis-100/30M.html"class="hover-image" style="--image-url: url(photos/30M.webp);">30M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/31M.html"class="hover-image" style="--image-url: url(photos/31M.webp);">31M</a>-1316T-32M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/33M.html"class="hover-image" style="--image-url: url(photos/33M.webp);">33M</a>-1317T-<a href="trains/melbourne/xtrapolis-100/34M.html"class="hover-image" style="--image-url: url(photos/34M.webp);">34M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/35M.html"class="hover-image" style="--image-url: url(photos/35M.webp);">35M</a>-1318T-<a href="trains/melbourne/xtrapolis-100/36M.html"class="hover-image" style="--image-url: url(photos/36M.webp);">36M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/37M.html"class="hover-image" style="--image-url: url(photos/37M.webp);">37M</a>-1319T-<a href="trains/melbourne/xtrapolis-100/38M.html"class="hover-image" style="--image-url: url(photos/38M.webp);">38M</a></td><td></td></tr>
+            <tr><td>39M-1320T-<a href="trains/melbourne/xtrapolis-100/40M.html"class="hover-image" style="--image-url: url(photos/40M.webp);">40M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/41M.html"class="hover-image" style="--image-url: url(photos/14M.webp);">41M</a>-1321T-42M</td><td></td></tr>
+            <tr><td>43M-1322T-<a href="trains/melbourne/xtrapolis-100/44M.html"class="hover-image" style="--image-url: url(photos/44M.webp);">44M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/45M.html"class="hover-image" style="--image-url: url(photos/45M.webp);">45M</a>-1323T-<a href="trains/melbourne/xtrapolis-100/46M.html"class="hover-image" style="--image-url: url(photos/46M.webp);">46M</a></td><td></td></tr>
+           <tr><td><a href="trains/melbourne/xtrapolis-100/47M.html" class="hover-image" style="--image-url: url(photos/47M.webp);">47M</a>-1324T-<a href="trains/melbourne/xtrapolis-100/48M.html" class="hover-image" style="--image-url: url(photos/48M.webp);">48M</a></td></tr>
+
+            <tr><td><a href="trains/melbourne/xtrapolis-100/49M.html"class="hover-image" style="--image-url: url(photos/49M.webp);">49M</a>-1325T-<a href="trains/melbourne/xtrapolis-100/50M.html"class="hover-image" style="--image-url: url(photos/50M.webp);">50M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/51M.html"class="hover-image" style="--image-url: url(photos/51M.webp);">51M</a>-1326T-<a href="trains/melbourne/xtrapolis-100/52M.html"class="hover-image" style="--image-url: url(photos/52M.webp);">52M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/53M.html"class="hover-image" style="--image-url: url(photos/53M.webp);">53M</a>-1327T-<a href="trains/melbourne/xtrapolis-100/54M.html"class="hover-image" style="--image-url: url(photos/54M.webp);">54M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/55M.html"class="hover-image" style="--image-url: url(photos/55M.webp);">55M</a>-1328T-56M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/57M.html"class="hover-image" style="--image-url: url(photos/57M.webp);">57M</a>-1329T-<a href="trains/melbourne/xtrapolis-100/58M.html"class="hover-image" style="--image-url: url(photos/58M.webp);">58M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/59M.html"class="hover-image" style="--image-url: url(photos/59M.webp);">59M</a>-1330T-<a href="trains/melbourne/xtrapolis-100/60M.html"class="hover-image" style="--image-url: url(photos/60M.webp);">60M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/61M.html"class="hover-image" style="--image-url: url(photos/61M.webp);">61M</a>-1331T-<a href="trains/melbourne/xtrapolis-100/62M.html"class="hover-image" style="--image-url: url(photos/62M.webp);">62M</a></td><td></td></tr>
+            <tr><td>63M-1332T-<a href="trains/melbourne/xtrapolis-100/64M.html"class="hover-image" style="--image-url: url(photos/64M.webp);">64M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/65M.html"class="hover-image" style="--image-url: url(photos/65M.webp);">65M</a>-1333T-66M</td><td></td></tr>
+            <tr><td>67M-<a href="trains/melbourne/xtrapolis-100/1334T.html"class="hover-image" style="--image-url: url(photos/1334T.webp);">1334T</a>-<a href="trains/melbourne/xtrapolis-100/68M.html"class="hover-image" style="--image-url: url(photos/68M.webp);">68M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/69M.html"class="hover-image" style="--image-url: url(photos/69M.webp);">69M</a>-1335T-70M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/71M.html"class="hover-image" style="--image-url: url(photos/71M.webp);">71M</a>-1336T-72M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/73M.html"class="hover-image" style="--image-url: url(photos/73M.webp);">73M</a>-1337T-<a href="trains/melbourne/xtrapolis-100/74M.html"class="hover-image" style="--image-url: url(photos/74M.webp);">74M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/75M.html"class="hover-image" style="--image-url: url(photos/75M.webp);">75M</a>-1338T-<a href="trains/melbourne/xtrapolis-100/76M.html"class="hover-image" style="--image-url: url(photos/76M.webp);">76M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/77M.html"class="hover-image" style="--image-url: url(photos/77M.webp);">77M</a>-1339T-<a href="trains/melbourne/xtrapolis-100/78M.html"class="hover-image" style="--image-url: url(photos/78M.webp);">78M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/79M.html"class="hover-image" style="--image-url: url(photos/79M.webp);">79M</a>-1340T-<a href="trains/melbourne/xtrapolis-100/80M.html"class="hover-image" style="--image-url: url(photos/80M.webp);">80M</a></td><td></td></tr>
             <tr><td>81M-1341T-82M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/83M.html">83M</a>-1342T-<a href="trains/melbourne/xtrapolis-100/84M.html">84M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/83M.html"class="hover-image" style="--image-url: url(photos/83M.webp);">83M</a>-1342T-<a href="trains/melbourne/xtrapolis-100/84M.html"class="hover-image" style="--image-url: url(photos/84M.webp);">84M</a></td><td></td></tr>
             <tr><td>85M-1343T-86M</td><td></td></tr>
-            <tr><td>87M-1344T-<a href="trains/melbourne/xtrapolis-100/88M.html">88M</a></td><td></td></tr>
-            <tr><td>89M-1345T-<a href="trains/melbourne/xtrapolis-100/90M.html">90M</a></td><td></td></tr>
+            <tr><td>87M-1344T-<a href="trains/melbourne/xtrapolis-100/88M.html"class="hover-image" style="--image-url: url(photos/88M.webp);">88M</a></td><td></td></tr>
+            <tr><td>89M-1345T-<a href="trains/melbourne/xtrapolis-100/90M.html"class="hover-image" style="--image-url: url(photos/90M.webp);">90M</a></td><td></td></tr>
             <tr><td>91M-1346T-92M</td><td></td></tr>
             <tr><td>93M-1347T-94M</td><td></td></tr>
-            <tr><td>95M-1348T-<a href="trains/melbourne/xtrapolis-100/96M.html">96M</a></td><td></td></tr>
-            <tr><td>97M-1349T-<a href="trains/melbourne/xtrapolis-100/98M.html">98M</a></td><td></td></tr>
+            <tr><td>95M-1348T-<a href="trains/melbourne/xtrapolis-100/96M.html"class="hover-image" style="--image-url: url(photos/96M.webp);">96M</a></td><td></td></tr>
+            <tr><td>97M-1349T-<a href="trains/melbourne/xtrapolis-100/98M.html"class="hover-image" style="--image-url: url(photos/98M.webp);">98M</a></td><td></td></tr>
             <tr><td>99M-1350T-100M</td><td></td></tr>
-            <tr><td>101M-1351T-<a href="trains/melbourne/xtrapolis-100/102M.html">102M</a></td><td></td></tr>
+            <tr><td>101M-1351T-<a href="trains/melbourne/xtrapolis-100/102M.html"class="hover-image" style="--image-url: url(photos/102M.webp);">102M</a></td><td></td></tr>
             <tr><td>103M-1352T-104M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/105M.html">105M</a>-1353T-<a href="trains/melbourne/xtrapolis-100/106M.html">106M</a></td><td></td></tr>
-            <tr><td>107M-1354T-<a href="trains/melbourne/xtrapolis-100/108M.html">108M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/109M.html">109M</a>-1355T-<a href="trains/melbourne/xtrapolis-100/110M.html">110M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/105M.html"class="hover-image" style="--image-url: url(photos/105M.webp);">105M</a>-1353T-<a href="trains/melbourne/xtrapolis-100/106M.html"class="hover-image" style="--image-url: url(photos/106M.webp);">106M</a></td><td></td></tr>
+            <tr><td>107M-1354T-<a href="trains/melbourne/xtrapolis-100/108M.html"class="hover-image" style="--image-url: url(photos/108M.webp);">108M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/109M.html"class="hover-image" style="--image-url: url(photos/109M.webp);">109M</a>-1355T-<a href="trains/melbourne/xtrapolis-100/110M.html"class="hover-image" style="--image-url: url(photos/110M.webp);">110M</a></td><td></td></tr>
             <tr><td>111M-1356T-112M</td><td></td></tr>
             <tr><td>113M-1357T-114M</td><td></td></tr>
-            <tr><td>115M-1358T-<a href="trains/melbourne/xtrapolis-100/116M.html">116M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/117M.html">117M</a>-1359T-118M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/119M.html">119M</a>-1360T-120M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/121M.html">121M</a>-1361T-<a href="trains/melbourne/xtrapolis-100/122M.html">122M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/123M.html">123M</a>-1362T-124M</td><td></td></tr>
-            <tr><td>125M-1363T-<a href="trains/melbourne/xtrapolis-100/126M.html">126M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/127M.html">127M</a>-1364T-128M</td><td></td></tr>
-            <tr><td>129M-1365T-<a href="trains/melbourne/xtrapolis-100/130M.html">130M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/131M.html">131M</a>-1366T-132M</td><td></td></tr>
-            <tr><td>133M-1367T-<a href="trains/melbourne/xtrapolis-100/134M.html">134M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/135M.html">135M</a>-1368T-136M</td><td></td></tr>
-            <tr><td>137M-1369T-<a href="trains/melbourne/xtrapolis-100/138M.html">138M</a></td><td></td></tr>
+            <tr><td>115M-1358T-<a href="trains/melbourne/xtrapolis-100/116M.html"class="hover-image" style="--image-url: url(photos/116M.webp);">116M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/117M.html"class="hover-image" style="--image-url: url(photos/117M.webp);">117M</a>-1359T-118M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/119M.html"class="hover-image" style="--image-url: url(photos/119M.webp);">119M</a>-1360T-120M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/121M.html"class="hover-image" style="--image-url: url(photos/121M.webp);">121M</a>-1361T-<a href="trains/melbourne/xtrapolis-100/122M.html"class="hover-image" style="--image-url: url(photos/122M.webp);">122M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/123M.html"class="hover-image" style="--image-url: url(photos/123M.webp);">123M</a>-1362T-124M</td><td></td></tr>
+            <tr><td>125M-1363T-<a href="trains/melbourne/xtrapolis-100/126M.html"class="hover-image" style="--image-url: url(photos/126M.webp);">126M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/127M.html"class="hover-image" style="--image-url: url(photos/127M.webp);">127M</a>-1364T-128M</td><td></td></tr>
+            <tr><td>129M-1365T-<a href="trains/melbourne/xtrapolis-100/130M.html"class="hover-image" style="--image-url: url(photos/130M.webp);">130M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/131M.html"class="hover-image" style="--image-url: url(photos/131M.webp);">131M</a>-1366T-132M</td><td></td></tr>
+            <tr><td>133M-1367T-<a href="trains/melbourne/xtrapolis-100/134M.html"class="hover-image" style="--image-url: url(photos/134M.webp);">134M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/135M.html"class="hover-image" style="--image-url: url(photos/135M.webp);">135M</a>-1368T-136M</td><td></td></tr>
+            <tr><td>137M-1369T-<a href="trains/melbourne/xtrapolis-100/138M.html"class="hover-image" style="--image-url: url(photos/138M.webp);">138M</a></td><td></td></tr>
             <tr><td>139M-1370T-140M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/141M.html">141M</a>-1371T-<a href="trains/melbourne/xtrapolis-100/142M.html">142M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/143M.html">143M</a>-1372T-<a href="trains/melbourne/xtrapolis-100/144M.html">144M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/141M.html"class="hover-image" style="--image-url: url(photos/141M.webp);">141M</a>-1371T-<a href="trains/melbourne/xtrapolis-100/142M.html"class="hover-image" style="--image-url: url(photos/142M.webp);">142M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/143M.html"class="hover-image" style="--image-url: url(photos/143M.webp);">143M</a>-1372T-<a href="trains/melbourne/xtrapolis-100/144M.html"class="hover-image" style="--image-url: url(photos/144M.webp);">144M</a></td><td></td></tr>
             <tr><td>145M-1373T-146M</td><td></td></tr>
-            <tr><td>147M-1374T-<a href="trains/melbourne/xtrapolis-100/148M.html">148M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/149M.html">149M</a>-1375T-<a href="trains/melbourne/xtrapolis-100/150M.html">150M</a></td><td></td></tr>
+            <tr><td>147M-1374T-<a href="trains/melbourne/xtrapolis-100/148M.html"class="hover-image" style="--image-url: url(photos/148M.webp);">148M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/149M.html"class="hover-image" style="--image-url: url(photos/149M.webp);">149M</a>-1375T-<a href="trains/melbourne/xtrapolis-100/150M.html"class="hover-image" style="--image-url: url(photos/150M.webp);">150M</a></td><td></td></tr>
             <tr><td>151M-1376T-152M</td><td></td></tr>
             <tr><td>153M-1377T-154M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/155M.html">155M</a>-1378T-<a href="trains/melbourne/xtrapolis-100/156M.html">156M</a></td><td></td></tr>
-            <tr><td>157M-1379T-<a href="trains/melbourne/xtrapolis-100/158M.html">158M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/159M.html">159M</a>-1380T-160M</td><td></td></tr>
-            <tr><td>161M-1381T-<a href="trains/melbourne/xtrapolis-100/162M.html">162M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/163M.html">163M</a>-1382T-164M</td><td></td></tr>
-            <tr><td>165M-1383T-<a href="trains/melbourne/xtrapolis-100/166M.html">166M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/167M.html">167M</a>-1384T-<a href="trains/melbourne/xtrapolis-100/168M.html">168M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/169M.html">169M</a>-1385T-<a href="trains/melbourne/xtrapolis-100/170M.html">170M</a></td><td></td></tr>
-            <tr><td>171M-1386T-<a href="trains/melbourne/xtrapolis-100/172M.html">172M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/173M.html">173M</a>-1387T-<a href="trains/melbourne/xtrapolis-100/174M.html">174M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/155M.html"class="hover-image" style="--image-url: url(photos/155.webp);">155M</a>-1378T-<a href="trains/melbourne/xtrapolis-100/156M.html"class="hover-image" style="--image-url: url(photos/156M.webp);">156M</a></td><td></td></tr>
+            <tr><td>157M-1379T-<a href="trains/melbourne/xtrapolis-100/158M.html"class="hover-image" style="--image-url: url(photos/158M.webp);">158M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/159M.html"class="hover-image" style="--image-url: url(photos/159M.webp);">159M</a>-1380T-160M</td><td></td></tr>
+            <tr><td>161M-1381T-<a href="trains/melbourne/xtrapolis-100/162M.html"class="hover-image" style="--image-url: url(photos/162M.webp);">162M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/163M.html"class="hover-image" style="--image-url: url(photos/163M.webp);">163M</a>-1382T-164M</td><td></td></tr>
+            <tr><td>165M-1383T-<a href="trains/melbourne/xtrapolis-100/166M.html"class="hover-image" style="--image-url: url(photos/166M.webp);">166M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/167M.html"class="hover-image" style="--image-url: url(photos/167M.webp);">167M</a>-1384T-<a href="trains/melbourne/xtrapolis-100/168M.html"class="hover-image" style="--image-url: url(photos/168M.webp);">168M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/169M.html"class="hover-image" style="--image-url: url(photos/169M.webp);">169M</a>-1385T-<a href="trains/melbourne/xtrapolis-100/170M.html"class="hover-image" style="--image-url: url(photos/170M.webp);">170M</a></td><td></td></tr>
+            <tr><td>171M-1386T-<a href="trains/melbourne/xtrapolis-100/172M.html"class="hover-image" style="--image-url: url(photos/172M.webp);">172M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/173M.html"class="hover-image" style="--image-url: url(photos/173M.webp);">173M</a>-1387T-<a href="trains/melbourne/xtrapolis-100/174M.html"class="hover-image" style="--image-url: url(photos/174M.webp);">174M</a></td><td></td></tr>
             <tr><td>175M-1388T-176M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/177M.html">177M</a>-1389T-<a href="trains/melbourne/xtrapolis-100/178M.html">178M</a></td><td></td></tr>
-            <tr><td>179M-1390T-<a href="trains/melbourne/xtrapolis-100/180M.html">180M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/181M.html">181M</a>-1391T-182M</td><td></td></tr>
-            <tr><td>183M-1392T-<a href="trains/melbourne/xtrapolis-100/184M.html">184M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/185M.html">185M</a>-1393T-<a href="trains/melbourne/xtrapolis-100/186M.html">186M</a></td><td></td></tr>
-            <tr><td>187M-1394T-<a href="trains/melbourne/xtrapolis-100/188M.html">188M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/177M.html"class="hover-image" style="--image-url: url(photos/177M.webp);">177M</a>-1389T-<a href="trains/melbourne/xtrapolis-100/178M.html"class="hover-image" style="--image-url: url(photos/178M.webp);">178M</a></td><td></td></tr>
+            <tr><td>179M-1390T-<a href="trains/melbourne/xtrapolis-100/180M.html"class="hover-image" style="--image-url: url(photos/180M.webp);">180M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/181M.html"class="hover-image" style="--image-url: url(photos/181M.webp);">181M</a>-1391T-182M</td><td></td></tr>
+            <tr><td>183M-1392T-<a href="trains/melbourne/xtrapolis-100/184M.html"class="hover-image" style="--image-url: url(photos/184M.webp);">184M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/185M.html"class="hover-image" style="--image-url: url(photos/185M.webp);">185M</a>-1393T-<a href="trains/melbourne/xtrapolis-100/186M.html"class="hover-image" style="--image-url: url(photos/186M.webp);">186M</a></td><td></td></tr>
+            <tr><td>187M-1394T-<a href="trains/melbourne/xtrapolis-100/188M.html"class="hover-image" style="--image-url: url(photos/188M.webp);">188M</a></td><td></td></tr>
             <tr><td>189M-1395T-190M</td><td></td></tr>
-            <tr><td>191M-1396T-<a href="trains/melbourne/xtrapolis-100/192M.html">192M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/193M.html">193M</a>-1397T-<a href="trains/melbourne/xtrapolis-100/194M.html">194M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/195M.html">195M</a>-1398T-<a href="trains/melbourne/xtrapolis-100/196M.html">196M</a></td><td></td></tr>
+            <tr><td>191M-1396T-<a href="trains/melbourne/xtrapolis-100/192M.html"class="hover-image" style="--image-url: url(photos/192M.webp);">192M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/193M.html"class="hover-image" style="--image-url: url(photos/193M.webp);">193M</a>-1397T-<a href="trains/melbourne/xtrapolis-100/194M.html"class="hover-image" style="--image-url: url(photos/194M.webp);">194M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/195M.html"class="hover-image" style="--image-url: url(photos/195M.webp);">195M</a>-1398T-<a href="trains/melbourne/xtrapolis-100/196M.html">196M</a></td><td></td></tr>
             <tr><td>197M-1399T-198M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/199M.html">199M</a>-1400T-<a href="trains/melbourne/xtrapolis-100/200M.html">200M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/199M.html"class="hover-image" style="--image-url: url(photos/199M.webp);">199M</a>-1400T-<a href="trains/melbourne/xtrapolis-100/200M.html"class="hover-image" style="--image-url: url(photos/200M.webp);">200M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/201M.html">201M</a>-1401T-202M</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/203M.html">203M</a>-1402T-<a href="trains/melbourne/xtrapolis-100/204M.html">204M</a></td><td></td></tr>
-            <tr><td>205M-1403T-<a href="trains/melbourne/xtrapolis-100/206M.html">206M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/203M.html"class="hover-image" style="--image-url: url(photos/203M.webp);">203M</a>-1402T-<a href="trains/melbourne/xtrapolis-100/204M.html"class="hover-image" style="--image-url: url(photos/204M.webp);">204M</a></td><td></td></tr>
+            <tr><td>205M-1403T-<a href="trains/melbourne/xtrapolis-100/206M.html"class="hover-image" style="--image-url: url(photos/206M.webp);">206M</a></td><td></td></tr>
             <tr><td>207M-1404T-208M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/209M.html">209M</a>-1405T-<a href="trains/melbourne/xtrapolis-100/210M.html">210M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/209M.html"class="hover-image" style="--image-url: url(photos/209M.webp);">209M</a>-1405T-<a href="trains/melbourne/xtrapolis-100/210M.html"class="hover-image" style="--image-url: url(photos/210M.webp);">210M</a></td><td></td></tr>
             <tr><td>211M-1406T-212M</td><td></td></tr>
             <tr><td>213M-1407T-<a href="trains/melbourne/xtrapolis-100/214M.html">214M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/215M.html">215M</a>-1408T-<a href="trains/melbourne/xtrapolis-100/216M.html">216M</a></td><td></td></tr>
@@ -1034,7 +1069,7 @@
                 <td>V/Line</td>
               </tr>
               <tr>
-                <td>N466</td>
+                <td><a href="trains/melbourne/v/line/N-Class/N466.html"class="hover-image" style="--image-url: url(photos/N466.webp);">N466</a></td>
                 <td>City of Warrnambool</td>
                 <td>Southern Shorthaul Railroad</td>
               </tr>
@@ -1261,6 +1296,12 @@
     <ul>
         <li><a href="trains/melbourne/heritage/A-Class/A60.html">A60</a></li>
     </ul>
+
+    <h4>ACD Class</h4>
+    <ul>
+        <li><a href="trains/melbourne/freight/Aurizon/ACD6048.html">ACD6048</a></li>
+    </ul>
+
     <h4>C Class</h4>
     <ul>
         <li><a href="trains/melbourne/heritage/C-Class/C501.html">C501</a></li>
@@ -1273,6 +1314,7 @@
 
     <h4>G Class</h4>
     <ul>
+        <li><a href="trains/melbourne/freight/RAILFIRST/G515.html">G515</a></li>
         <li><a href="trains/melbourne/freight/Pacific-National/G543.html">G543</a></li>
     </ul>
 
@@ -1289,6 +1331,7 @@
 
     <h4>NR Class</h4>
     <ul>
+        <li><a href="trains/melbourne/freight/Pacific-National/NR30.html">NR30</a></li>
         <li><a href="trains/melbourne/freight/Pacific-National/NR69.html">NR69</a></li>
     </ul>
 

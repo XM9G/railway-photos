@@ -109,10 +109,12 @@ a {
   gap: 30px;
   margin-left: 5%;
   align-items: flex-start;
+  z-index: auto;
 }
 table {
   border-collapse: collapse;
   background-color: rgba(0, 0, 0, 0.589);
+  z-index: auto;
 }
 th, td {
   border: 1px solid rgb(0, 0, 0);
@@ -135,9 +137,9 @@ tr {
   transition: background-color 0.1s ease;
 }
 
-tr:hover {
+/* tr:hover {
   background-color: #00d0adc9;
-}
+} */
 
 .table-container, .map {
   backdrop-filter: blur(10px); 
@@ -150,4 +152,44 @@ tr:hover {
 
 .map {
   background-color: rgba(0, 0, 0, 0.459);
+}
+
+.hover-image {
+  position: relative;
+  display: inline-block;
+  z-index: auto;
+  
+}
+
+.hover-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%; /* Position the image to the right of the link */
+  margin-left: 10px; /* Spacing between the link and image */
+  width: 400px; /* Adjust width as needed */
+  height: 300px; /* Adjust height as needed */
+  background: white;
+  border: 1px solid #000;
+  background-image: var(--image-url);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1000000;
+  opacity: 0; /* Start with opacity 0 */
+  visibility: hidden; /* Hide from view */
+  box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition for both */
+
+}
+
+.hover-image:hover::after {
+  display: block;
+  opacity: 1; /* Fade in by setting opacity to 1 */
+  visibility: visible; /* Make it visible */
+
+}
+
+.hover-image::after {
+  opacity: 0; /* Fade out */
+  visibility: hidden; /* Hide from view */
 }
