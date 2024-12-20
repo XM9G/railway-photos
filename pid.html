@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train Schedule</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #e0e0e0;
+        margin: 0;
+        padding: 20px;
+    }
+    .schedule {
+        border: 1px solid #000;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        overflow: hidden;
+    }
+    .header {
+        background-color: purple;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .header .time, .header .info {
+        display: inline-block;
+        width: 70%;
+        text-align: left;
+        margin: 0;
+    }
+    .header .info {
+        width: 25%;
+        text-align: right;
+    }
+    .time, .stops, .footer {
+        padding: 10px;
+    }
+    .stops {
+        padding-left: 20px;
+    }
+    .footer {
+        background-color: #f0f0f0;
+        border-top: 1px solid #000;
+        display: flex;
+        justify-content: space-around;
+    }
+    .footer div {
+        text-align: center;
+    }
+    .footer .time {
+        width: 10%;
+    }
+    .footer .destination {
+        font-weight: bold;
+    }
+    .highlight {
+        background-color: #e0e0e0;
+    }
+    .station {
+        margin: 5px 0;
+    }
+</style>
+</head>
+<body>
+<div class="schedule">
+    <div class="header">
+        <div class="time">4:33am</div>
+        <div class="info">Southern Cross<br>Stopping all stations except Ardeer</div>
+        <div class="info" style="background-color: purple; color: white; padding: 5px; border-radius: 5px;">1</div>
+        <div class="info" style="background-color: black; color: white; padding: 5px; border-radius: 5px;">109 min</div>
+    </div>
+    <div class="stops">
+        <div class="station" style="background-color: purple; color: white; padding: 5px; border-radius: 5px;">Waurn Ponds</div>
+        <div class="station">Marshall</div>
+        <div class="station">South Geelong</div>
+        <div class="station">Geelong</div>
+        <div class="station">North Geelong</div>
+        <div class="station">North Shore</div>
+        <div class="station">Corio</div>
+        <div class="station">Lara</div>
+        <div class="station">Little River</div>
+        <div class="station">Wyndham Vale</div>
+        <div class="station">Tarneit</div>
+        <div class="station">Deer Park</div>
+        <div class="station" style="background-color: #e0e0e0;">Ardeer</div>
+        <div class="station">Sunshine</div>
+        <div class="station">Footscray</div>
+        <div class="station">Southern Cross</div>
+    </div>
+    <div class="footer">
+        <div class="time">5:14am</div>
+        <div class="destination">Southern Cross<br>Express</div>
+        <div class="info" style="background-color: purple; color: white; padding: 5px; border-radius: 5px;">1</div>
+        <div class="info" style="background-color: black; color: white; padding: 5px; border-radius: 5px;">150 min</div>
+        <div class="time">5:26am</div>
+        <div class="destination">Southern Cross<br>Express</div>
+        <div class="info" style="background-color: purple; color: white; padding: 5px; border-radius: 5px;">1</div>
+        <div class="info" style="background-color: black; color: white; padding: 5px; border-radius: 5px;">162 min</div>
+        <div class="time">02:43:23
