@@ -2,11 +2,17 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
-
 </head>
 <style>
     #map { height: 100%; }
-    
+    .popup-content {
+        width: 300px;
+        height: 200px;
+    }
+    .popup-content iframe {
+        width: 100%;
+        height: 100%;
+    }
 </style>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
@@ -22,8 +28,12 @@ crossorigin=""></script>
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        var marker = L.marker([51.5, -0.09]).addTo(map);
-        marker.bindPopup('<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1zTjMEWDRvs?si=XlX_Llzc4qaUxOv2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>').openPopup();
+        var marker = L.marker([-37.787191413496494, 144.83002667043255]).addTo(map);
+        marker.bindPopup('<iframe type="text/html" frameborder="0" src="https://www.youtube-nocookie.com/embed/1zTjMEWDRvs?autoplay=1" allowfullscreen></iframe>').openPopup();
+        
+        var marker = L.marker([-37.83717840192049, 144.99213929238766]).addTo(map);
+        marker.bindPopup('<iframe type="text/html" frameborder="0" src="https://www.youtube.com/embed/6YM8T0K8_Bg?autoplay=1" allowfullscreen></iframe>').openPopup();
+
 
     </script>
 </body>
