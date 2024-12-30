@@ -13,7 +13,7 @@
 
 
   <h1>Submit Photo</h1>
-  <form id="discordForm" enctype="multipart/form-data">
+  <form id="discordForm" enctype="multipart/form-data" netlify>
     <label for="text">Train Number:</label>
     <input id="text" name="text" required></input><br>
     <label for="trainType">Train Type:</label>
@@ -25,36 +25,5 @@
     <input type="submit" value="Submit">
   </form>
 
-  <script>
-    document.getElementById('discordForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const formData = new FormData();
-      formData.append('text', document.getElementById('text').value);
-      formData.append('trainType', document.getElementById('trainType').value);
-      formData.append('location', document.getElementById('location').value);
-      formData.append('image', document.getElementById('image').files[0]);
-
-      try {
-        const response = await fetch('/.netlify/functions/discordWebhook', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('netlifyAuthToken')}`, // Assumes you store the auth token in localStorage
-          },
-        });
-
-        if (response.ok) {
-          alert('Submission successful!');
-          document.getElementById('discordForm').reset();
-        } else {
-          alert('Submission failed. Please try again.');
-        }
-      } catch (error) {
-        alert('An error occurred. Please try again later.');
-        console.error(error);
-      }
-    });
-  </script>
 </body>
 </html>
