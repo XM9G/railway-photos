@@ -13,17 +13,27 @@
 
 
   <h1>Submit Photo</h1>
-  <form id="discordForm" data-netlify=true>
-    <label for="text">Train Number:</label>
-    <input id="text" name="text" required></input><br>
-    <label for="trainType">Train Type:</label>
-    <input type="text" id="trainType" name="trainType" required><br>
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required><br>
-    <label for="image">Image:</label>
-    <input type="file" id="image" name="image" accept="image/*" required><br>
-    <input type="submit" value="Submit">
+  <form name="contact" method="POST" data-netlify="true">
+    <p>
+      <label>Your Name: <input type="text" name="name" /></label>
+    </p>
+    <p>
+      <label>Your Email: <input type="email" name="email" /></label>
+    </p>
+    <p>
+      <label>Your Role: <select name="role[]" multiple>
+        <option value="leader">Leader</option>
+        <option value="follower">Follower</option>
+      </select></label>
+    </p>
+    <p>
+      <label>Message: <textarea name="message"></textarea></label>
+    </p>
+    <p>
+      <button type="submit">Send</button>
+    </p>
   </form>
+  
 
 </body>
 </html>
