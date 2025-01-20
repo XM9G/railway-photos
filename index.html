@@ -104,6 +104,31 @@
     <div class="sub-heading">
         <h2>Metro Trains Melbourne</h2>
         <p>All cars with links have photos</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Enter carriage number...">
+            <button onclick="searchCarriage()">Search</button>
+            <div id="notFound" style="display: none; color: red; margin-top: 10px;">Carriage not found</div>
+        </div>
+
+        <script>
+        function searchCarriage() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let notFoundDiv = document.getElementById('notFound');
+            
+            // Try to find any link that contains the input text
+            let links = document.getElementsByTagName('a');
+            for (let link of links) {
+                if (link.textContent.toUpperCase() === input) {
+                    window.location.href = link.href;
+                    notFoundDiv.style.display = 'none';
+                    return;
+                }
+            }
+            
+            // If we get here, no match was found
+            notFoundDiv.style.display = 'block';
+        }
+        </script>
     </div>
     
     <div class="metro">
