@@ -31,10 +31,37 @@
         <h1>XM9G's Victorian Railway Photos</h1>
         <h3 class="subheading">1,154 photos of 694 trains</h3>
     </div>
+
     <div class="toggle-switch">
+        <!-- search box -->
+        <input type="text" id="searchInput" placeholder="Enter carriage number...">
+        <button onclick="searchCarriage()">Search</button>
+        <div id="notFound" style="display: none; color: red; margin-top: 10px;">Carriage not found</div>
+        <!-- Background toggle -->
+        <div class="bg-toggle">
         <label for="background-toggle">Background Image</label>
-        <input type="checkbox" id="background-toggle">
+        <input type="checkbox" id="background-toggle"></div>
     </div>
+
+    <script>
+    function searchCarriage() {
+        let input = document.getElementById('searchInput').value.toUpperCase();
+        let notFoundDiv = document.getElementById('notFound');
+        
+        // Try to find any link that contains the input text
+        let links = document.getElementsByTagName('a');
+        for (let link of links) {
+            if (link.textContent.toUpperCase() === input) {
+                window.location.href = link.href;
+                notFoundDiv.style.display = 'none';
+                return;
+            }
+        }
+        
+        // If we get here, no match was found
+        notFoundDiv.style.display = 'block';
+    }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
         new Crate({
@@ -104,31 +131,6 @@
     <div class="sub-heading">
         <h2>Metro Trains Melbourne</h2>
         <p>All cars with links have photos</p>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Enter carriage number...">
-            <button onclick="searchCarriage()">Search</button>
-            <div id="notFound" style="display: none; color: red; margin-top: 10px;">Carriage not found</div>
-        </div>
-
-        <script>
-        function searchCarriage() {
-            let input = document.getElementById('searchInput').value.toUpperCase();
-            let notFoundDiv = document.getElementById('notFound');
-            
-            // Try to find any link that contains the input text
-            let links = document.getElementsByTagName('a');
-            for (let link of links) {
-                if (link.textContent.toUpperCase() === input) {
-                    window.location.href = link.href;
-                    notFoundDiv.style.display = 'none';
-                    return;
-                }
-            }
-            
-            // If we get here, no match was found
-            notFoundDiv.style.display = 'block';
-        }
-        </script>
     </div>
     
     <div class="metro">
@@ -472,7 +474,7 @@
             <tr><td><a href="trains/melbourne/xtrapolis-100/277M.html">277M</a>-1439T-<a href="trains/melbourne/xtrapolis-100/278M.html">278M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/279M.html">279M</a>-1440T-<a href="trains/melbourne/xtrapolis-100/280M.html">280M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/281M.html">281M</a>-1441T-282M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/283M.html">283M</a>-1442T-284M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/xtrapolis-100/283M.html">283M</a>-1442T-<a href="trains/melbourne/xtrapolis-100/284M.html">284M</a></td><td></td></tr>
             <tr><td>285M-1443T-<a href="trains/melbourne/xtrapolis-100/286M.html">286M</a></td><td></td></tr>
             <tr><td>287M-1444T-288M</td><td></td></tr>
             <tr><td>851M-1626T-<a href="trains/melbourne/xtrapolis-100/852M.html">852M</a></td><td>Iramoo</td></tr>
@@ -636,7 +638,7 @@
                 <td>9005-9105-9205-9305-9705-9805-9905</td><td></td>
             </tr>
             <tr>
-                <td>9006-9106-9206-9306-9706-9806-9906</td><td></td>
+                <td>9006-9106-9206-9306-9706-9806-<a href="trains/melbourne/hcmt/9906.html">9906</a></td><td></td>
             </tr>
             <tr>
                 <td><a href="trains/melbourne/hcmt/9007.html">9007</a>-9107-9207-9307-9707-9807-<a href="trains/melbourne/hcmt/9907.html">9907</a></td><td></td>
