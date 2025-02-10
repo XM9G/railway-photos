@@ -26,6 +26,31 @@
 
 </head>
 
+ <script>
+    const images = [
+        '/photos/N461-5.webp',
+        '/edited-photos/VL357.webp'
+    ];
+
+    function getRandomImage() {
+        return images[Math.floor(Math.random() * images.length)];
+    }
+    </script>
+
+    <style>
+    .background-image {
+        background-image: var(--random-image);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.style.setProperty('--random-image', `url(${getRandomImage()})`);
+    });
+    </script>
+
 <body>
     <div class="heading">
         <h1>XM9G's Victorian Railway Photos</h1>
