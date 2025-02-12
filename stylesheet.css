@@ -37,12 +37,6 @@ body {
   margin-top: 10px;
 }
 
-.background-image {
-  background-image: url('/photos/N461-5.webp');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .toggle-switch {
   position: fixed;
   top: 20px;
