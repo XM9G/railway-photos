@@ -61,7 +61,7 @@
         <!-- search box -->
         <input type="text" id="searchInput" placeholder="Enter carriage number...">
         <button onclick="searchCarriage()">Search</button>
-        <div id="notFound" style="display: none; color: red; margin-top: 10px;">Carriage not found</div>
+        <div id="notFound" style="display: none; color: red;">Carriage not found</div>
         <!-- Background toggle -->
         <div class="bg-toggle">
         <label for="background-toggle">Background Image</label>
@@ -86,6 +86,29 @@
         // If we get here, no match was found
         notFoundDiv.style.display = 'block';
     }
+
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Check for number parameter on page load
+    window.addEventListener('load', function() {
+        let number = getUrlParameter('number');
+        if (number) {
+            let links = document.getElementsByTagName('a');
+            for (let link of links) {
+                if (link.textContent.toUpperCase() === number.toUpperCase()) {
+                    window.location.href = link.href;
+                    return;
+                }
+            }
+            document.getElementById('notFound').style.display = 'block';
+        }
+    });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
