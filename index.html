@@ -61,7 +61,7 @@
         <!-- search box -->
         <input type="text" id="searchInput" placeholder="Enter carriage number...">
         <button onclick="searchCarriage()">Search</button>
-        <div id="notFound" style="display: none; color: red; margin-top: 10px;">Carriage not found</div>
+        <div id="notFound" style="display: none; color: red;">Carriage not found</div>
         <!-- Background toggle -->
         <div class="bg-toggle">
         <label for="background-toggle">Background Image</label>
@@ -86,6 +86,29 @@
         // If we get here, no match was found
         notFoundDiv.style.display = 'block';
     }
+
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Check for number parameter on page load
+    window.addEventListener('load', function() {
+        let number = getUrlParameter('number');
+        if (number) {
+            let links = document.getElementsByTagName('a');
+            for (let link of links) {
+                if (link.textContent.toUpperCase() === number.toUpperCase()) {
+                    window.location.href = link.href;
+                    return;
+                }
+            }
+            document.getElementById('notFound').style.display = 'block';
+        }
+    });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
@@ -201,7 +224,7 @@
             <tr><td class="scrapped">363M-1032T-364M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td class="scrapped">365M-1042T-383M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td class="scrapped">367M-1034T-368M</td><td class="scrapped">Scrapped</td></tr>
-            <tr><td>369M-1035T-<a href="trains/melbourne/comeng/EDI/370M.html">370M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/comeng/EDI/369M.html">369M</a>-1035T-<a href="trains/melbourne/comeng/EDI/370M.html">370M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/comeng/EDI/371M.html">371M</a>-1036T-<a href="trains/melbourne/comeng/EDI/372M.html">372M</a></td><td></td></tr>
             <tr><td class="scrapped">373M-1037T-374M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td class="scrapped">375M-1094T-488M</td><td class="scrapped">Scrapped</td></tr>
@@ -228,7 +251,7 @@
             <tr><td><a href="trains/melbourne/comeng/EDI/423M.html">423M</a>-1062T-<a href="trains/melbourne/comeng/EDI/424M.html">424M</a></td><td></td><td>Last Comeng with RVB horn</td></tr>
             <tr><td class="scrapped">427M-1052T-487M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td class="scrapped">428M-1064T-483M</td><td class="scrapped">Scrapped</td></tr>
-            <tr><td><a href="trains/melbourne/comeng/EDI/429M.html">429M</a>-1065T-430M</td><td></td></tr>
+            <tr><td><a href="trains/melbourne/comeng/EDI/429M.html">429M</a>-1065T-<a href="trains/melbourne/comeng/EDI/430M.html">430M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/comeng/EDI/431M.html">431M</a>-1066T-432M</td><td></td></tr>
             <tr><td><a href="trains/melbourne/comeng/EDI/433M.html">433M</a>-1067T-<a href="trains/melbourne/comeng/EDI/434M.html">434M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/comeng/EDI/435M.html">435M</a>-1068T-<a href="trains/melbourne/comeng/EDI/436M.html">436M</a></td><td></td></tr>
@@ -269,7 +292,7 @@
             <tr><td class="scrapped">515M-1108T-516M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td class="scrapped">517M-1117T-529M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td><a href="trains/melbourne/comeng/EDI/518M.html">518M</a>-1126T-<a href="trains/melbourne/comeng/EDI/551M.html">551M</a></td><td></td></tr>
-            <tr><td>519M-1110T-<a href="trains/melbourne/comeng/EDI/520M.html">520M</a></td><td></td></tr>
+            <tr><td><a href="trains/melbourne/comeng/EDI/519M.html">519M</a>-1110T-<a href="trains/melbourne/comeng/EDI/520M.html">520M</a></td><td></td></tr>
             <tr><td>521M-1111T-<a href="trains/melbourne/comeng/EDI/522M.html">522M</a></td><td></td></tr>
             <tr><td class="scrapped">523M-1112T-524M</td><td class="scrapped">Scrapped</td></tr>
             <tr><td><a href="trains/melbourne/comeng/EDI/525M.html">525M</a>-1113T-526M</td><td></td></tr>
@@ -452,7 +475,7 @@
             <tr><td>183M-1392T-<a href="trains/melbourne/xtrapolis-100/184M.html"class="unused-hover-image" style="--unused-image-url: url(photos/184M.webp);">184M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/185M.html"class="unused-hover-image" style="--unused-image-url: url(photos/185M.webp);">185M</a>-1393T-<a href="trains/melbourne/xtrapolis-100/186M.html"class="unused-hover-image" style="--unused-image-url: url(photos/186M.webp);">186M</a></td><td></td></tr>
             <tr><td>187M-1394T-<a href="trains/melbourne/xtrapolis-100/188M.html"class="unused-hover-image" style="--unused-image-url: url(photos/188M.webp);">188M</a></td><td></td></tr>
-            <tr><td>189M-1395T-190M</td><td></td></tr>
+            <tr><td>189M-1395T-<a href="trains/melbourne/xtrapolis-100/190M.html">190M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/191M.html">191M</a>-1396T-<a href="trains/melbourne/xtrapolis-100/192M.html"class="unused-hover-image" style="--unused-image-url: url(photos/192M.webp);">192M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/193M.html"class="unused-hover-image" style="--unused-image-url: url(photos/193M.webp);">193M</a>-1397T-<a href="trains/melbourne/xtrapolis-100/194M.html"class="unused-hover-image" style="--unused-image-url: url(photos/194M.webp);">194M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/195M.html"class="unused-hover-image" style="--unused-image-url: url(photos/195M.webp);">195M</a>-1398T-<a href="trains/melbourne/xtrapolis-100/196M.html">196M</a></td><td></td></tr>
@@ -554,7 +577,7 @@
             <tr><td>949M-1675T-950M</td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/951M.html">951M</a>-1676T-<a href="trains/melbourne/xtrapolis-100/952M.html">952M</a></td><td></td></tr>
             <tr><td>953M-1677T-954M</td><td></td></tr>
-            <tr><td>955M-1678T-956M</td><td></td></tr>
+            <tr><td>955M-1678T-<a href="trains/melbourne/xtrapolis-100/956M.html">956M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/957M.html">957M</a>-1679T-<a href="trains/melbourne/xtrapolis-100/958M.html">958M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/959M.html">959M</a>-1680T-<a href="trains/melbourne/xtrapolis-100/960M.html">960M</a></td><td></td></tr>
             <tr><td><a href="trains/melbourne/xtrapolis-100/961M.html">961M</a>-1681T-962M</td><td></td></tr>
@@ -634,10 +657,10 @@
             <tr><td>813M-2557T-814M</td></tr>
             <tr><td>815M-2558T-<a href="trains/melbourne/siemens/816M.html">816M</a></td></tr>
             <tr><td>817M-2559T-818M</td></tr>
-            <tr><td>819M-2560T-820M</td></tr>
+            <tr><td><a href="trains/melbourne/siemens/819M.html">819M</a>-<a href="trains/melbourne/siemens/2560T.html">2560T</a>-820M</td></tr>
             <tr><td><a href="trains/melbourne/siemens/821M.html">821M</a>-2561T-<a href="trains/melbourne/siemens/822M.html">822M</a></td></tr>
             <tr><td><a href="trains/melbourne/siemens/823M.html">823M</a>-2562T-<a href="trains/melbourne/siemens/824M.html">824M</a></td></tr>
-            <tr><td>825M-2563T-826M</td></tr>
+            <tr><td><a href="trains/melbourne/siemens/825M.html">825M</a>-2563T-826M</td></tr>
             <tr><td><a href="trains/melbourne/siemens/827M.html">827M</a>-2564T-828M</td></tr>
             <tr><td><a href="trains/melbourne/siemens/829M.html">829M</a>-2565T-830M</td></tr>
             <tr><td>831M-2566T-<a href="trains/melbourne/siemens/832M.html">832M</a></td></tr>
@@ -717,7 +740,7 @@
                 <td><a href="trains/melbourne/hcmt/9023.html">9023</a>-9123-9223-9323-9723-9823-9923</td><td></td>
             </tr>
             <tr>
-                <td><a href="trains/melbourne/hcmt/9024.html">9024</a>-9124-9224-<a href="trains/melbourne/hcmt/9324.html">9324</a>-9724-9824-9924</td><td>Aboriginal Livery</td>
+                <td><a href="trains/melbourne/hcmt/9024.html">9024</a>-9124-9224-<a href="trains/melbourne/hcmt/9324.html">9324</a>-9724-9824-<a href="trains/melbourne/hcmt/9924.html">9924</a></td><td>Aboriginal Livery</td>
             </tr>
             <tr>
                 <td><a href="trains/melbourne/hcmt/9025.html">9025</a>-9125-9225-9325-9725-9825-<a href="trains/melbourne/hcmt/9925.html">9925</a></td><td></td>
@@ -1133,12 +1156,12 @@
                 <td>Southern Shorthaul Railroad</td>
               </tr>
               <tr>
-                <td>N467</td>
+                <td><a href="trains/melbourne/v/line/N-Class/N467.html">N467</a></td>
                 <td>City of Stawell</td>
                 <td>V/Line</td>
               </tr>
               <tr>
-                <td>N468</td>
+                <td><a href="trains/melbourne/v/line/N-Class/N468.html">N468</a></td>
                 <td>City of Bairnsdale</td>
                 <td>V/Line</td>
               </tr>
@@ -1238,7 +1261,7 @@
                 <td></td>
               </tr>
               <tr>
-                <td>7009</td>
+                <td><a href="trains/melbourne/v/line/sprinter/7009.html">7009</a></td>
                 <td>Bob Davis</td>
                 <td></td>
                 <td></td>
