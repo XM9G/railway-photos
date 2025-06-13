@@ -29,8 +29,8 @@ img:hover, frame:hover {
   }
 
 iframe, img {
-  border-radius: 0px;
-  border: 1px solid white;
+  border-radius: 15px;
+  border: 2px solid white;
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  
 }
 
