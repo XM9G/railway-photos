@@ -4,38 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Submit Photo</title>
-    <!-- Netlify Login -->
-    <!-- <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> -->
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>    
-    <!-- <div data-netlify-identity-menu></div> -->
 
+  <h1 class="heading">Submit Photo</h1>
 
-
-  <h1>Submit Photo</h1>
-
-  <form name="photo" method="POST" data-netlify="true">
-    <div>
-          <label for="trainNumber">Train Number:</label>
-          <input type="text" id="trainNumber" name="trainNumber" required>
-      </div>
-      <div>
-          <label for="date">Date:</label>
-          <input type="date" id="date" name="date" required>
-      </div>
-      <div>
-          <label for="location">Location:</label>
-          <input type="text" id="location" name="location" required>
-      </div>
-      <div>
-          <label for="image">Upload Image:</label>
-          <input type="file" id="image" name="image" accept="image/*" required>
-      </div>
-      <div>
-          <button type="submit">Submit</button>
-      </div>
+  <form name="photo" method="POST" data-netlify="true" class="blurbg submit-form">
+    <div class="form-group">
+      <label for="trainNumber">Number:</label>
+      <input type="text" id="trainNumber" name="trainNumber" required>
+    </div>
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Upload Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Your Name:</label>
+      <input type='text' id="name" name="name" required></input>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type='text' id="email" name="email" required></input>
+    </div>
+    <p class="note">By submitting, you agree to the <a href="/terms" style="color:darkblue">Terms of Service</a>.</p>
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
   </form>
-  
+<p class="note" style="color: black;">Please ensure your photo is of good quality and of to the locomotive or carriage number provided.<br>Lower quality photos may not be accepted if there are already better photos.</p>
+<p class="note" style="color: black;">Your photo will be visible with credit on this website as well as with our Discord bot, TrackPulse Vic.</p>
+
+  <footer>
+    <p style="color: black;">Website &copy; 2025 Billy Evans. All rights reserved.</p>
 
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 p, h1, h2 {
     text-align: center;
     /* color: black */
@@ -11,7 +10,7 @@ body {
   background-position: center;
   transition: background-image 0.5s ease;
   color: white;
-  background-color: rgb(53, 53, 53);
+  background-color: rgb(216, 216, 216);
 }
 
 .heading {
@@ -21,9 +20,10 @@ body {
   margin-left: 40%;
   margin-right: 40%;
   padding: 20px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* white-space: nowrap; */
   text-align: center;
+  border-radius: 10px;
 }
 .sub-heading {
   backdrop-filter: blur(30px); 
@@ -32,9 +32,11 @@ body {
   margin-left: 5%;
   margin-right: 5%;
   padding: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   text-align: center;
   margin-top: 10px;
+  border-radius: 10px;
+
 }
 
 .toggle-switch {
@@ -45,9 +47,11 @@ body {
   align-items: center;
   backdrop-filter: blur(30px); 
   padding: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   background-color: rgba(0, 0, 0, 0.589);
   z-index: 10;
+  border-radius: 10px;
+
 }
 @media (max-width: 768px) {
 .toggle-switch {
@@ -88,12 +92,13 @@ img:hover, frame:hover {
 
 .blurbg {
   background-color: rgba(0, 0, 0, 0.589);
-  backdrop-filter: blur(30px); 
-
+  backdrop-filter: blur(30px);
+  border-radius: 10px;
+  padding: 20px;
 }
 
 iframe, img {
-  border-radius: 0px;
+  border-radius: 5px;
   border: 1px solid white;
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  
 }
@@ -113,6 +118,7 @@ table {
   border-collapse: collapse;
   background-color: rgba(0, 0, 0, 0.589);
   z-index: auto;
+  /* border-radius: 10px; */
 }
 th, td {
   border: 1px solid rgb(0, 0, 0);
@@ -239,5 +245,68 @@ button:hover {
 
 .bg-toggle {
   margin-left: 10px;
+}
+
+.submit-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px 30px 20px 30px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border-radius: 15px;
+  background-color: rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.submit-form label {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.submit-form input[type="text"],
+.submit-form input[type="date"],
+.submit-form input[type="file"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: rgba(255,255,255,0.1);
+  color: #222;
+  font-size: 16px;
+}
+
+.submit-form input[type="file"] {
+  color: #fff;
+  background: none;
+}
+
+.submit-form button {
+  width: 100%;
+  margin-left: 0;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.submit-form button:hover {
+  background: #1e80db;
+  color: #fff;
+}
+
+/* Responsive for mobile */
+@media only screen and (max-width: 600px) {
+  .submit-form {
+    max-width: 95vw;
+    padding: 15px;
+  }
 }
 
