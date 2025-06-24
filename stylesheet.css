@@ -105,7 +105,7 @@ iframe, img {
 
 
 a {
-  color: #1e80db;
+  color: #62abef;
 }
 
 .metro {
@@ -118,6 +118,7 @@ table {
   border-collapse: collapse;
   background-color: rgba(0, 0, 0, 0.589);
   z-index: auto;
+  
   /* border-radius: 10px; */
 }
 th, td {
