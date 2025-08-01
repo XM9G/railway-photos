@@ -7,4 +7,4 @@ def test_page():
     return render_template('test.html', title="Test Page", content="This is a test")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, port=6966)
