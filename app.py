@@ -1,13 +1,33 @@
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
 from pydantic import Secret
 
-from scripts.databaseManager import getPhotos
+from scripts.databaseManager import getPhotoUrls, getPhotos
+from scripts.trainLists import getSets
 
 app = Flask(__name__)
 
 @app.route('/')
 def test_page():
-    return render_template('index.html')
+    allPhotos = getPhotos()
+    withImage = []
+
+    for photo in allPhotos:
+        for car in photo[1].split('-'):
+            car = car.strip().upper()
+            withImage.append(car)
+
+    # Get train sets
+    comeng = getSets('EDI Comeng') + getSets('Alstom Comeng')
+
+    for train in comeng:
+        if isinstance(train['cars'], str):
+            train['cars'] = train['cars'].split('-')
+        elif isinstance(train['cars'], list) and len(train['cars']) == 1 and '-' in train['cars'][0]:
+            train['cars'] = train['cars'][0].split('-')
+
+    return render_template('index.html', comeng_trains=comeng, linkedNumbers=withImage)
+
+
 
 # Train image page
 @app.route('/trains/<number>')
@@ -36,14 +56,19 @@ def redirect_train(subpath, train_number):
     return redirect(url_for('train_page', number=train_number), code=301)
 
 # image URLS for discord bot
-@app.route('/photos/<path:filename>')
+@app.route('/api/photos/<path:filename>')
 def photo_url(filename):
-    secret = 'test'
-    if secret not in request.headers:
-        json = {"error": "Unauthorized"}
-        return jsonify(json), 401
+
+    urlsList = getPhotoUrls(filename)
+    if len(urlsList) == 0:
+        return jsonify({"error": "No photos found"}), 404
     else:
-        return
+        return jsonify({"urls": urlsList})
+
+# trainsets CSV download
+@app.route('/api/trainsets.csv')
+def trainsetsCSV():
+    return send_file('trainsets.csv', as_attachment=True, download_name='trainsets.csv', mimetype='text/csv')
         
 
 

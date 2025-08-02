@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="keywords" content="{{ photo.photographer }}, trains, 9g, {{ info.type }}, vline, metro trains, melbourne,">
-  <meta name="author" content="{{ photo.photographer }}">
+  <meta name="keywords" content="{{ info[0].photographer }}, trains, 9g, {{ info[0].type }}, vline, metro trains, melbourne,">
+  <meta name="author" content="{{ info[0].photographer }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/photoPage.css') }}">
   <meta property="og:image" content="https://victorianpailphotos.com/photos/{{ info.number }}.webp" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="description" content="Photo of {{ info.type }} NUMBER on VictorianRailPhotos.com">
+  <meta name="description" content="Photo of {{ info[0].type }} {{ info[0].number }} on VictorianRailPhotos.com">
 
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){

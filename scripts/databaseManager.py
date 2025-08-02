@@ -7,6 +7,7 @@ from numpy import add
 def addPhoto(number, type, date, location, photographer, featured:bool, url):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
+    number = number.upper()
     
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS photos (
@@ -36,7 +37,7 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     
     if number:
         query += ' AND number=?'
-        params.append(number)
+        params.append(number.upper())
     if type:
         query += ' AND type=?'
         params.append(type)
@@ -59,11 +60,21 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     conn.close()
     return photos
 
-addPhoto(
-    number='XM9G',
-    type='X\'Trapolis 100',
-    date='2025-10-31',
-    location='Tarrawrra',
-    photographer='Clyde',
-    featured=False,
-    url='https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123478/P16_ly7xq3.webp')
+def getPhotoUrls(number):
+    conn = sqlite3.connect('databases/trains.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT url, photographer, featured FROM photos WHERE number=?', (number.upper(),))
+    urls = cursor.fetchall()
+    conn.close()
+    if not urls:
+        return []
+    urlsList = []
+    for url, photographer, featured in urls:
+
+        urlsList.append({
+            'url': url,
+            'photographer': photographer,
+            'featured': featured
+        })
+    return urlsList
