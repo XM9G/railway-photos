@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{ info[0].number }} - {{ info[0].type }} | Railway Photos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="keywords" content="{{ photo.photographer }}, trains, 9g, {{ info.type }}, vline, metro trains, melbourne,">
+  <meta name="author" content="{{ photo.photographer }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/photoPage.css') }}">
+  <meta property="og:image" content="https://victorianpailphotos.com/photos/{{ info.number }}.webp" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Photo of {{ info.type }} NUMBER on VictorianRailPhotos.com">
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "lm3dnb8ha4");
+    </script>
+</head>
+
+<body>
+    <h1>{{ info[0].number }} - {{ info[0].type }}</h1>
+    <a href="/"><p>Home</p></a>
+
+    {% for photo in info %}
+        <p><img src="{{ photo.url }}" alt="{{ photo.type }} {{ photo.number }}"><br><br>
+            Photographer: {{ photo.photographer }}<br>
+            Date: {{ photo.date }}<br>
+            Location: {{ photo.location }}<br>
+            Train: {{ photo.type }}
+        </p>
+    {% endfor %}
+
+        <div class="counter">
+          <script type="text/javascript" src="https://www.free-counters.org/count/f47x"></script><br>
+          <a href='https://www.versicherungen.at/'>Versicherungen</a> <script type='text/javascript' src='https://whomania.com/ctr?id=52c7256afae0ae0ccc8085355a1c9d2c3fe16a60'></script>
+      </div>
+
+</body>
