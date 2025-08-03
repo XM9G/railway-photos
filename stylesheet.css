@@ -1,0 +1,313 @@
+p, h1, h2 {
+    text-align: center;
+    /* color: black */
+}
+
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease;
+  color: white;
+  background-color: rgb(216, 216, 216);
+}
+
+.heading {
+  backdrop-filter: blur(30px); 
+  background-color: rgba(0, 0, 0, 0.589);
+  color: white;
+  margin-left: 40%;
+  margin-right: 40%;
+  padding: 20px;
+  /* border: 1px solid black; */
+  /* white-space: nowrap; */
+  text-align: center;
+  border-radius: 10px;
+}
+.sub-heading {
+  backdrop-filter: blur(30px); 
+  background-color: rgba(0, 0, 0, 0.589);
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 10px;
+  /* border: 1px solid black; */
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 10px;
+
+}
+
+.toggle-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(30px); 
+  padding: 10px;
+  /* border: 1px solid black; */
+  background-color: rgba(0, 0, 0, 0.589);
+  z-index: 10;
+  border-radius: 10px;
+
+}
+@media (max-width: 768px) {
+.toggle-switch {
+  display: none;
+}}
+
+img {
+    width: 1000px;
+}
+
+img:hover, frame:hover {
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+  transform: translate(-5px, -5px);
+
+}
+
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    img {
+      width: 100%;
+    }
+    
+    .heading {
+      margin-left: 5%;
+      margin-right: 5%;
+      margin-top: 20%;
+    }
+
+  }
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+  .metro {
+    display: flex;
+  }
+}
+
+.blurbg {
+  background-color: rgba(0, 0, 0, 0.589);
+  backdrop-filter: blur(30px);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+iframe, img {
+  border-radius: 5px;
+  border: 1px solid white;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  
+}
+
+
+a {
+  color: #62abef;
+}
+
+.metro {
+  gap: 30px;
+  margin-left: 5%;
+  align-items: flex-start;
+  z-index: auto;
+}
+table {
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.589);
+  z-index: auto;
+  
+  /* border-radius: 10px; */
+}
+th, td {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 5px;
+  /* text-align: left; */
+}
+
+
+
+td {
+  font-family: monospace;
+  max-width: 250px;
+}
+
+tr:nth-child(even) {
+  background-color: #008ed046;
+}
+
+tr {
+  transition: background-color 0.1s ease;
+}
+
+/* tr:hover {
+  background-color: #00d0adc9;
+} */
+
+.table-container, .map {
+  backdrop-filter: blur(10px); 
+  margin-top: 10px;
+
+}
+.scrapped {
+  background-color: rgba(255, 0, 0, 0.411);
+}
+
+.map {
+  background-color: rgba(0, 0, 0, 0.459);
+}
+
+.hover-image {
+  position: relative;
+  display: inline-block;
+  z-index: auto;
+  
+}
+
+.hover-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%; /* Position the image to the right of the link */
+  margin-left: 10px; /* Spacing between the link and image */
+  width: 400px; /* Adjust width as needed */
+  height: 300px; /* Adjust height as needed */
+  background: white;
+  border: 1px solid #000;
+  background-image: var(--image-url);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1000000;
+  opacity: 0; /* Start with opacity 0 */
+  visibility: hidden; /* Hide from view */
+  box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition for both */
+
+}
+
+.hover-image:hover::after {
+  display: block;
+  opacity: 1; /* Fade in by setting opacity to 1 */
+  visibility: visible; /* Make it visible */
+
+}
+
+.hover-image::after {
+  opacity: 0; /* Fade out */
+  visibility: hidden; /* Hide from view */
+}
+
+.search-container {
+  margin-left: 40%;
+  margin-right: 40%;
+  padding: 20px;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center; /* Align items in the center vertically */
+}
+
+#searchInput, #notFound{
+  padding: 10px;
+  width: 200px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  color: white;
+  backdrop-filter: blur(30px); 
+  background-color: rgba(0, 0, 0, 0.589);
+  border: 1px solid black;
+  text-align: center;
+}
+
+#searchInput:focus {
+  border-color: #666;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin-left: 5px;  /* Add some space between input and button */
+  backdrop-filter: blur(30px); 
+  background-color: rgba(0, 0, 0, 0.589);
+  color: white;
+  border: 1px solid black;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #ffffff00;
+}
+
+.bg-toggle {
+  margin-left: 10px;
+}
+
+.submit-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px 30px 20px 30px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border-radius: 15px;
+  background-color: rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.submit-form label {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.submit-form input[type="text"],
+.submit-form input[type="date"],
+.submit-form input[type="file"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: rgba(255,255,255,0.1);
+  color: #222;
+  font-size: 16px;
+}
+
+.submit-form input[type="file"] {
+  color: #fff;
+  background: none;
+}
+
+.submit-form button {
+  width: 100%;
+  margin-left: 0;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.submit-form button:hover {
+  background: #1e80db;
+  color: #fff;
+}
+
+/* Responsive for mobile */
+@media only screen and (max-width: 600px) {
+  .submit-form {
+    max-width: 95vw;
+    padding: 15px;
+  }
+}
+
