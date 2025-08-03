@@ -8,7 +8,7 @@
   <meta name="keywords" content="{{ info[0].photographer }}, trains, 9g, {{ info[0].type }}, vline, metro trains, melbourne,">
   <meta name="author" content="{{ info[0].photographer }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/photoPage.css') }}">
-  <meta property="og:image" content="https://victorianpailphotos.com/photos/{{ info.number }}.webp" />
+  <meta property="og:image" content="{{ photo.url }}" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="description" content="Photo of {{ info[0].type }} {{ info[0].number }} on VictorianRailPhotos.com">
 
