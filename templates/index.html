@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="XM9G's railway photos">
+    <meta name="description" content="Victorian Rail Photos is a website that hosts photos of trains and carriages in Victoria, Australia.">
     <meta name="keywords" content="xm9g, trains, 9g, ">
     <meta name="author" content="XM9G">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/indexStyle.css') }}">
@@ -28,7 +28,6 @@
 
  <script>
     const images = [
-        "{{ url_for('static', filename='images/P17.webp') }}",
         "{{ url_for('static', filename='images/VL357.webp') }}",
     ];
 
@@ -210,556 +209,117 @@
             {% for train in comeng_trains %}
             <tr>
                 <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
                     {% for number in train.cars %}
                         {% if number|upper in linkedNumbers %}
-                            <a href="/trains/{{ number }}">{{ number }}</a>
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
                         {% else %}
-                            {{ number }}
+                            {% set _ = car_numbers.append(number) %}
                         {% endif %}
-                        {% if not loop.last %}-{% endif %}
                     {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
                 </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </table>
     </div>
-      
-    
     
     <div class="table-container">
         <table>
-            <tr><th><h4>X'trapolis 100</h4></th><th>Notes</th></tr>
-            
-            <tr><td><a href="trains/melbourne/xtrapolis-100/1M.html" class="unused-hover-image" style="--unused-image-url: url(photos/1M.webp);">1M</a>-1301T-2M</td></tr>
-            <tr><td>3M-1302T-<a href="trains/melbourne/xtrapolis-100/4M.html" class="unused-hover-image" style="--unused-image-url: url(photos/4M.webp);">4M</a></td><td></td></tr>
-            <tr><td>5M-1303T-<a href="trains/melbourne/xtrapolis-100/6M.html" class="unused-hover-image" style="--unused-image-url: url(photos/6M.webp);">6M</a></td><td></td></tr>
-            <tr><td>7M-1304T-<a href="trains/melbourne/xtrapolis-100/8M.html" class="unused-hover-image" style="--unused-image-url: url(photos/8M.webp);">8M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/9M.html"class="unused-hover-image" style="--unused-image-url: url(photos/9M.webp);">9M</a>-1305T-10M</td><td></td></tr>
-            <tr><td>11M-1306T-<a href="trains/melbourne/xtrapolis-100/12M.html"class="unused-hover-image" style="--unused-image-url: url(photos/12M.webp);">12M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/13M.html"class="unused-hover-image" style="--unused-image-url: url(photos/13M.webp);">13M</a>-1307T-<a href="trains/melbourne/xtrapolis-100/14M.html"class="unused-hover-image" style="--unused-image-url: url(photos/14M.webp);">14M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/15M.html"class="unused-hover-image" style="--unused-image-url: url(photos/15M.webp);">15M</a>-1308T-16M</td><td></td></tr>
-            <tr><td>17M-1309T-<a href="trains/melbourne/xtrapolis-100/18M.html"class="unused-hover-image" style="--unused-image-url: url(photos/18M.webp);">18M</a></td><td></td></tr>
-            <tr><td>19M-1310T-20M</td><td></td></tr>
-            <tr><td>21M-1311T-22M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/23M.html"class="unused-hover-image" style="--unused-image-url: url(photos/23M.webp);">23M</a>-1312T-<a href="trains/melbourne/xtrapolis-100/24M.html"class="unused-hover-image" style="--unused-image-url: url(photos/24M.webp);">24M</a></td><td></td></tr>
-            <tr><td>25M-1313T-26M</td><td></td></tr>
-            <tr><td>27M-1314T-<a href="trains/melbourne/xtrapolis-100/28M.html"class="unused-hover-image" style="--unused-image-url: url(photos/28M.webp);">28M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/29M.html"class="unused-hover-image" style="--unused-image-url: url(photos/29M.webp);">29M</a>-1315T-<a href="trains/melbourne/xtrapolis-100/30M.html"class="unused-hover-image" style="--unused-image-url: url(photos/30M.webp);">30M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/31M.html"class="unused-hover-image" style="--unused-image-url: url(photos/31M.webp);">31M</a>-1316T-32M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/33M.html"class="unused-hover-image" style="--unused-image-url: url(photos/33M.webp);">33M</a>-1317T-<a href="trains/melbourne/xtrapolis-100/34M.html"class="unused-hover-image" style="--unused-image-url: url(photos/34M.webp);">34M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/35M.html"class="unused-hover-image" style="--unused-image-url: url(photos/35M.webp);">35M</a>-1318T-<a href="trains/melbourne/xtrapolis-100/36M.html"class="unused-hover-image" style="--unused-image-url: url(photos/36M.webp);">36M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/37M.html"class="unused-hover-image" style="--unused-image-url: url(photos/37M.webp);">37M</a>-1319T-<a href="trains/melbourne/xtrapolis-100/38M.html"class="unused-hover-image" style="--unused-image-url: url(photos/38M.webp);">38M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/39M.html">39M</a>-1320T-<a href="trains/melbourne/xtrapolis-100/40M.html"class="unused-hover-image" style="--unused-image-url: url(photos/40M.webp);">40M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/41M.html"class="unused-hover-image" style="--unused-image-url: url(photos/41M.webp);">41M</a>-1321T-42M</td><td></td></tr>
-            <tr><td>43M-1322T-<a href="trains/melbourne/xtrapolis-100/44M.html"class="unused-hover-image" style="--unused-image-url: url(photos/44M.webp);">44M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/45M.html"class="unused-hover-image" style="--unused-image-url: url(photos/45M.webp);">45M</a>-1323T-<a href="trains/melbourne/xtrapolis-100/46M.html"class="unused-hover-image" style="--unused-image-url: url(photos/46M.webp);">46M</a></td><td></td></tr>
-           <tr><td><a href="trains/melbourne/xtrapolis-100/47M.html" class="unused-hover-image" style="--unused-image-url: url(photos/47M.webp);">47M</a>-1324T-<a href="trains/melbourne/xtrapolis-100/48M.html" class="unused-hover-image" style="--unused-image-url: url(photos/48M.webp);">48M</a></td></tr>
-
-            <tr><td><a href="trains/melbourne/xtrapolis-100/49M.html"class="unused-hover-image" style="--unused-image-url: url(photos/49M.webp);">49M</a>-1325T-<a href="trains/melbourne/xtrapolis-100/50M.html"class="unused-hover-image" style="--unused-image-url: url(photos/50M.webp);">50M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/51M.html"class="unused-hover-image" style="--unused-image-url: url(photos/51M.webp);">51M</a>-1326T-<a href="trains/melbourne/xtrapolis-100/52M.html"class="unused-hover-image" style="--unused-image-url: url(photos/52M.webp);">52M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/53M.html"class="unused-hover-image" style="--unused-image-url: url(photos/53M.webp);">53M</a>-1327T-<a href="trains/melbourne/xtrapolis-100/54M.html"class="unused-hover-image" style="--unused-image-url: url(photos/54M.webp);">54M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/55M.html"class="unused-hover-image" style="--unused-image-url: url(photos/55M.webp);">55M</a>-1328T-56M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/57M.html"class="unused-hover-image" style="--unused-image-url: url(photos/57M.webp);">57M</a>-1329T-<a href="trains/melbourne/xtrapolis-100/58M.html"class="unused-hover-image" style="--unused-image-url: url(photos/58M.webp);">58M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/59M.html"class="unused-hover-image" style="--unused-image-url: url(photos/59M.webp);">59M</a>-1330T-<a href="trains/melbourne/xtrapolis-100/60M.html"class="unused-hover-image" style="--unused-image-url: url(photos/60M.webp);">60M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/61M.html"class="unused-hover-image" style="--unused-image-url: url(photos/61M.webp);">61M</a>-1331T-<a href="trains/melbourne/xtrapolis-100/62M.html"class="unused-hover-image" style="--unused-image-url: url(photos/62M.webp);">62M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/63M.html">63M</a>-1332T-<a href="trains/melbourne/xtrapolis-100/64M.html"class="unused-hover-image" style="--unused-image-url: url(photos/64M.webp);">64M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/65M.html"class="unused-hover-image" style="--unused-image-url: url(photos/65M.webp);">65M</a>-1333T-<a href="trains/melbourne/xtrapolis-100/66M.html">66M</a></td><td></td></tr>
-            <tr><td>67M-<a href="trains/melbourne/xtrapolis-100/1334T.html"class="unused-hover-image" style="--unused-image-url: url(photos/1334T.webp);">1334T</a>-<a href="trains/melbourne/xtrapolis-100/68M.html"class="unused-hover-image" style="--unused-image-url: url(photos/68M.webp);">68M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/69M.html"class="unused-hover-image" style="--unused-image-url: url(photos/69M.webp);">69M</a>-1335T-<a href="trains/melbourne/xtrapolis-100/70M.html">70M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/71M.html"class="unused-hover-image" style="--unused-image-url: url(photos/71M.webp);">71M</a>-1336T-<a href="trains/melbourne/xtrapolis-100/72M.html">72M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/73M.html"class="unused-hover-image" style="--unused-image-url: url(photos/73M.webp);">73M</a>-1337T-<a href="trains/melbourne/xtrapolis-100/74M.html"class="unused-hover-image" style="--unused-image-url: url(photos/74M.webp);">74M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/75M.html"class="unused-hover-image" style="--unused-image-url: url(photos/75M.webp);">75M</a>-1338T-<a href="trains/melbourne/xtrapolis-100/76M.html"class="unused-hover-image" style="--unused-image-url: url(photos/76M.webp);">76M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/77M.html"class="unused-hover-image" style="--unused-image-url: url(photos/77M.webp);">77M</a>-1339T-<a href="trains/melbourne/xtrapolis-100/78M.html"class="unused-hover-image" style="--unused-image-url: url(photos/78M.webp);">78M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/79M.html"class="unused-hover-image" style="--unused-image-url: url(photos/79M.webp);">79M</a>-1340T-<a href="trains/melbourne/xtrapolis-100/80M.html"class="unused-hover-image" style="--unused-image-url: url(photos/80M.webp);">80M</a></td><td></td></tr>
-            <tr><td>81M-1341T-82M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/83M.html"class="unused-hover-image" style="--unused-image-url: url(photos/83M.webp);">83M</a>-1342T-<a href="trains/melbourne/xtrapolis-100/84M.html"class="unused-hover-image" style="--unused-image-url: url(photos/84M.webp);">84M</a></td><td></td></tr>
-            <tr><td>85M-1343T-<a href="trains/melbourne/xtrapolis-100/86M.html">86M</a></td><td></td></tr>
-            <tr><td>87M-1344T-<a href="trains/melbourne/xtrapolis-100/88M.html"class="unused-hover-image" style="--unused-image-url: url(photos/88M.webp);">88M</a></td><td></td></tr>
-            <tr><td>89M-1345T-<a href="trains/melbourne/xtrapolis-100/90M.html"class="unused-hover-image" style="--unused-image-url: url(photos/90M.webp);">90M</a></td><td></td></tr>
-            <tr><td>91M-1346T-92M</td><td></td></tr>
-            <tr><td>93M-1347T-94M</td><td></td></tr>
-            <tr><td>95M-1348T-<a href="trains/melbourne/xtrapolis-100/96M.html"class="unused-hover-image" style="--unused-image-url: url(photos/96M.webp);">96M</a></td><td></td></tr>
-            <tr><td>97M-1349T-<a href="trains/melbourne/xtrapolis-100/98M.html"class="unused-hover-image" style="--unused-image-url: url(photos/98M.webp);">98M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/99M.html">99M</a>-1350T-100M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/101M.html">101M</a>-1351T-<a href="trains/melbourne/xtrapolis-100/102M.html"class="unused-hover-image" style="--unused-image-url: url(photos/102M.webp);">102M</a></td><td></td></tr>
-            <tr><td>103M-1352T-104M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/105M.html"class="unused-hover-image" style="--unused-image-url: url(photos/105M.webp);">105M</a>-1353T-<a href="trains/melbourne/xtrapolis-100/106M.html"class="unused-hover-image" style="--unused-image-url: url(photos/106M.webp);">106M</a></td><td></td></tr>
-            <tr><td>107M-1354T-<a href="trains/melbourne/xtrapolis-100/108M.html"class="unused-hover-image" style="--unused-image-url: url(photos/108M.webp);">108M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/109M.html"class="unused-hover-image" style="--unused-image-url: url(photos/109M.webp);">109M</a>-1355T-<a href="trains/melbourne/xtrapolis-100/110M.html"class="unused-hover-image" style="--unused-image-url: url(photos/110M.webp);">110M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/111M.html">111M</a>-1356T-<a href="trains/melbourne/xtrapolis-100/112M.html">112M</a></td><td></td></tr>
-            <tr><td>113M-1357T-114M</td><td></td></tr>
-            <tr><td>115M-1358T-<a href="trains/melbourne/xtrapolis-100/116M.html"class="unused-hover-image" style="--unused-image-url: url(photos/116M.webp);">116M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/117M.html"class="unused-hover-image" style="--unused-image-url: url(photos/117M.webp);">117M</a>-1359T-118M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/119M.html"class="unused-hover-image" style="--unused-image-url: url(photos/119M.webp);">119M</a>-1360T-120M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/121M.html"class="unused-hover-image" style="--unused-image-url: url(photos/121M.webp);">121M</a>-1361T-<a href="trains/melbourne/xtrapolis-100/122M.html"class="unused-hover-image" style="--unused-image-url: url(photos/122M.webp);">122M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/123M.html"class="unused-hover-image" style="--unused-image-url: url(photos/123M.webp);">123M</a>-1362T-124M</td><td></td></tr>
-            <tr><td>125M-1363T-<a href="trains/melbourne/xtrapolis-100/126M.html"class="unused-hover-image" style="--unused-image-url: url(photos/126M.webp);">126M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/127M.html"class="unused-hover-image" style="--unused-image-url: url(photos/127M.webp);">127M</a>-1364T-128M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/129M.html">129M</a>-1365T-<a href="trains/melbourne/xtrapolis-100/130M.html"class="unused-hover-image" style="--unused-image-url: url(photos/130M.webp);">130M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/131M.html"class="unused-hover-image" style="--unused-image-url: url(photos/131M.webp);">131M</a>-1366T-<a href="trains/melbourne/xtrapolis-100/132M.html">132M</a></td><td></td></tr>
-            <tr><td>133M-1367T-<a href="trains/melbourne/xtrapolis-100/134M.html"class="unused-hover-image" style="--unused-image-url: url(photos/134M.webp);">134M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/135M.html"class="unused-hover-image" style="--unused-image-url: url(photos/135M.webp);">135M</a>-1368T-136M</td><td></td></tr>
-            <tr><td>137M-1369T-<a href="trains/melbourne/xtrapolis-100/138M.html"class="unused-hover-image" style="--unused-image-url: url(photos/138M.webp);">138M</a></td><td></td></tr>
-            <tr><td>139M-1370T-140M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/141M.html"class="unused-hover-image" style="--unused-image-url: url(photos/141M.webp);">141M</a>-1371T-<a href="trains/melbourne/xtrapolis-100/142M.html"class="unused-hover-image" style="--unused-image-url: url(photos/142M.webp);">142M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/143M.html"class="unused-hover-image" style="--unused-image-url: url(photos/143M.webp);">143M</a>-1372T-<a href="trains/melbourne/xtrapolis-100/144M.html"class="unused-hover-image" style="--unused-image-url: url(photos/144M.webp);">144M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/145M.html">145M</a>-1373T-146M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/147M.html">147M</a>-1374T-<a href="trains/melbourne/xtrapolis-100/148M.html"class="unused-hover-image" style="--unused-image-url: url(photos/148M.webp);">148M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/149M.html"class="unused-hover-image" style="--unused-image-url: url(photos/149M.webp);">149M</a>-1375T-<a href="trains/melbourne/xtrapolis-100/150M.html"class="unused-hover-image" style="--unused-image-url: url(photos/150M.webp);">150M</a></td><td></td></tr>
-            <tr><td>151M-1376T-<a href="trains/melbourne/xtrapolis-100/152M.html">152M</a></td><td></td></tr>
-            <tr><td>153M-1377T-154M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/155M.html"class="unused-hover-image" style="--unused-image-url: url(photos/155.webp);">155M</a>-1378T-<a href="trains/melbourne/xtrapolis-100/156M.html"class="unused-hover-image" style="--unused-image-url: url(photos/156M.webp);">156M</a></td><td></td></tr>
-            <tr><td>157M-1379T-<a href="trains/melbourne/xtrapolis-100/158M.html"class="unused-hover-image" style="--unused-image-url: url(photos/158M.webp);">158M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/159M.html"class="unused-hover-image" style="--unused-image-url: url(photos/159M.webp);">159M</a>-1380T-160M</td><td></td></tr>
-            <tr><td>161M-1381T-<a href="trains/melbourne/xtrapolis-100/162M.html"class="unused-hover-image" style="--unused-image-url: url(photos/162M.webp);">162M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/163M.html"class="unused-hover-image" style="--unused-image-url: url(photos/163M.webp);">163M</a>-1382T-164M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/165M.html">165M</a>-1383T-<a href="trains/melbourne/xtrapolis-100/166M.html"class="unused-hover-image" style="--unused-image-url: url(photos/166M.webp);">166M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/167M.html"class="unused-hover-image" style="--unused-image-url: url(photos/167M.webp);">167M</a>-1384T-<a href="trains/melbourne/xtrapolis-100/168M.html"class="unused-hover-image" style="--unused-image-url: url(photos/168M.webp);">168M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/169M.html"class="unused-hover-image" style="--unused-image-url: url(photos/169M.webp);">169M</a>-1385T-<a href="trains/melbourne/xtrapolis-100/170M.html"class="unused-hover-image" style="--unused-image-url: url(photos/170M.webp);">170M</a></td><td></td></tr>
-            <tr><td>171M-1386T-<a href="trains/melbourne/xtrapolis-100/172M.html"class="unused-hover-image" style="--unused-image-url: url(photos/172M.webp);">172M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/173M.html"class="unused-hover-image" style="--unused-image-url: url(photos/173M.webp);">173M</a>-1387T-<a href="trains/melbourne/xtrapolis-100/174M.html"class="unused-hover-image" style="--unused-image-url: url(photos/174M.webp);">174M</a></td><td></td></tr>
-            <tr><td>175M-1388T-176M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/177M.html"class="unused-hover-image" style="--unused-image-url: url(photos/177M.webp);">177M</a>-1389T-<a href="trains/melbourne/xtrapolis-100/178M.html"class="unused-hover-image" style="--unused-image-url: url(photos/178M.webp);">178M</a></td><td></td></tr>
-            <tr><td>179M-1390T-<a href="trains/melbourne/xtrapolis-100/180M.html"class="unused-hover-image" style="--unused-image-url: url(photos/180M.webp);">180M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/181M.html"class="unused-hover-image" style="--unused-image-url: url(photos/181M.webp);">181M</a>-1391T-182M</td><td></td></tr>
-            <tr><td>183M-1392T-<a href="trains/melbourne/xtrapolis-100/184M.html"class="unused-hover-image" style="--unused-image-url: url(photos/184M.webp);">184M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/185M.html"class="unused-hover-image" style="--unused-image-url: url(photos/185M.webp);">185M</a>-1393T-<a href="trains/melbourne/xtrapolis-100/186M.html"class="unused-hover-image" style="--unused-image-url: url(photos/186M.webp);">186M</a></td><td></td></tr>
-            <tr><td>187M-1394T-<a href="trains/melbourne/xtrapolis-100/188M.html"class="unused-hover-image" style="--unused-image-url: url(photos/188M.webp);">188M</a></td><td></td></tr>
-            <tr><td>189M-1395T-<a href="trains/melbourne/xtrapolis-100/190M.html">190M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/191M.html">191M</a>-1396T-<a href="trains/melbourne/xtrapolis-100/192M.html"class="unused-hover-image" style="--unused-image-url: url(photos/192M.webp);">192M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/193M.html"class="unused-hover-image" style="--unused-image-url: url(photos/193M.webp);">193M</a>-1397T-<a href="trains/melbourne/xtrapolis-100/194M.html"class="unused-hover-image" style="--unused-image-url: url(photos/194M.webp);">194M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/195M.html"class="unused-hover-image" style="--unused-image-url: url(photos/195M.webp);">195M</a>-1398T-<a href="trains/melbourne/xtrapolis-100/196M.html">196M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/197M.html">197M</a>-1399T-<a href="trains/melbourne/xtrapolis-100/198M.html">198M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/199M.html"class="unused-hover-image" style="--unused-image-url: url(photos/199M.webp);">199M</a>-1400T-<a href="trains/melbourne/xtrapolis-100/200M.html"class="unused-hover-image" style="--unused-image-url: url(photos/200M.webp);">200M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/201M.html">201M</a>-1401T-202M</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/203M.html"class="unused-hover-image" style="--unused-image-url: url(photos/203M.webp);">203M</a>-1402T-<a href="trains/melbourne/xtrapolis-100/204M.html"class="unused-hover-image" style="--unused-image-url: url(photos/204M.webp);">204M</a></td><td></td></tr>
-            <tr><td>205M-1403T-<a href="trains/melbourne/xtrapolis-100/206M.html"class="unused-hover-image" style="--unused-image-url: url(photos/206M.webp);">206M</a></td><td></td></tr>
-            <tr><td>207M-1404T-208M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/209M.html"class="unused-hover-image" style="--unused-image-url: url(photos/209M.webp);">209M</a>-1405T-<a href="trains/melbourne/xtrapolis-100/210M.html"class="unused-hover-image" style="--unused-image-url: url(photos/210M.webp);">210M</a></td><td></td></tr>
-            <tr><td>211M-1406T-212M</td><td></td></tr>
-            <tr><td>213M-1407T-<a href="trains/melbourne/xtrapolis-100/214M.html">214M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/215M.html">215M</a>-1408T-<a href="trains/melbourne/xtrapolis-100/216M.html">216M</a></td><td></td></tr>
-            <tr><td>217M-1409T-<a href="trains/melbourne/xtrapolis-100/218M.html">218M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/219M.html">219M</a>-1410T-220M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/221M.html">221M</a>-1411T-222M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/223M.html">223M</a>-1412T-224M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/225M.html">225M</a>-1413T-<a href="trains/melbourne/xtrapolis-100/226M.html">226M</a></td><td></td></tr>
-            <tr><td>227M-1414T-<a href="trains/melbourne/xtrapolis-100/228M.html">228M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/229M.html">229M</a>-1415T-230M</td><td></td></tr>
-            <tr><td>231M-1416T-232M</td><td></td></tr>
-            <tr><td>233M-1417T-<a href="trains/melbourne/xtrapolis-100/234M.html">234M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/235M.html">235M</a>-1418T-<a href="trains/melbourne/xtrapolis-100/236M.html">236M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/237M.html">237M</a>-1419T-<a href="trains/melbourne/xtrapolis-100/238M.html">238M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/239M.html">239M</a>-1420T-<a href="trains/melbourne/xtrapolis-100/240M.html">240M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/241M.html">241M</a>-1421T-<a href="trains/melbourne/xtrapolis-100/242M.html">242M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/243M.html">243M</a>-1422T-<a href="trains/melbourne/xtrapolis-100/244M.html">244M</a></td><td></td></tr>
-            <tr><td>245M-1423T-246M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/247M.html">247M</a>-1424T-<a href="trains/melbourne/xtrapolis-100/248M.html">248M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/249M.html">249M</a>-1425T-<a href="trains/melbourne/xtrapolis-100/250M.html">250M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/251M.html">251M</a>-1426T-252M</td><td></td></tr>
-            <tr><td>253M-1427T-<a href="trains/melbourne/xtrapolis-100/254M.html">254M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/255M.html">255M</a>-1428T-256M</td><td></td></tr>
-            <tr><td>257M-1429T-<a href="trains/melbourne/xtrapolis-100/258M.html">258M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/259M.html">259M</a>-1430T-260M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/261M.html">261M</a>-1431T-262M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/263M.html">263M</a>-1432T-264M</td><td></td></tr>
-            <tr><td>265M-1433T-266M</td><td></td></tr>
-            <tr><td>267M-1434T-<a href="trains/melbourne/xtrapolis-100/268M.html">268M</a></td><td></td></tr>
-            <tr><td>269M-1435T-<a href="trains/melbourne/xtrapolis-100/270M.html">270M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/271M.html">271M</a>-1436T-<a href="trains/melbourne/xtrapolis-100/272M.html">272M</a></td><td></td></tr>
-            <tr><td>273M-1437T-274M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/275M.html">275M</a>-1438T-276M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/277M.html">277M</a>-1439T-<a href="trains/melbourne/xtrapolis-100/278M.html">278M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/279M.html">279M</a>-1440T-<a href="trains/melbourne/xtrapolis-100/280M.html">280M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/281M.html">281M</a>-1441T-282M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/283M.html">283M</a>-1442T-<a href="trains/melbourne/xtrapolis-100/284M.html">284M</a></td><td></td></tr>
-            <tr><td>285M-1443T-<a href="trains/melbourne/xtrapolis-100/286M.html">286M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/287M.html">287M</a>-1444T-288M</td><td></td></tr>
-            <tr><td>851M-1626T-<a href="trains/melbourne/xtrapolis-100/852M.html">852M</a></td><td>Iramoo</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/853M.html">853M</a>-<a href="trains/melbourne/xtrapolis-100/1627T.html">1627T</a>-<a href="trains/melbourne/xtrapolis-100/854M.html">854M</a></td><td>Flinders Flyer | Aboriginal Livery</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/855M.html">855M</a>-1628T-<a href="trains/melbourne/xtrapolis-100/856M.html">856M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/857M.html">857M</a>-1629T-<a href="trains/melbourne/xtrapolis-100/858M.html">858M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/859M.html">859M</a>-1630T-<a href="trains/melbourne/xtrapolis-100/860M.html">860M</a></td><td>Westernport</td></tr>
-            <tr><td>861M-1631T-862M</td><td></td></tr>
-            <tr><td>863M-1632T-<a href="trains/melbourne/xtrapolis-100/864M.html">864M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/865M.html">865M</a>-1633T-<a href="trains/melbourne/xtrapolis-100/866M.html">866M</a></td><td>Flash</td></tr>
-            <tr><td>867M-1634T-868M</td><td></td></tr>
-            <tr><td>869M-1635T-870M</td><td></td></tr>
-            <tr><td>871M-1636T-872M</td><td>Melbourne Rocks</td></tr>
-            <tr><td>873M-<a href="trains/melbourne/xtrapolis-100/1637T.html">1637T</a>-<a href="trains/melbourne/xtrapolis-100/874M.html">874M</a></td><td>Croydon West</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/875M.html">875M</a>-1638T-<a href="trains/melbourne/xtrapolis-100/876M.html">876M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/877M.html">877M</a>-1639T-<a href="trains/melbourne/xtrapolis-100/878M.html">878M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/879M.html">879M</a>-1640T-<a href="trains/melbourne/xtrapolis-100/880M.html">880M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/881M.html">881M</a>-1641T-<a href="trains/melbourne/xtrapolis-100/882M.html">882M</a></td><td></td></tr>
-            <tr><td>883M-1642T-<a href="trains/melbourne/xtrapolis-100/884M.html">884M</a></td><td></td></tr>
-            <tr><td><a href='trains/melbourne/xtrapolis-100/885M.html'>885M</a>-1643T-<a href='trains/melbourne/xtrapolis-100/886M.html'>886M</a></td><td></td></tr>
-            <tr><td><a href='trains/melbourne/xtrapolis-100/887M.html'>887M</a>-1644T-888M</td><td></td></tr>
-            <tr><td><a href='trains/melbourne/xtrapolis-100/889M.html'>889M</a>-1645T-890M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/891M.html">891M</a>-1646T-892M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/893M.html">893M</a>-1647T-<a href="trains/melbourne/xtrapolis-100/894M.html">894M</a></td><td></td></tr>
-            <tr><td>895M-1648T-896M</td><td></td></tr>
-            <tr><td>897M-1649T-898M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/899M.html">899M</a>-1650T-<a href="trains/melbourne/xtrapolis-100/900M.html">900M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/901M.html">901M</a>-1651T-<a href="trains/melbourne/xtrapolis-100/902M.html">902M</a></td><td></td></tr>
-            <tr><td>903M-1652T-<a href="trains/melbourne/xtrapolis-100/904M.html">904M</a></td><td></td></tr>
-            <tr><td>905M-1653T-906M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/907M.html">907M</a>-1654T-<a href="trains/melbourne/xtrapolis-100/908M.html">908M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/909M.html">909M</a>-1655T-<a href="trains/melbourne/xtrapolis-100/910M.html">910M</a></td><td></td></tr>
-            <tr><td>911M-1656T-912M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/913M.html">913M</a>-1657T-<a href="trains/melbourne/xtrapolis-100/914M.html">914M</a></td><td></td></tr>
-            <tr><td>915M-1658T-916M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/917M.html">917M</a>-1659T-918M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/919M.html">919M</a>-1660T-920M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/921M.html">921M</a>-1661T-<a href="trains/melbourne/xtrapolis-100/922M.html">922M</a></td><td></td></tr>
-            <tr><td>923M-1662T-<a href="trains/melbourne/xtrapolis-100/924M.html">924M</a></td><td></td></tr>
-            <tr><td>925M-1663T-926M</td><td>Don Corrie</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/927M.html">927M</a>-1664T-928M</td><td></td></tr>
-            <tr><td>929M-1665T-930M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/931M.html">931M</a>-1666T-<a href="trains/melbourne/xtrapolis-100/932M.html">932M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/933M.html">933M</a>-<a href="trains/melbourne/xtrapolis-100/1667T.html">1667T</a>-<a href="trains/melbourne/xtrapolis-100/934M.html">934M</a></td><td>Aboriginal Livery</td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/935M.html">935M</a>-1668T-936M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/937M.html">937M</a>-1669T-<a href="trains/melbourne/xtrapolis-100/938M.html">938M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/939M.html">939M</a>-1670T-<a href="trains/melbourne/xtrapolis-100/940M.html">940M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/941M.html">941M</a>-1671T-<a href="trains/melbourne/xtrapolis-100/942M.html">942M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/943M.html">943M</a>-1672T-<a href="trains/melbourne/xtrapolis-100/944M.html">944M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/945M.html">945M</a>-1673T-<a href="trains/melbourne/xtrapolis-100/946M.html">946M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/947M.html">947M</a>-1674T-<a href="trains/melbourne/xtrapolis-100/948M.html">948M</a></td><td></td></tr>
-            <tr><td>949M-1675T-950M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/951M.html">951M</a>-1676T-<a href="trains/melbourne/xtrapolis-100/952M.html">952M</a></td><td></td></tr>
-            <tr><td>953M-1677T-954M</td><td></td></tr>
-            <tr><td>955M-1678T-<a href="trains/melbourne/xtrapolis-100/956M.html">956M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/957M.html">957M</a>-1679T-<a href="trains/melbourne/xtrapolis-100/958M.html">958M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/959M.html">959M</a>-1680T-<a href="trains/melbourne/xtrapolis-100/960M.html">960M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/961M.html">961M</a>-1681T-962M</td><td></td></tr>
-            <tr><td>963M-1682T-964M</td><td></td></tr>
-            <tr><td>965M-1683T-966M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/967M.html">967M</a>-1684T-<a href="trains/melbourne/xtrapolis-100/968M.html">968M</a></td><td></td></tr>
-            <tr><td>969M-1685T-970M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/971M.html">971M</a>-1686T-<a href="trains/melbourne/xtrapolis-100/972M.html">972M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/973M.html">973M</a>-1687T-<a href="trains/melbourne/xtrapolis-100/974M.html">974M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/975M.html">975M</a>-1688T-<a href="trains/melbourne/xtrapolis-100/976M.html">976M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/977M.html">977M</a>-1689T-<a href="trains/melbourne/xtrapolis-100/978M.html">978M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/979M.html">979M</a>-1690T-980M</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/981M.html">981M</a>-1691T-<a href="trains/melbourne/xtrapolis-100/982M.html">982M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/983M.html">983M</a>-1692T-<a href="trains/melbourne/xtrapolis-100/984M.html">984M</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-100/985M.html">985M</a>-1693T-986M</td><td></td></tr>
+            <tr><th><h4>X'Trapolis 100</h4></th></tr>
+            {% for train in xtrap100_trains %}
+            <tr>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
-   </div>
-   <div class="table-container">
+    </div>
+   
+    <div class="table-container">
         <table>
             <tr><th><h4>Siemens Nexas</h4></th></tr>
-            <tr><td><a href="trains/melbourne/siemens/701M.html">701M</a>-2501T-<a href="trains/melbourne/siemens/702M.html">702M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/703M.html">703M</a>-2502T-<a href="trains/melbourne/siemens/704M.html">704M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/705M.html">705M</a>-2503T-<a href="trains/melbourne/siemens/706M.html">706M</a></td></tr>
-            <tr><td>707M-2504T-<a href="trains/melbourne/siemens/708M.html">708M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/709M.html">709M</a>-2505T-710M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/711M.html">711M</a>-2506T-<a href="trains/melbourne/siemens/712M.html">712M</a></td></tr>
-            <tr><td>713M-2507T-<a href="trains/melbourne/siemens/714M.html">714M</a></td></tr>
-            <tr><td>715M-2508T-716M</td></tr>
-            <tr><td>717M-2509T-<a href="trains/melbourne/siemens/718M.html">718M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/719M.html">719M</a>-2510T-<a href="trains/melbourne/siemens/720M.html">720M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/721M.html">721M</a>-2511T-<a href="trains/melbourne/siemens/722M.html">722M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/723M.html">723M</a>-2512T-<a href="trains/melbourne/siemens/724M.html">724M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/725M.html">725M</a>-2513T-726M</td></tr>
-            <tr><td>727M-2514T-728M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/729M.html">729M</a>-2515T-<a href="trains/melbourne/siemens/730M.html">730M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/731M.html">731M</a>-2516T-<a href="trains/melbourne/siemens/732M.html">732M</a></td></tr>
-            <tr><td>733M-2517T-<a href="trains/melbourne/siemens/734M.html">734M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/735M.html">735M</a>-2518T-736M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/737M.html">737M</a>-2519T-<a href="trains/melbourne/siemens/738M.html">738M</a></td></tr>
-            <tr><td>739M-2520T-<a href="trains/melbourne/siemens/740M.html">740M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/741M.html">741M</a>-2521T-<a href="trains/melbourne/siemens/742M.html">742M</a></td></tr>
-            <tr><td>743M-2522T-<a href="trains/melbourne/siemens/744M.html">744M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/745M.html">745M</a>-2523T-746M</td></tr>
-            <tr><td>747M-2524T-<a href="trains/melbourne/siemens/748M.html">748M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/749M.html">749M</a>-2525T-<a href="trains/melbourne/siemens/750M.html">750M</a></td></tr>
-            <tr><td>751M-2526T-752M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/753M.html">753M</a>-2527T-<a href="trains/melbourne/siemens/754M.html">754M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/755M.html">755M</a>-2528T-756M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/757M.html">757M</a>-2529T-<a href="trains/melbourne/siemens/758M.html">758M</a></td></tr>
-            <tr><td>759M-2530T-760M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/761M.html">761M</a>-2531T-762M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/763M.html">763M</a>-2532T-764M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/765M.html">765M</a>-2533T-<a href="trains/melbourne/siemens/766M.html">766M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/767M.html">767M</a>-2534T-<a href="trains/melbourne/siemens/768M.html">768M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/769M.html">769M</a>-2535T-<a href="trains/melbourne/siemens/770M.html">770M</a></td></tr>
-            <tr><td>771M-2536T-<a href="trains/melbourne/siemens/772M.html">772M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/773M.html">773M</a>-2537T-<a href="trains/melbourne/siemens/774M.html">774M</a></td></tr>
-            <tr><td>775M-2538T-776M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/777M.html">777M</a>-2539T-<a href="trains/melbourne/siemens/778M.html">778M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/779M.html">779M</a>-2540T-780M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/781M.html">781M</a>-2541T-<a href="trains/melbourne/siemens/782M.html">782M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/783M.html">783M</a>-2542T-<a href="trains/melbourne/siemens/784M.html">784M</a></td></tr>
-            <tr><td>785M-2543T-<a href="trains/melbourne/siemens/786M.html">786M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/787M.html">787M</a>-2544T-788M</td></tr>
-            <tr><td>789M-2545T-<a href="trains/melbourne/siemens/790M.html">790M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/791M.html">791M</a>-2546T-<a href="trains/melbourne/siemens/792M.html">792M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/793M.html">793M</a>-2547T-<a href="trains/melbourne/siemens/794M.html">794M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/795M.html">795M</a>-2548T-796M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/797M.html">797M</a>-2549T-<a href="trains/melbourne/siemens/798M.html">798M</a</td></tr>
-            <tr><td>799M-2550T-<a href="trains/melbourne/siemens/800M.html">800M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/801M.html">801M</a>-2551T-<a href="trains/melbourne/siemens/802M.html">802M</a></td></tr>
-            <tr><td>803M-2552T-<a href="trains/melbourne/siemens/804M.html">804M</a></td></tr>
-            <tr><td>805M-2553T-806M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/807M.html">807M</a>-<a href="trains/melbourne/siemens/2554T.html">2554T</a>-<a href="trains/melbourne/siemens/808M.html">808M</a></td></tr>
-            <tr><td>809M-2555T-<a href="trains/melbourne/siemens/810M.html">810M</a></td></tr>
-            <tr><td>811M-2556T-812M</td></tr>
-            <tr><td>813M-2557T-814M</td></tr>
-            <tr><td>815M-2558T-<a href="trains/melbourne/siemens/816M.html">816M</a></td></tr>
-            <tr><td>817M-2559T-818M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/819M.html">819M</a>-<a href="trains/melbourne/siemens/2560T.html">2560T</a>-820M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/821M.html">821M</a>-2561T-<a href="trains/melbourne/siemens/822M.html">822M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/823M.html">823M</a>-2562T-<a href="trains/melbourne/siemens/824M.html">824M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/825M.html">825M</a>-2563T-826M</td></tr>
-            <tr><td><a href="trains/melbourne/siemens/827M.html">827M</a>-2564T-<a href="trains/melbourne/siemens/828M.html">828M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/829M.html">829M</a>-2565T-830M</td></tr>
-            <tr><td>831M-2566T-<a href="trains/melbourne/siemens/832M.html">832M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/833M.html">833M</a>-2567T-<a href="trains/melbourne/siemens/834M.html">834M</a></td></tr>
-            <tr><td>835M-2568T-<a href="trains/melbourne/siemens/836M.html">836M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/837M.html">837M</a>-2569T-<a href="trains/melbourne/siemens/838M.html">838M</a></td></tr>
-            <tr><td>839M-2570T-<a href="trains/melbourne/siemens/840M.html">840M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/841M.html">841M</a>-2571T-<a href="trains/melbourne/siemens/842M.html">842M</a></td></tr>
-            <tr><td><a href="trains/melbourne/siemens/843M.html">843M</a>-2572T-<a href="trains/melbourne/siemens/844M.html">844M</a></td></tr>
+            {% for train in siemens_trains %}
+            <tr>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
     </div>
 
     <div class="table-container">
         <table>
-            <tr><th><h4>High Capacity Metro Train</h4></th><th>Notes</th></tr>
-            <tr><td><a href="trains/melbourne/hcmt/9001.html">9001</a>-9101-9201-9301-9701-9801-<a href="trains/melbourne/hcmt/9901.html">9901</a></td><td></td></tr>
-            <tr><td><a href="trains/melbourne/hcmt/9002.html">9002</a>-9102-9202-9302-9702-9802-9902</td><td></td></tr>
-            <tr><td><a href="trains/melbourne/hcmt/9003.html">9003</a>-9103-9203-9303-9703-9803-<a href="trains/melbourne/hcmt/9903.html">9903</a></td><td></td></tr>
-            <tr>
-                <td>9004-9104-9204-9304-9704-9804-9904</td><td></td>
-            </tr>
-            <tr>
-                <td>9005-9105-9205-9305-9705-9805-9905</td><td></td>
-            </tr>
-            <tr>
-                <td>9006-9106-9206-9306-9706-9806-<a href="trains/melbourne/hcmt/9906.html">9906</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9007.html">9007</a>-9107-9207-9307-9707-9807-<a href="trains/melbourne/hcmt/9907.html">9907</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9008.html">9008</a>-9108-9208-9308-9708-9808-<a href="trains/melbourne/hcmt/9908.html">9908</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9009-9109-9209-9309-9709-9809-9909</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9010.html">9010</a>-9110-9210-9310-9710-9810-9910</td><td></td>
-            </tr>
-            <tr>
-                <td>9011-9111-9211-9311-9711-9811-9911</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9012.html">9012</a>-9112-9212-9312-9712-9812-<a href="trains/melbourne/hcmt/9912.html">9912</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9013.html">9013</a>-9113-9213-9313-9713-9813-<a href="trains/melbourne/hcmt/9913.html">9913</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9014-9114-9214-9314-9714-9814-9914</td><td></td>
-            </tr>
-            <tr>
-                <td>9015-9115-9215-9315-9715-9815-9915</td><td></td>
-            </tr>
-            <tr>
-                <td>9016-9116-9216-9316-9716-9816-9916</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9017.html">9017</a>-9117-9217-9317-9717-9817-<a href="trains/melbourne/hcmt/9917.html">9917</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9018-9118-9218-9318-9718-9818-9918</td><td></td>
-            </tr>
-            <tr>
-                <td>9019-9119-9219-9319-9719-9819-<a href="trains/melbourne/hcmt/9919.html">9919</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9020.html">9020</a>-9120-9220-9320-9720-9820-9920</td><td></td>
-            </tr>
-            <tr>
-                <td>9021-9121-9221-9321-9721-9821-9921</td><td></td>
-            </tr>
-            <tr>
-                <td>9022-9122-9222-9322-9722-9822-9922</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9023.html">9023</a>-9123-9223-9323-9723-9823-9923</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9024.html">9024</a>-9124-9224-<a href="trains/melbourne/hcmt/9324.html">9324</a>-9724-9824-<a href="trains/melbourne/hcmt/9924.html">9924</a></td><td>Aboriginal Livery</td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9025.html">9025</a>-9125-9225-9325-9725-9825-<a href="trains/melbourne/hcmt/9925.html">9925</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9026-9126-9226-9326-9726-9826-9926</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9027.html">9027</a>-9127-9227-9327-9727-9827-<a href="trains/melbourne/hcmt/9927.html">9927</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9028-9128-9228-9328-9728-9828-<a href="trains/melbourne/hcmt/9928.html">9928</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9029-9129-9229-9329-9729-9829-9929</td><td></td>
-            </tr>
-            <tr>
-                <td>9030-9130-9230-9330-9730-9830-9930</td><td></td>
-            </tr>
-            <tr>
-                <td>9031-9131-9231-9331-9731-9831-9931</td><td></td>
-            </tr>
-            <tr>
-                <td>9032-9132-9232-9332-9732-9832-9932</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9033.html">9033</a>-9133-9233-9333-9733-9833-<a href="trains/melbourne/hcmt/9933.html">9933</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9034.html">9034</a>-9134-9234-9334-9734-9834-<a href="trains/melbourne/hcmt/9934.html">9934</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9035-9135-9235-9335-9735-9835-9935</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9036.html">9036</a>-9136-9236-9336-9736-9836-<a href="trains/melbourne/hcmt/9936.html">9936</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9037.html">9037</a>-9137-9237-9337-9737-9837-<a href="trains/melbourne/hcmt/9937.html">9937</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9038-9138-9238-9338-9738-9838-<a href="trains/melbourne/hcmt/9938.html">9938</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9039-9139-9239-9339-9739-9839-9939</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9040.html">9040</a>-9140-9240-9340-9740-9840-<a href="trains/melbourne/hcmt/9940.html">9940</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9041-9141-9241-9341-9741-9841-9941</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9042.html">9042</a>-9142-9242-9342-9742-9842-<a href="trains/melbourne/hcmt/9942.html">9942</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9043-9143-9243-9343-9743-9843-<a href="trains/melbourne/hcmt/9943.html">9943</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9044-9144-9244-9344-9744-9844-9944</td><td></td>
-            </tr>
-            <tr>
-                <td>9045-9145-9245-9345-9745-9845-9945</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9046.html">9046</a>-9146-9246-9346-9746-9846-9946</td><td></td>
-            </tr>
-            <tr>
-                <td>9047-9147-9247-9347-9747-9847-9947</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9048.html">9048</a>-9148-9248-9348-9748-9848-<a href="trains/melbourne/hcmt/9948.html">9948</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9049-9149-9249-9349-9749-9849-9949</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9050.html">9050</a>-9150-9250-9350-9750-9850-<a href="trains/melbourne/hcmt/9950.html">9950</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9051.html">9051</a>-9151-9251-9351-9751-9851-9951</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9052.html">9052</a>-9152-9252-9352-9752-9852-<a href="trains/melbourne/hcmt/9952.html">9952</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9053.html">9053</a>-9153-9253-9353-9753-9853-9953</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9054.html">9054</a>-9154-9254-9354-9754-9854-<a href="trains/melbourne/hcmt/9954.html">9954</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9055-9155-9255-9355-9755-9855-<a href="trains/melbourne/hcmt/9955.html">9955</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9056.html">9056</a>-9156-9256-9356-9756-9856-<a href="trains/melbourne/hcmt/9956.html">9956</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9057-9157-9257-9357-9757-9857-9957</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9058.html">9058</a>-9158-9258-9358-9758-9858-<a href="trains/melbourne/hcmt/9958.html">9958</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9059.html">9059</a>-9159-9259-9359-9759-9859-<a href="trains/melbourne/hcmt/9959.html">9959</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9060.html">9060</a>-9160-9260-9360-9760-9860-<a href="trains/melbourne/hcmt/9960.html">9960</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9061.html">9061</a>-9161-9261-9361-9761-9861-<a href="trains/melbourne/hcmt/9961.html">9961</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9062.html">9062</a>-9162-9262-9362-9762-9862-9962</td><td></td>
-            </tr>
-            <tr>
-                <td>9063-9163-9263-9363-9763-9863-9963</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9064.html">9064</a>-9164-9264-9364-9764-9864-<a href="trains/melbourne/hcmt/9964.html">9964</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9065.html">9065</a>-9165-9265-9365-9765-9865-<a href="trains/melbourne/hcmt/9965.html">9965</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9066.html">9066</a>-9166-9266-9366-9766-9866-<a href="trains/melbourne/hcmt/9966.html">9966</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9067.html">9067</a>-9167-9267-9367-9767-9867-<a href="trains/melbourne/hcmt/9967.html">9967</a></td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9068.html">9068</a>-9168-9268-9368-9768-9868-9968</td><td></td>
-            </tr>
-            <tr>
-                <td><a href="trains/melbourne/hcmt/9069.html">9069</a>-9169-9269-9369-9769-9869-<a href="trains/melbourne/hcmt/9969.html">9969</a></td><td></td>
-            </tr>
-            <tr>
-                <td>9070-9170-9270-9370-9770-9870-<a href="trains/melbourne/hcmt/9970.html">9970</a></td><td></td>
-            </tr>
+            <tr><th><h4>HCMT</h4></th></tr>
+            {% for train in hcmt_trains %}
+            <tr>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
     </div>
+
     <div class="table-container">
         <table>
-            <tr><th><h4>X'Trapolis 2.0</h4></th><th>Notes</th></tr>
-            <tr><td><a href="trains/melbourne/xtrapolis-2/8101.html">8101</a>-<a href="trains/melbourne/xtrapolis-2/8201.html">8201</a>-<a href="trains/melbourne/xtrapolis-2/8301.html">8301</a>-<a href="trains/melbourne/xtrapolis-2/8401.html">8401</a>-8501-<a href="trains/melbourne/xtrapolis-2/8601.html">8601</a></td></tr>
-            <tr><td>8102-8202-8302-8402-8502-8602</td></tr>
-            <tr><td>8103-8203-8303-8403-8503-8603</td></tr>
-            <tr><td>8104-8204-8304-8404-8504-8604</td></tr>
-            <tr><td>8105-8205-8305-8405-8505-8605</td></tr>
-            <tr><td>8106-8206-8306-8406-8506-8606</td></tr>
-            <tr><td>8107-8207-8307-8407-8507-8607</td></tr>
-            <tr><td>8108-8208-8308-8408-8508-8608</td></tr>
-            <tr><td>8109-8209-8309-8409-8509-8609</td></tr>
-            <tr><td>8110-8210-8310-8410-8510-8610</td></tr>
-            <tr><td>8111-8211-8311-8411-8511-8611</td></tr>
-            <tr><td>8112-8212-8312-8412-8512-8612</td></tr>
-            <tr><td>8113-8213-8313-8413-8513-8613</td></tr>
-            <tr><td>8114-8214-8314-8414-8514-8614</td></tr>
-            <tr><td>8115-8215-8315-8415-8515-8615</td></tr>
-            <tr><td>8116-8216-8316-8416-8516-8616</td></tr>
-            <tr><td>8117-8217-8317-8417-8517-8617</td></tr>
-            <tr><td>8118-8218-8318-8418-8518-8618</td></tr>
-            <tr><td>8119-8219-8319-8419-8519-8619</td></tr>
-            <tr><td>8120-8220-8320-8420-8520-8620</td></tr>
-            <tr><td>8121-8221-8321-8421-8521-8621</td></tr>
-            <tr><td>8122-8222-8322-8422-8522-8622</td></tr>
-            <tr><td>8123-8223-8323-8423-8523-8623</td></tr>
-            <tr><td>8124-8224-8324-8424-8524-8624</td></tr>
-            <tr><td>8125-8225-8325-8425-8525-8625</td></tr>
+            <tr><th><h4>X'Trapolis 2.0</h4></th></tr>
+            {% for train in xtrap2_trains %}
+            <tr>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
     </div>
     </div>
@@ -773,428 +333,72 @@
     <div class="metro">
     <div class="table-container">
         <table>
-            <tr><th><h4>VLocity</h4></th><th>Notes</th></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1100.html">1100</a>-1300-<a href="trains/melbourne/v/line/VLocity/1200.html">1200</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1101.html">1101</a>-1301-1201</td></tr>
-            <tr><td>1102-1302-<a href="trains/melbourne/v/line/VLocity/1202.html">1202</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1103.html">1103</a>-1303-1203</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1104.html">1104</a>-1304-<a href="trains/melbourne/v/line/VLocity/1204.html">1204</a></td></tr>
-            <tr><td>1105-1305-<a href="trains/melbourne/v/line/VLocity/1205.html">1205</a></td></tr>
-            <tr><td>1106-1306-1206</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1107.html">1107</a>-1307-<a href="trains/melbourne/v/line/VLocity/1207.html">1207</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1108.html">1108</a>-1308-<a href="trains/melbourne/v/line/VLocity/1208.html">1208</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1109.html">1109</a>-1309-<a href="trains/melbourne/v/line/VLocity/1209.html">1209</a></td></tr>
-            <tr><td>1110-1310-1210</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1111.html">1111</a>-1311-1211</td></tr>
-            <tr><td>1112-1312-1212</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1113.html">1113</a>-1313-1213</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1114.html">1114</a>-1314-<a href="trains/melbourne/v/line/VLocity/1214.html">1214</a></td></tr>
-            <tr><td>1115-1315-1215</td></tr>
-            <tr><td>1116-1316-<a href="trains/melbourne/v/line/VLocity/1216.html">1216</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1117.html">1117</a>-1317-1217</td></tr>
-            <tr><td>1118-1318-<a href="trains/melbourne/v/line/VLocity/1218.html">1218</a></td></tr>
-            <tr><td>1119-1319-<a href="trains/melbourne/v/line/VLocity/1219.html">1219</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1120.html">1120</a>-1320-1220</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1121.html">1121</a>-1321-<a href="trains/melbourne/v/line/VLocity/1221.html">1221</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1122.html">1122</a>-1322-<a href="trains/melbourne/v/line/VLocity/1222.html">1222</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1123.html">1123</a>-1323-1223</td></tr>
-            <tr><td>1124-1324-1224</td></tr>
-            <tr><td>1125-1325-1225</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1126.html">1126</a>-1326-<a href="trains/melbourne/v/line/VLocity/1226.html">1226</a></td></tr>
-            <tr><td>1127-1327-1227</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1128.html">1128</a>-1328-1228</td></tr>
-            <tr><td>1130-1330-<a href="trains/melbourne/v/line/VLocity/1230.html">1230</a></td></tr>
-            <tr><td>1131-1331-<a href="trains/melbourne/v/line/VLocity/1231.html">1231</a></td></tr>
-            <tr><td>1132-1332-<a href="trains/melbourne/v/line/VLocity/1232.html">1232</a></td></tr>
-            <tr><td>1133-1333-<a href="trains/melbourne/v/line/VLocity/1233.html">1233</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1134.html">1134</a>-1334-<a href="trains/melbourne/v/line/VLocity/1234.html">1234</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1135.html">1135</a>-1335-<a href="trains/melbourne/v/line/VLocity/1235.html">1235</a></td></tr>
-            <tr><td>1136-1336-1236</td></tr>
-            <tr><td>1137-1337-<a href="trains/melbourne/v/line/VLocity/1237.html">1237</a></td></tr>
-            <tr><td>1138-1338-1238</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1139.html">1139</a>-1339-<a href="trains/melbourne/v/line/VLocity/1239.html">1239</a></td></tr>
-            <tr><td>1140-1340-1240</td></tr>
-            <tr><td>1141-1341-1241</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1142.html">1142</a>-1342-1242</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1143.html">1143</a>-1343-<a href="trains/melbourne/v/line/VLocity/1243.html">1243</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1144.html">1144</a>-1344-1244</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1145.html">1145</a>-1345-1245</td></tr>
-            <tr><td>1146-1346-1246</td></tr>
-            <tr><td>1147-1347-<a href="trains/melbourne/v/line/VLocity/1247.html">1247</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1148.html">1148</a>-1348-1248</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1149.html">1149</a>-1349-<a href="trains/melbourne/v/line/VLocity/1249.html">1249</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1150.html">1150</a>-1350-1250</td></tr>
-            <tr><td>1151-1351-<a href="trains/melbourne/v/line/VLocity/1251.html">1251</a></td></tr>
-            <tr><td>1152-1352-1252</td></tr>
-            <tr><td>1153-1353-1253</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1154.html">1154</a>-1354-<a href="trains/melbourne/v/line/VLocity/1254.html">1254</a></td></tr>
-            <tr><td>1155-1355-1255</td></tr>
-            <tr><td>1156-1356-1256</td></tr>
-            <tr><td>1157-1357-<a href="trains/melbourne/v/line/VLocity/1257.html">1257</a></td></tr>
-            <tr><td>1158-1358-1258</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1159.html">1159</a>-1359-<a href="trains/melbourne/v/line/VLocity/1259.html">1259</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1160.html">1160</a>-<a href="trains/melbourne/v/line/VLocity/1360.html">1360</a>-<a href="trains/melbourne/v/line/VLocity/1260.html">1260</a></td></tr>
-            <tr><td>1161-1361-<a href="trains/melbourne/v/line/VLocity/1261.html">1261</a></td></tr>
-            <tr><td>1162-1362-1262</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1163.html">1163</a>-1363-1263</td></tr>
-            <tr><td>1164-1364-<a href="trains/melbourne/v/line/VLocity/1264.html">1264</a></td></tr>
-            <tr><td>1165-1365-1265</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1166.html">1166</a>-1366-1266</td></tr>
-            <tr><td>1167-1367-<a href="trains/melbourne/v/line/VLocity/1267.html">1267</a></td></tr>
-            <tr><td>1168-1368-1268</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1169.html">1169</a>-1369-1269</td></tr>
-            <tr><td>1170-1370-1270</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1171.html">1171</a>-1371-1271</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1172.html">1172</a>-1372-1272</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1173.html">1173</a>-1373-<a href="trains/melbourne/v/line/VLocity/1273.html">1273</a></td></tr>
-            <tr><td>1174-1374-1274</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1175.html">1175</a>-1375-<a href="trains/melbourne/v/line/VLocity/1275.html">1275</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1176.html">1176</a>-1376-1276</td><td>VR</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1177.html">1177</a>-1377-<a href="trains/melbourne/v/line/VLocity/1277.html">1277</a></td><td>VR</td></tr>
-            <tr><td>1178-1378-<a href="trains/melbourne/v/line/VLocity/1278.html">1278</a></td><td>VR</td></tr>
-            <tr><td>1179-1379-1279</td><td>VR</td></tr>
-            <tr><td>1180-1380-1280</td></tr>
-            <tr><td>1181-1381-<a href="trains/melbourne/v/line/VLocity/1281.html">1281</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1182.html">1182</a>-1382-1282</td></tr>
-            <tr><td>1183-1383-1283</td></tr>
-            <tr><td>1184-1384-1284</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1185.html">1185</a>-1385-1285</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1186.html">1186</a>-1386-<a href="trains/melbourne/v/line/VLocity/1286.html">1286</a></td></tr>
-            <tr><td>1187-1387-<a href="trains/melbourne/v/line/VLocity/1287.html">1287</a></td></tr>
-            <tr><td>1188-<a href="trains/melbourne/v/line/VLocity/1388.html">1388</a>-<a href="trains/melbourne/v/line/VLocity/1288.html">1288</a></td></tr>
-            <tr><td>1189-1389-<a href="trains/melbourne/v/line/VLocity/1289.html">1289</a></td></tr>
-            <tr><td>1190-1390-1290</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1191.html">1191</a>-1391-1291</td></tr>
-            <tr><td>1192-1392-1292</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1193.html">1193</a>-1593-<a href="trains/melbourne/v/line/VLocity/1293.html">1293</a></td><td>Standard Gauge</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1194.html">1194</a>-1594-1294</td><td>Standard Gauge</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1195.html">1195</a>-1595-<a href="trains/melbourne/v/line/VLocity/1295.html">1295</a></td><td>Standard Gauge</td></tr>
-            <tr><td>1196-1596-1296</td><td>Standard Gauge</td></tr>
-            <tr><td>1197-1597-<a href="trains/melbourne/v/line/VLocity/1297.html">1297</a></td><td>Standard Gauge</td></tr>
-            <tr><td>1198-1598-1298</td><td>Standard Gauge</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/1199.html">1199</a>-1399-1299</td></tr>
-            <tr><td>2100-2300-<a href="trains/melbourne/v/line/VLocity/2200.html">2200</a></td></tr>
-            <tr><td>2101-2301-2201</td></tr>
-            <tr><td>2102-2302-<a href="trains/melbourne/v/line/VLocity/2202.html">2202</a></td></tr>
-            <tr><td>2103-2303-<a href="trains/melbourne/v/line/VLocity/2203.html">2203</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2104.html">2104</a>-2304-<a href="trains/melbourne/v/line/VLocity/2204.html">2204</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2105.html">2105</a>-2305-<a href="trains/melbourne/v/line/VLocity/2205.html">2205</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2106.html">2106</a>-2306-<a href="trains/melbourne/v/line/VLocity/2206.html">2206</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2107.html">2107</a>-2307-<a href="trains/melbourne/v/line/VLocity/2207.html">2207</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2108.html">2108</a>-2308-<a href="trains/melbourne/v/line/VLocity/2208.html">2208</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2109.html">2109</a>-2309-2209</td></tr>
-            <tr><td>2110-2310-<a href="trains/melbourne/v/line/VLocity/2210.html">2210</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2111.html">2111</a>-2311-<a href="trains/melbourne/v/line/VLocity/2211.html">2211</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2112.html">2112</a>-2312-<a href="trains/melbourne/v/line/VLocity/2212.html">2212</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2113.html">2113</a>-2313-<a href="trains/melbourne/v/line/VLocity/2213.html">2213</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2114.html">2114</a>-2314-<a href="trains/melbourne/v/line/VLocity/2214.html">2214</a></td></tr>
-            <tr><td>2115-2315-2215</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2116.html">2116</a>-2316-<a href="trains/melbourne/v/line/VLocity/2216.html">2216</a></td></tr>
-            <tr><td>2117-2317-2217</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2118.html">2118</a>-2318-<a href="trains/melbourne/v/line/VLocity/2218.html">2218</a></td></tr>
-            <tr><td>2119-2319-2219</td></tr>
-            <tr><td>2120-2320-2220</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2121.html">2121</a>-2321-2221</td></tr>
-            <tr><td>2122-2322-2222</td></tr>
-            <tr><td>2123-2323-2223</td></tr>
-            <tr><td>2124-2324-<a href="trains/melbourne/v/line/VLocity/2224.html">2224</a></td></tr>
-            <tr><td>2125-2325-2225</td></tr>
-            <tr><td><a href="trains/melbourne/v/line/VLocity/2126.html">2126</a>-2326-2226</td></tr>
-            <tr><td>2127-2327-2227</td></tr>
-            <tr><td>2128-2328-2228</td></tr>
-            <tr><td>2129-2329-<a href="trains/melbourne/v/line/VLocity/2229.html">2229</a></td></tr>
-            <tr><td>2130-2330-2230</td></tr>
-            <tr><td>2131-2331-<a href="trains/melbourne/v/line/VLocity/2231.html">2231</a></td></tr>
-            <tr><td>2132-2332-2232</td></tr>
-            <tr><td>2134-2334-2234</td></tr>
-            <tr><td>2135-2335-2235</td></tr>
-            <tr><td>2136-2336-2236</td></tr>
-            <tr><td>2137-2337-2237</td></tr>
-            <tr><td>2138-2338-2238</td></tr>
-            <tr><td>2139-2339-2239</td></tr>
-            <tr><td>2140-2340-2240</td></tr>
-            <tr><td>2141-2341-2241</td></tr>
+            <tr><th><h4>VLocity</h4></th></tr>
+            {% for train in vlocity_trains %}
+            <tr>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
     </div>
     <div class="table-container">
         <table>
+            <tr><th><h4>N Class</h4></th></tr>
+            {% for train in ncl_trains %}
             <tr>
-                <th>N Class Locomotive</th>
-                <th>Name</th>
-                <th>Operator</th>
-                <th>Notes</th>
-              </tr>
-              <tr>
-                <td>N451</td>
-                <td>City of Portland</td>
-                <td>V/Line</td>
-                <td>Standard Gauge</td>
-              </tr>
-              <tr>
-                <td><a href="/trains/melbourne/v/line/N-Class/N452.html">N452</a></td>
-                <td>Rural City of Wodonga</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="/trains/melbourne/v/line/N-Class/N453.html">N453</a></td>
-                <td>City of Albury</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N454</td>
-                <td>City of Horsham</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N455.html">N455</a></td>
-                <td>City of Swan Hill</td>
-                <td>Southern Shorthaul Railroad</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N456.html">N456</a></td>
-                <td>City of Colac</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N457</td>
-                <td>City of Mildura</td>
-                <td>V/Line</td>
-                <td>Standard Guage</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N458.html">N458</a></td>
-                <td>City of Maryborough</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N459</td>
-                <td>City of Echuca</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N460</td>
-                <td>City of Castlemaine</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N461.html">N461</a></td>
-                <td>City of Ararat</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N462.html">N462</a></td>
-                <td>City of Shepparton</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N463</td>
-                <td>City of Bendigo</td>
-                <td>Southern Shorthaul Railroad</td>
-              </tr>
-              <tr>
-                <td>N464</td>
-                <td>City of Geelong</td>
-                <td>Southern Shorthaul Railroad</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N465.html">N465</a></td>
-                <td>City of Ballaarat</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N466.html"class="unused-hover-image" style="--unused-image-url: url(photos/N466.webp);">N466</a></td>
-                <td>City of Warrnambool</td>
-                <td>Southern Shorthaul Railroad</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N467.html">N467</a></td>
-                <td>City of Stawell</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N468.html">N468</a></td>
-                <td>City of Bairnsdale</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N469.html">N469</a></td>
-                <td>City of Morwell</td>
-                <td>V/Line</td>
-                <td>Standard Guage</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N470.html">N470</a></td>
-                <td>City of Wangaratta</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N471.html">N471</a></td>
-                <td>City of Benalla</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N472</td>
-                <td>City of Sale</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N473.html">N473</a></td>
-                <td>City of Warragul</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/N-Class/N474.html">N474</a></td>
-                <td>City of Traralgon</td>
-                <td>V/Line</td>
-              </tr>
-              <tr>
-                <td>N475</td>
-                <td>City of Moe</td>
-                <td>V/Line</td>
-              </tr>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
+                <td class="scrapped">Scrapped</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
     </div>
 
-    <div class="table-container">
+   <div class="table-container">
         <table>
+            <tr><th><h4>Sprinter</h4></th></tr>
+            {% for train in sprinter_trains %}
             <tr>
-                <th>Sprinter</th>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Notes</th>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7001.html">7001</a></td>
-                <td>Sir Hubert Opperman</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7002.html">7002</a></td>
-                <td>Steve Moneghetti</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>7003</td>
-                <td>James Tomkins</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7004.html">7004</a></td>
-                <td>Nick Green</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7005.html">7005</a></td>
-                <td>Michael McKay</td>
-                <td></td>
-                <td>Vline Red and White Livery</td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7006.html">7006</a></td>
-                <td>Andrew Cooper</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7007.html">7007</a></td>
-                <td>Faith Leech</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7008.html">7008</a></td>
-                <td>Gary Ablett</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7009.html">7009</a></td>
-                <td>Bob Davis</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>7010</td>
-                <td>Andrew Gaze</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7011.html">7011</a></td>
-                <td>Raelene Boyle</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7012.html">7012</a></td>
-                <td>Roy Higgins</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>7013</td>
-                <td>Lionel Rose</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7014.html">7014</a></td>
-                <td>Kirstie Marshall</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7015.html">7015</a></td>
-                <td>Louise Dobson</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>7016</td>
-                <td>Michael Tuck</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7017.html">7017</a></td>
-                <td>Debbie Flintoff-King</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7018.html">7018</a></td>
-                <td>Bill Roycroft</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="scrapped">7019</td>
-                <td class="scrapped">Danni Roche</td>
+                <td class="{% if train.scrapped %}scrapped{% endif %}">
+                    {% set car_numbers = [] %}
+                    {% for number in train.cars %}
+                        {% if number|upper in linkedNumbers %}
+                            {% set _ = car_numbers.append('<a href="/trains/' ~ number ~ '">' ~ number ~ '</a>') %}
+                        {% else %}
+                            {% set _ = car_numbers.append(number) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ car_numbers|join('-')|safe }}
+                </td>
+                {% if train.scrapped %}
                 <td class="scrapped">Scrapped</td>
-                <td class="scrapped"></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7020.html">7020</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7021.html">7021</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><a href="trains/melbourne/v/line/sprinter/7022.html">7022</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                {% endif %}
+            </tr>
+            {% endfor %}
         </table>
     </div>
 

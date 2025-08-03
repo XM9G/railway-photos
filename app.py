@@ -18,14 +18,21 @@ def test_page():
 
     # Get train sets
     comeng = getSets('EDI Comeng') + getSets('Alstom Comeng')
+    xtrap100 = getSets("X'Trapolis 100")
+    siemens = getSets('Siemens Nexas')
+    hcmt = getSets('HCMT')
+    xtrap2 = getSets("X'Trapolis 2.0")
+    vlocity = getSets('Vlocity')
+    sprinter = getSets('Sprinter')
+    ncl = getSets('N Class')
 
-    for train in comeng:
+    for train in comeng + xtrap100 + siemens + hcmt + xtrap2 + vlocity + sprinter+ ncl:
         if isinstance(train['cars'], str):
             train['cars'] = train['cars'].split('-')
         elif isinstance(train['cars'], list) and len(train['cars']) == 1 and '-' in train['cars'][0]:
             train['cars'] = train['cars'][0].split('-')
 
-    return render_template('index.html', comeng_trains=comeng, linkedNumbers=withImage)
+    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, linkedNumbers=withImage)
 
 
 
@@ -73,4 +80,4 @@ def trainsetsCSV():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=6966)
+    app.run(debug=True, port=6966)

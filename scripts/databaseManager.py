@@ -4,7 +4,7 @@ import sqlite3
 from httpx import get
 from numpy import add
 
-def addPhoto(number, type, date, location, photographer, featured:bool, url):
+def addPhoto(number, type, date, location, photographer, featured:bool, url, note=None):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     number = number.upper()
@@ -18,17 +18,18 @@ def addPhoto(number, type, date, location, photographer, featured:bool, url):
         location TEXT NOT NULL,
         photographer TEXT NOT NULL,
         featured BOOLEAN NOT NULL DEFAULT 0,
-        url TEXT NOT NULL
+        url TEXT NOT NULL,
+        note TEXT
     )''')
     cursor.execute('''
-    INSERT INTO photos (number, type, date, location, photographer, featured, url)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''', (number, type, date, location, photographer, featured, url))
+    INSERT INTO photos (number, type, date, location, photographer, featured, url, note)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ''', (number, type, date, location, photographer, featured, url, note))
     
     conn.commit()
     conn.close()
     
-def getPhotos(number=None, type=None, date=None, location=None, photographer=None, featured=None):
+def getPhotos(number=None, type=None, date=None, location=None, photographer=None, featured=None, note=None):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     
@@ -53,6 +54,9 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     if featured is not None:
         query += ' AND featured=?'
         params.append(featured)
+    if note is not None:
+        query += ' AND note=?'
+        params.append(note)
     
     cursor.execute(query, params)
     photos = cursor.fetchall()
