@@ -82,3 +82,24 @@ def getPhotoUrls(number):
             'featured': featured
         })
     return urlsList
+
+def siteStats():
+    conn = sqlite3.connect('databases/trains.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT COUNT(*) FROM photos')
+    totalPhotos = cursor.fetchone()[0]
+    
+    cursor.execute('SELECT COUNT(DISTINCT number) FROM photos')
+    totalTrains = cursor.fetchone()[0]
+    
+    cursor.execute('SELECT COUNT(DISTINCT photographer) FROM photos')
+    totalPhotographers = cursor.fetchone()[0]
+    
+    conn.close()
+    
+    return {
+        'totalPhotos': totalPhotos,
+        'totalTrains': totalTrains,
+        'totalPhotographers': totalPhotographers
+    }

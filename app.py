@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
 from pydantic import Secret
 
-from scripts.databaseManager import getPhotoUrls, getPhotos
+from scripts.databaseManager import getPhotoUrls, getPhotos, siteStats
 from scripts.trainLists import getSets
 
 app = Flask(__name__)
@@ -31,8 +31,11 @@ def test_page():
             train['cars'] = train['cars'].split('-')
         elif isinstance(train['cars'], list) and len(train['cars']) == 1 and '-' in train['cars'][0]:
             train['cars'] = train['cars'][0].split('-')
+            
+    # statistics
+    stats = siteStats()
 
-    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, linkedNumbers=withImage)
+    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, linkedNumbers=withImage, stats=stats)
 
 
 
