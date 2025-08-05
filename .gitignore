@@ -1,3 +1,5 @@
 databases/trains.db
 scripts/__pycache__/databaseManager.cpython-313.pyc
 scripts/__pycache__/trainLists.cpython-313.pyc
+
+/scripts/__pycache__
