@@ -68,18 +68,19 @@ def getPhotoUrls(number):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     
-    cursor.execute('SELECT url, photographer, featured FROM photos WHERE number=?', (number.upper(),))
+    cursor.execute('SELECT url, photographer, featured, type FROM photos WHERE number=?', (number.upper(),))
     urls = cursor.fetchall()
     conn.close()
     if not urls:
         return []
     urlsList = []
-    for url, photographer, featured in urls:
+    for url, photographer, featured, type in urls:
 
         urlsList.append({
             'url': url,
             'photographer': photographer,
-            'featured': featured
+            'featured': featured,
+            'type': type,
         })
     return urlsList
 

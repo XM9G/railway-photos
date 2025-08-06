@@ -49,14 +49,28 @@ def train_page(number):
     
     photosInfo = []
     for photo in photos:
-        photosInfo.append ({
-            'number': photo[1],
-            'type': photo[2],
-            'date': photo[3],
-            'location': photo[4],
-            'photographer': photo[5],
-            'url': photo[7],
-        })
+        if photo[6] == 1:
+            photosInfo.insert(0, {
+                'number': photo[1],
+                'type': photo[2],
+                'date': photo[3],
+                'location': photo[4],
+                'photographer': photo[5],
+                'url': photo[7],
+                'featured': photo[6],
+                'note': photo[8],
+            })
+        else:
+            photosInfo.append ({
+                'number': photo[1],
+                'type': photo[2],
+                'date': photo[3],
+                'location': photo[4],
+                'photographer': photo[5],
+                'url': photo[7],
+                'featured': photo[6],
+                'note': photo[8],
+            })
     return render_template('photopage.html', info=photosInfo)
 
 # Redirect from the old URL format
@@ -73,7 +87,7 @@ def photo_url(filename):
     if len(urlsList) == 0:
         return jsonify({"error": "No photos found"}), 404
     else:
-        return jsonify({"urls": urlsList})
+        return jsonify({"photos": urlsList})
 
 # trainsets CSV download
 @app.route('/api/trainsets.csv')

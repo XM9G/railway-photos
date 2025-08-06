@@ -31,6 +31,12 @@
             Date: {{ photo.date }}<br>
             Location: {{ photo.location }}<br>
             Train: {{ photo.type }}
+            {% if photo.note %}
+                <br>Note: {{ photo.note }}
+            {% endif %}
+            {% if photo.featured %}
+                <br><strong>Featured Photo</strong>
+            {% endif %}
         </p>
     {% endfor %}
 
