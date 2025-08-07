@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
-from pydantic import Secret
 
 from scripts.databaseManager import getPhotoUrls, getPhotos, siteStats
 from scripts.trainLists import getSets
@@ -7,7 +6,7 @@ from scripts.trainLists import getSets
 app = Flask(__name__)
 
 @app.route('/')
-def test_page():
+def mainPage():
     allPhotos = getPhotos()
     withImage = []
 
