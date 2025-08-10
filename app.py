@@ -1,3 +1,6 @@
+import os
+from tabnanny import check
+from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
 from pydantic import Secret
 
@@ -5,6 +8,9 @@ from scripts.databaseManager import getPhotoUrls, getPhotos, siteStats
 from scripts.trainLists import getSets
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def test_page():
@@ -93,6 +99,64 @@ def photo_url(filename):
 @app.route('/api/trainsets.csv')
 def trainsetsCSV():
     return send_file('trainsets.csv', as_attachment=True, download_name='trainsets.csv', mimetype='text/csv')
+
+# image adder api
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    # Check auth
+    def check_auth():
+        load_dotenv()
+        auth_header = request.headers.get('Authorization')
+        token = auth_header
+        print(f"Received token: {token}")
+        print(f"Expected token: {os.getenv('API_TOKEN')}")
+        return token == os.getenv('API_TOKEN')
+    
+    if not check_auth():
+        return jsonify({'error': 'Unauthorized access'}), 401
+
+    try:
+        # Check if image is provided
+        if 'image' not in request.files:
+            return jsonify({'error': 'No image provided'}), 400
+        file = request.files['image']
+
+        # Validate file extension
+        if not file.filename.endswith('.webp'):
+            return jsonify({'error': 'Only .webp images are allowed'}), 400
+
+        # Get form data directly
+        number = request.form.get('number', 'Unknown')
+        trainType = request.form.get('type', 'Unknown')
+        location = request.form.get('location', 'Unknown')
+        date = request.form.get('date', 'Unknown')
+        photographer = request.form.get('photographer', 'Unknown')
+        featured = request.form.get('featured', 'N')
+        note = request.form.get('note', '')
+
+        if not number or not trainType or not location:
+            return jsonify({'error': 'Missing required form fields'}), 400
+
+        # Save the file
+        filename = f'{number}-{photographer}-{file.filename}'
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        response = {
+            'message': f'Image {filename} uploaded successfully!',
+            'number': number,
+            'type': trainType,
+            'date': date,
+            'location': location,
+            'photographer': photographer,
+            'featured': featured,
+            'note': note
+        }
+
+        return jsonify(response), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
         
 
 
