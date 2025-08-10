@@ -52,7 +52,7 @@ def mainPage():
     # other trains
     otherTrains = []
     for photo in allPhotos:
-        if photo[2] not in ['Alstom Comeng', 'EDI Comeng', "X'Trapolis 100", "X'Trapolis 2.0", 'Siemens Nexas', 'HCMT', 'Sprinter', 'Vlocity', 'N Class']:
+        if photo[2] not in ['Alstom Comeng', 'EDI Comeng', "X'Trapolis 100", "X'Trapolis 2.0", 'Siemens Nexas', 'HCMT', 'Sprinter', 'VLocity', 'N Class']:
             otherTrains.append([photo[1], photo[2]])
             
     # statistics

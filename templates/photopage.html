@@ -37,7 +37,6 @@
             {% if photo.featured %}
                 <br><strong>Featured Photo</strong>
             {% endif %}
-            Views: {{ }}
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                 fetch('/api/view/{{ photo.id }}', {

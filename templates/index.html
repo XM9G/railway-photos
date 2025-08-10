@@ -29,6 +29,11 @@
  <script>
     const images = [
         "{{ url_for('static', filename='images/VL357.webp') }}",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123449/N461-5_vffwwc.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123441/N452-2_s2cgvk.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123422/B65_aykllx.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754122473/102M-4_fzhsbp.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123322/2114_wlrnf0.webp",
     ];
 
     function getRandomImage() {
@@ -416,9 +421,8 @@
 </div>
 
 <div class="sub-heading" id="other"><h2>Other</h2></div>
-<!-- TEMP --><div class="metro">
+<!-- TEMP --><div class="metro"style='display: flex;flex-wrap: wrap;'>
     <br>
-
     {% set grouped_trains = {} %}
     {% for photo in otherTrains %}
         {% set class_name = photo[1] %}
@@ -1233,7 +1237,7 @@
 
         </ul></div>
         <img class='map' src="{{ url_for('static', filename='images/map.svg') }}" style="width: 100%;border: 0px;">
-        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1sHhNEhcv_BiX-n2voNsH9-VQvWnehc8&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+        <!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1sHhNEhcv_BiX-n2voNsH9-VQvWnehc8&ehbc=2E312F&noprof=1" width="640" height="480"></iframe> -->
 
     <div class="counter">
         <script type="text/javascript" src="https://www.free-counters.org/count/f47x"></script><br>
