@@ -3,7 +3,7 @@ from tabnanny import check
 from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
 
-from scripts.databaseManager import getPhotoUrls, getPhotos, siteStats
+from scripts.databaseManager import addPhoto, getPhotoUrls, getPhotos, siteStats
 from scripts.trainLists import getSets
 
 app = Flask(__name__)
@@ -100,7 +100,7 @@ def trainsetsCSV():
     return send_file('trainsets.csv', as_attachment=True, download_name='trainsets.csv', mimetype='text/csv')
 
 # image adder api
-@app.route('/upload', methods=['POST'])
+@app.route('/api/upload', methods=['POST'])
 def upload_image():
     # Check auth
     def check_auth():
@@ -134,15 +134,28 @@ def upload_image():
         note = request.form.get('note', '')
 
         if not number or not trainType or not location:
-            return jsonify({'error': 'Missing required form fields'}), 400
+            return jsonify({'error': f'Missing required form fields'}), 400
 
         # Save the file
         filename = f'{number}-{photographer}-{file.filename}'
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
 
+        try:
+            from scripts.cloudinaryAPI import uploadImage
+            image_url = uploadImage(file_path, filename)
+            if featured.lower() == 'y':
+                featured = True
+            else:
+                featured = False
+            addPhoto(number, trainType, date, location, photographer, featured, image_url, note)
+            
+        except Exception as e:
+            return jsonify({'error': f'Failed to upload image: {str(e)}'}), 500
+
         response = {
             'message': f'Image {filename} uploaded successfully!',
+            'url': image_url,
             'number': number,
             'type': trainType,
             'date': date,
