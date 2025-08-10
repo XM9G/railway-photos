@@ -37,6 +37,24 @@
             {% if photo.featured %}
                 <br><strong>Featured Photo</strong>
             {% endif %}
+            Views: {{ }}
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                fetch('/api/view/{{ photo.id }}', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Request successful:', data);
+                })
+                .catch(error => {
+                    console.error('Request failed:', error);
+                });
+            });
+            </script>
         </p>
     {% endfor %}
 

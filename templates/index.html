@@ -419,216 +419,28 @@
 <!-- TEMP --><div class="metro">
     <br>
 
-    <div class="table-container">
-        <table>
-            <tr><th><h4>A Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/A-Class/A60.html">A60</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/A-Class/A70.html">A70</a></td></tr>
-        </table>
-    </div>
+    {% set grouped_trains = {} %}
+    {% for photo in otherTrains %}
+        {% set class_name = photo[1] %}
+        {% if class_name not in grouped_trains %}
+            {% set _ = grouped_trains.update({class_name: []}) %}
+        {% endif %}
+        {% if photo[0] not in grouped_trains[class_name] %}
+            {% set _ = grouped_trains[class_name].append(photo[0]) %}
+        {% endif %}
+    {% endfor %}
 
-    <div class="table-container">
-        <table>
-            <tr><th><h4>ACD Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/Aurizon/ACD6048.html">ACD6048</a></td></tr>
-        </table>
-    </div>
+    {% for class_name, photos in grouped_trains.items() %}
+        <div class="table-container">
+            <table>
+                <tr><th><h4>{{ class_name }}</h4></th></tr>
+                {% for photo in photos %}
+                    <tr><td><a href="trains/{{ photo }}">{{ photo }}</a></td></tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endfor %}
 
-    <div class="table-container">
-        <table>
-            <tr><th><h4>B Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/B-Class/B65.html">B65</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/B-Class/B72.html">B72</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/B-Class/B83.html">B83</a></td></tr>
-        </table>
-    </div>
-    
-    <div class="table-container">
-        <table>
-            <tr><th><h4>BRM Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/BRM Class/BRM001.html">BRM001</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>C Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/C-Class/C501.html">C501</a></td></tr>
-        </table>
-    </div>
-    
-    <div class="table-container">
-        <table>
-            <tr><th><h4>CSR Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/SCT-logistics/CSR012.html">CSR012</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>G Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/RAILFIRST/G512.html">G512</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/RAILFIRST/G515.html">G515</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/G536.html">G536</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/G543.html">G543</a></td></tr>
-        </table>
-    </div>
-    <div class="table-container">
-        <table>
-            <tr><th><h4>GM Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/GM Class/GM22.html">GM22</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>H Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/H-Class/H220.html">H220</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>J Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/J-Class/J515.html">J515</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/J-Class/J549.html">J549</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/J-Class/J550.html">J550</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>K Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/K-Class/K153.html">K153</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/K-Class/K190.html">K190</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>L Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/L-Class/L1160.html">L1160</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/L-Class/L1150.html">L1150</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>NR Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/NR12.html">NR12</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/NR30.html">NR30</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/NR50.html">NR50</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/NR69.html">NR69</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>P Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/P-Class/P11.html">P11</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/P-Class/P12.html">P12</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/P-Class/P16.html">P16</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>R Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/R-Class/R704.html">R704</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/R-Class/R761.html">R761</a></td></tr>
-        </table>
-    </div>
-
-    </div>
-    <div class="metro"> <!-- this seperated them so they fit on the screen -->
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>S Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/S-Class/S301.html">S301</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/S-Class/S302.html">S302</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/S-Class/S303.html">S303</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/S-Class/S307.html">S307</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/SSR/S312.html">S312</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/S-Class/S313.html">S313</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>T Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/t-class/T356.html">T356</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/t-class/T363.html">T363</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/t-class/T378.html">T378</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/t-class/T382.html">T382</a></td></tr>
-        </table>
-    </div>
-
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>VL Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/RAILFIRST/VL353.html">VL353</a></td></tr>
-            <tr><td><a href="trains/melbourne/freight/RAILFIRST/VL357.html">VL357</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>X Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/X-Class/X36.html">X36</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>XR Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/freight/Pacific-National/XR557.html">XR557</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>Y Class</h4></th></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y102.html">Y102</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y129.html">Y129</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y133.html">Y133</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y143.html">Y143</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y156.html">Y156</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y161.html">Y161</a></td></tr>
-            <tr><td><a href="trains/melbourne/v/line/Y-Class/Y163.html">Y163</a></td></tr>
-        </table>
-    </div>
-    
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>Tait</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/tait/317M.html">317M</a></td></tr>
-            <tr><td><a href="trains/melbourne/heritage/tait/381M.html">381M</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>Infrastructure Evaluation Vehicles</h4></th></tr>
-            <tr><td><a href="trains/melbourne/maintanence/EV120.html">EV120</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>Hitachi</h4></th></tr>
-            <tr><td><a href='/trains/melbourne/heritage/hitachi/178M.html'>178M</a></td></tr>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <tr><th><h4>DRC Railcar</h4></th></tr>
-            <tr><td><a href="trains/melbourne/heritage/DRC/DRC43.html">DRC43</a></td></tr>
-        </table>
-    </div>
 </div>
 
     <br>

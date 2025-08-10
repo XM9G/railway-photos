@@ -57,7 +57,7 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     if note is not None:
         query += ' AND note=?'
         params.append(note)
-    
+            
     cursor.execute(query, params)
     photos = cursor.fetchall()
     
@@ -104,3 +104,9 @@ def siteStats():
         'totalTrains': totalTrains,
         'totalPhotographers': totalPhotographers
     }
+
+def getViews(photoID):
+    conn = sqlite3.connect('databases/trains.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT views FROM views WHERE id = ?', (photoID,))
+    return cursor.fetchone()[0]

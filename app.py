@@ -1,12 +1,22 @@
 import os
+import sqlite3
 from tabnanny import check
 from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 
 from scripts.databaseManager import addPhoto, getPhotoUrls, getPhotos, siteStats
 from scripts.trainLists import getSets
 
 app = Flask(__name__)
+
+limiter = Limiter(
+    app=app,
+    key_func=get_remote_address,
+    default_limits=["100 per hour"]
+)
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -30,17 +40,25 @@ def mainPage():
     vlocity = getSets('Vlocity')
     sprinter = getSets('Sprinter')
     ncl = getSets('N Class')
+    
+    metroAndVLine = comeng + xtrap100 + siemens + hcmt + xtrap2 + vlocity + sprinter+ ncl
 
-    for train in comeng + xtrap100 + siemens + hcmt + xtrap2 + vlocity + sprinter+ ncl:
+    for train in metroAndVLine:
         if isinstance(train['cars'], str):
             train['cars'] = train['cars'].split('-')
         elif isinstance(train['cars'], list) and len(train['cars']) == 1 and '-' in train['cars'][0]:
             train['cars'] = train['cars'][0].split('-')
+    
+    # other trains
+    otherTrains = []
+    for photo in allPhotos:
+        if photo[2] not in ['Alstom Comeng', 'EDI Comeng', "X'Trapolis 100", "X'Trapolis 2.0", 'Siemens Nexas', 'HCMT', 'Sprinter', 'Vlocity', 'N Class']:
+            otherTrains.append([photo[1], photo[2]])
             
     # statistics
     stats = siteStats()
 
-    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, linkedNumbers=withImage, stats=stats)
+    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, otherTrains=otherTrains, linkedNumbers=withImage, stats=stats)
 
 
 
@@ -64,6 +82,7 @@ def train_page(number):
                 'url': photo[7],
                 'featured': photo[6],
                 'note': photo[8],
+                'id': photo[0]
             })
         else:
             photosInfo.append ({
@@ -75,6 +94,7 @@ def train_page(number):
                 'url': photo[7],
                 'featured': photo[6],
                 'note': photo[8],
+                'id': photo[0]
             })
     return render_template('photopage.html', info=photosInfo)
 
@@ -83,6 +103,39 @@ def train_page(number):
 def redirect_train(subpath, train_number):
     train_number = train_number.strip('.html')
     return redirect(url_for('train_page', number=train_number), code=301)
+
+# view counter
+@app.route('/api/view/<photoID>')
+@limiter.limit("100 per hour")
+def count_view(photoID):
+    try:
+        conn = sqlite3.connect('databases/trains.db')
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS views (
+                id TEXT PRIMARY KEY,
+                views INTEGER
+            )
+        ''')
+        cursor.execute('SELECT views FROM views WHERE id = ?', (photoID,))
+        result = cursor.fetchone()
+    
+        if result:
+            new_views = result[0] + 1
+            cursor.execute('UPDATE views SET views = ? WHERE id = ?', (new_views, photoID))
+        else:
+            cursor.execute('INSERT INTO views (id, views) VALUES (?, 1)', (photoID,))
+        
+        conn.commit()
+        cursor.execute('SELECT views FROM views WHERE id = ?', (photoID,))
+        current_views = cursor.fetchone()[0]
+        return {'photoID': photoID, 'views': current_views}, 200
+    
+    except Exception as e:
+        return {'error': str(e)}, 500
+    
+    finally:
+        conn.close()
 
 # image URLS for discord bot
 @app.route('/api/photos/<path:filename>')
