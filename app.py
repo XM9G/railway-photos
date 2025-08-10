@@ -136,6 +136,15 @@ def count_view(photoID):
     
     finally:
         conn.close()
+        
+# temp redirect for station photos
+@app.route('/stations/melbourne/<station>')
+def station(station):
+    return render_template('stationTempPage.html')
+
+@app.route('/lines/<line>')
+def line(line):
+    return render_template('lineTempPage.html')
 
 # image URLS for discord bot
 @app.route('/api/photos/<path:filename>')
