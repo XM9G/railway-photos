@@ -29,6 +29,11 @@
  <script>
     const images = [
         "{{ url_for('static', filename='images/VL357.webp') }}",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123449/N461-5_vffwwc.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123441/N452-2_s2cgvk.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123422/B65_aykllx.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754122473/102M-4_fzhsbp.webp",
+        "https://res.cloudinary.com/dwfrb2wpw/image/upload/v1754123322/2114_wlrnf0.webp",
     ];
 
     function getRandomImage() {
@@ -191,7 +196,7 @@
         <br><a href="#other">Freight/Heritage</a>
         <br><a href="#stations">Railway Stations</a>
         <br><br>
-        <b>If you have any photos you would like to submit, please use the <a href="/submit.html">Submit Photo</a> page.</b>
+        <!-- <b>If you have any photos you would like to submit, please use the <a href="/submit.html">Submit Photo</a> page.</b> -->
         </p>
     </div>
     <!-- <a href="#stations">Jump to station photos</a> -->
@@ -400,25 +405,11 @@
             {% endfor %}
         </table>
     </div>
-
-    
-    <div class="blurbg">
-    <h4>Harris/H set</h4>
-    <ul>
-        H sets
-        <li><a href="trains/melbourne/v/line/H-Set/SLH32.html">SL32</a></li>
-        <li><a href="trains/melbourne/v/line/H-Set/SLH33.html">SL33</a></li>
-        <br>Grey Ghost
-        <li><a href="trains/melbourne/v/line/H-Set/903M.html">903M</a></li>
-
-    </ul>
-    </div>
 </div>
 
 <div class="sub-heading" id="other"><h2>Other</h2></div>
-<!-- TEMP --><div class="metro">
+<!-- TEMP --><div class="metro"style='display: flex;flex-wrap: wrap;'>
     <br>
-
     {% set grouped_trains = {} %}
     {% for photo in otherTrains %}
         {% set class_name = photo[1] %}
@@ -444,7 +435,8 @@
 </div>
 
     <br>
-    <div class="blurbg">
+    <!-- FINISH THIS LATER -->
+    <!-- <div class="blurbg">
     <h2>Interstate</h2>
         <h3>South Australia</h3>
             <h4>300 Class</h4>
@@ -467,7 +459,7 @@
             <ul>
                 <li><a href="trains/europe/Eurostar/4023.html">4023</a></li>
             </ul>
-    </div>
+    </div> -->
 <br>
 
 <!-- <div class="sub-heading">
@@ -1136,7 +1128,7 @@
 
         </ul></div>
         <img class='map' src="{{ url_for('static', filename='images/map.svg') }}" style="width: 100%;border: 0px;">
-        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1sHhNEhcv_BiX-n2voNsH9-VQvWnehc8&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+        <!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1sHhNEhcv_BiX-n2voNsH9-VQvWnehc8&ehbc=2E312F&noprof=1" width="640" height="480"></iframe> -->
 
     <div class="counter">
         <script type="text/javascript" src="https://www.free-counters.org/count/f47x"></script><br>

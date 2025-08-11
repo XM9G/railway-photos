@@ -63,7 +63,7 @@ def mainPage():
     # other trains
     otherTrains = []
     for photo in allPhotos:
-        if photo[2] not in ['Alstom Comeng', 'EDI Comeng', "X'Trapolis 100", "X'Trapolis 2.0", 'Siemens Nexas', 'HCMT', 'Sprinter', 'Vlocity', 'N Class']:
+        if photo[2] not in ['Alstom Comeng', 'EDI Comeng', "X'Trapolis 100", "X'Trapolis 2.0", 'Siemens Nexas', 'HCMT', 'Sprinter', 'VLocity', 'N Class']:
             otherTrains.append([photo[1], photo[2]])
             
     # statistics
@@ -147,6 +147,15 @@ def count_view(photoID):
     
     finally:
         conn.close()
+        
+# temp redirect for station photos
+@app.route('/stations/melbourne/<station>')
+def station(station):
+    return render_template('stationTempPage.html')
+
+@app.route('/lines/<line>')
+def line(line):
+    return render_template('lineTempPage.html')
 
 # image URLS for discord bot
 @app.route('/api/photos/<path:filename>')
