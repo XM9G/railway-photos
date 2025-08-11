@@ -60,9 +60,7 @@ def mainPage():
             train['cars'] = train['cars'].split('-')
         elif isinstance(train['cars'], list) and len(train['cars']) == 1 and '-' in train['cars'][0]:
             train['cars'] = train['cars'][0].split('-')
-    
-    print(f'C2s: {c2}')
-    
+        
     # other trains
     otherTrains = []
     for photo in allPhotos:
