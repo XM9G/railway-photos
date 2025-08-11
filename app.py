@@ -94,7 +94,8 @@ def train_page(number):
                 'url': photo[7],
                 'featured': photo[6],
                 'note': photo[8],
-                'id': photo[0]
+                'id': photo[0],
+                'mode': 'train',
             })
         else:
             photosInfo.append ({
@@ -106,7 +107,8 @@ def train_page(number):
                 'url': photo[7],
                 'featured': photo[6],
                 'note': photo[8],
-                'id': photo[0]
+                'id': photo[0],
+                'mode': 'train',
             })
     return render_template('photopage.html', info=photosInfo)
 
@@ -129,7 +131,8 @@ def tram_page(number):
                 'url': photo[7],
                 'featured': photo[6],
                 'note': photo[8],
-                'id': photo[0]
+                'id': photo[0],
+                'mode': 'tram',
             })
         else:
             photosInfo.append({
@@ -141,7 +144,8 @@ def tram_page(number):
                 'url': photo[7],
                 'featured': photo[6],
                 'note': photo[8],
-                'id': photo[0]
+                'id': photo[0],
+                'mode': 'tram'
             })
     return render_template('photopage.html', info=photosInfo)
 
@@ -152,32 +156,40 @@ def redirect_train(subpath, train_number):
     return redirect(url_for('train_page', number=train_number), code=301)
 
 # view counter
-@app.route('/api/view/<photoID>')
-@limiter.limit("100 per hour")
-def count_view(photoID, mode='train'):
+@app.route('/api/view/<photoID>/<mode>')
+@limiter.limit("1000 per hour")
+def count_view(photoID, mode):
     try:
         conn = sqlite3.connect('databases/trains.db')
         cursor = conn.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS views (
+        
+        if mode == 'train':
+            tableName = 'views'
+        elif mode == 'tram':
+            tableName = 'tramviews'
+        
+        cursor.execute(f'''
+            CREATE TABLE IF NOT EXISTS {tableName} (
                 id TEXT PRIMARY KEY,
                 views INTEGER
             )
         ''')
-        cursor.execute('SELECT views FROM views WHERE id = ?', (photoID,))
+        cursor.execute(f'SELECT views FROM {tableName} WHERE id = ?', (photoID,))
         result = cursor.fetchone()
     
         if result:
             new_views = result[0] + 1
-            cursor.execute('UPDATE views SET views = ? WHERE id = ?', (new_views, photoID))
+            cursor.execute(f'UPDATE {tableName} SET views = ? WHERE id = ?', (new_views, photoID))
         else:
-            cursor.execute('INSERT INTO views (id, views) VALUES (?, 1)', (photoID,))
+            cursor.execute(f'INSERT INTO {tableName} (id, views) VALUES (?, 1)', (photoID,))
         
         conn.commit()
-        cursor.execute('SELECT views FROM views WHERE id = ?', (photoID,))
-        current_views = cursor.fetchone()[0]
+        cursor.execute(f'SELECT views FROM {tableName} WHERE id = ?', (photoID,))
+        current = cursor.fetchone()
+        current_views = current[0] if current else 0
+
         return {'photoID': photoID, 'views': current_views}, 200
-    
+        
     except Exception as e:
         return {'error': str(e)}, 500
     
