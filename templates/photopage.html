@@ -37,22 +37,29 @@
             {% if photo.featured %}
                 <br><strong>Featured Photo</strong>
             {% endif %}
+            <br><span id="view-count-{{ photo.id }}">...</span>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                fetch('/api/view/{{ photo.id }}', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Request successful:', data);
-                })
-                .catch(error => {
-                    console.error('Request failed:', error);
+                    fetch('/api/view/{{ photo.id }}/{{ photo.mode }}', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Request successful:', data);
+                        if (data.views !== undefined) {
+                            document.getElementById('view-count-{{ photo.id }}').textContent = `Views: ${data.views}`;
+                        } else {
+                            document.getElementById('view-count-{{ photo.id }}').textContent = "Views: 0";
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Request failed:', error);
+                        document.getElementById('view-count-{{ photo.id }}').textContent = "Error loading view count";
+                    });
                 });
-            });
             </script>
         </p>
     {% endfor %}
