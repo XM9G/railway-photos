@@ -24,10 +24,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/')
 def mainPage():
     allPhotos = getPhotos()
+    tramPhotos = getPhotos(mode='tram')
     withImage = []
     
 
-    for photo in allPhotos:
+    for photo in allPhotos + tramPhotos:
         for car in photo[1].split('-'):
             car = car.strip().upper()
             withImage.append(car)
@@ -60,6 +61,8 @@ def mainPage():
         elif isinstance(train['cars'], list) and len(train['cars']) == 1 and '-' in train['cars'][0]:
             train['cars'] = train['cars'][0].split('-')
     
+    print(f'C2s: {c2}')
+    
     # other trains
     otherTrains = []
     for photo in allPhotos:
@@ -69,7 +72,7 @@ def mainPage():
     # statistics
     stats = siteStats()
     
-    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, otherTrains=otherTrains, linkedNumbers=withImage, stats=stats,Zclass=z,Aclass=a,Bclass=b,C1class=c1,C2Class=c2,Dclass=d,Eclass=e,Wclass=w)
+    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, otherTrains=otherTrains, linkedNumbers=withImage, stats=stats,Zclass=z,Aclass=a,Bclass=b,C1class=c1,C2class=c2,Dclass=d,Eclass=e,Wclass=w)
 
 
 
@@ -109,6 +112,41 @@ def train_page(number):
             })
     return render_template('photopage.html', info=photosInfo)
 
+@app.route('/trams/<number>')
+def tram_page(number):
+    photos = getPhotos(number=number, mode='tram')
+    
+    if len(photos) == 0:
+        return render_template('noresults.html', number=number)
+    
+    photosInfo = []
+    for photo in photos:
+        if photo[6] == 1:
+            photosInfo.insert(0, {
+                'number': photo[1],
+                'type': photo[2],
+                'date': photo[3],
+                'location': photo[4],
+                'photographer': photo[5],
+                'url': photo[7],
+                'featured': photo[6],
+                'note': photo[8],
+                'id': photo[0]
+            })
+        else:
+            photosInfo.append({
+                'number': photo[1],
+                'type': photo[2],
+                'date': photo[3],
+                'location': photo[4],
+                'photographer': photo[5],
+                'url': photo[7],
+                'featured': photo[6],
+                'note': photo[8],
+                'id': photo[0]
+            })
+    return render_template('photopage.html', info=photosInfo)
+
 # Redirect from the old URL format
 @app.route('/trains/<path:subpath>/<train_number>')
 def redirect_train(subpath, train_number):
@@ -118,7 +156,7 @@ def redirect_train(subpath, train_number):
 # view counter
 @app.route('/api/view/<photoID>')
 @limiter.limit("100 per hour")
-def count_view(photoID):
+def count_view(photoID, mode='train'):
     try:
         conn = sqlite3.connect('databases/trains.db')
         cursor = conn.cursor()
@@ -205,6 +243,7 @@ def upload_image():
         photographer = request.form.get('photographer', 'Unknown')
         featured = request.form.get('featured', 'N')
         note = request.form.get('note', '')
+        mode = request.form.get('mode','train')
 
         if not number or not trainType or not location:
             return jsonify({'error': f'Missing required form fields'}), 400
@@ -221,7 +260,7 @@ def upload_image():
                 featured = True
             else:
                 featured = False
-            addPhoto(number, trainType, date, location, photographer, featured, image_url, note)
+            addPhoto(number, trainType, date, location, photographer, featured, image_url, note, mode)
             
         except Exception as e:
             return jsonify({'error': f'Failed to upload image: {str(e)}'}), 500
@@ -235,7 +274,8 @@ def upload_image():
             'location': location,
             'photographer': photographer,
             'featured': featured,
-            'note': note
+            'note': note,
+            'mode': mode,
         }
 
         return jsonify(response), 200

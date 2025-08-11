@@ -4,13 +4,17 @@ import sqlite3
 from httpx import get
 from numpy import add
 
-def addPhoto(number, type, date, location, photographer, featured:bool, url, note=None):
+def addPhoto(number, type, date, location, photographer, featured:bool, url, note=None, mode='train'):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     number = number.upper()
+    if mode.lower() == 'train':
+        tableName = 'photos'
+    elif mode.lower() == 'tram':
+        tableName = 'tramphotos'
     
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS photos (
+    cursor.execute(f'''
+    CREATE TABLE IF NOT EXISTS {tableName} (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         number TEXT NOT NULL,
         type TEXT NOT NULL,
@@ -21,19 +25,24 @@ def addPhoto(number, type, date, location, photographer, featured:bool, url, not
         url TEXT NOT NULL,
         note TEXT
     )''')
-    cursor.execute('''
-    INSERT INTO photos (number, type, date, location, photographer, featured, url, note)
+    cursor.execute(f'''
+    INSERT INTO {tableName} (number, type, date, location, photographer, featured, url, note)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ''', (number, type, date, location, photographer, featured, url, note))
     
     conn.commit()
     conn.close()
     
-def getPhotos(number=None, type=None, date=None, location=None, photographer=None, featured=None, note=None):
+def getPhotos(number=None, type=None, date=None, location=None, photographer=None, featured=None, note=None, mode='train'):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     
-    query = 'SELECT * FROM photos WHERE 1=1'
+    if mode.lower() == 'train':
+        tableName = 'photos'
+    elif mode.lower() == 'tram':
+        tableName = 'tramphotos'
+    
+    query = f'SELECT * FROM {tableName} WHERE 1=1'
     params = []
     
     if number:
@@ -64,11 +73,15 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     conn.close()
     return photos
 
-def getPhotoUrls(number):
+def getPhotoUrls(number, mode='train'):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
+    if mode.lower() == 'train':
+        tableName = 'photos'
+    elif mode.lower() == 'tram':
+        tableName = 'tramphotos'
     
-    cursor.execute('SELECT url, photographer, featured, type FROM photos WHERE number=?', (number.upper(),))
+    cursor.execute(f'SELECT url, photographer, featured, type FROM {tableName} WHERE number=?', (number.upper(),))
     urls = cursor.fetchall()
     conn.close()
     if not urls:

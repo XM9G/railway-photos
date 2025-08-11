@@ -12,7 +12,7 @@ def getSets(train):
     return result
 
 
-def getTramSets(tram_prefix):
+def getTramSets(tram):
     result = []
     fieldnames = ['Tram', 'Operator', 'Unused', 'Livery', 'Status', 'Interior', 'In Service', 'Withdrawn', 'Notes']
 
@@ -21,7 +21,7 @@ def getTramSets(tram_prefix):
         next(reader)
         for row in reader:
             tram_id = row['Tram'].split('.')[0]
-            if tram_id == tram_prefix:
+            if tram_id == tram:
                 scrapped = row['Status'].strip().lower() == 'scrapped'
-                result.append({'tram': row['Tram'], 'scrapped': scrapped})
+                result.append({'tram': row['Tram'].split('.')[1], 'scrapped': scrapped})
     return result

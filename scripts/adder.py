@@ -11,5 +11,7 @@ while True:
     url = input('Image URL: ')
     note = input('Note (optional): ')
     featured = True if featured.lower() == 'y' else False
-    addPhoto(number, ttype, date, location, photographer, featured, url, note)
+    mode = input('Mode (train/tram): ')
+    mode = 'tram' if mode.lower()=='tram' else 'train'
+    addPhoto(number, ttype, date, location, photographer, featured, url, note, mode)
     print(f'Photo added successfully! {number} - {ttype} - {date} - {location} - {photographer} - {featured} - {url} - {note}')
