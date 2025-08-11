@@ -10,3 +10,18 @@ def getSets(train):
                 scrapped = row['Status'].lower() == 'scrapped'
                 result.append({'cars': units, 'scrapped': scrapped})
     return result
+
+
+def getTramSets(tram_prefix):
+    result = []
+    fieldnames = ['Tram', 'Operator', 'Unused', 'Livery', 'Status', 'Interior', 'In Service', 'Withdrawn', 'Notes']
+
+    with open('tramsets.csv', 'r', newline='') as csvfile:
+        reader = csv.DictReader(csvfile, fieldnames=fieldnames)
+        next(reader)
+        for row in reader:
+            tram_id = row['Tram'].split('.')[0]
+            if tram_id == tram_prefix:
+                scrapped = row['Status'].strip().lower() == 'scrapped'
+                result.append({'tram': row['Tram'], 'scrapped': scrapped})
+    return result

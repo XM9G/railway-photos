@@ -8,7 +8,7 @@ from flask_limiter.util import get_remote_address
 
 
 from scripts.databaseManager import addPhoto, getPhotoUrls, getPhotos, siteStats
-from scripts.trainLists import getSets
+from scripts.trainLists import getSets, getTramSets
 
 app = Flask(__name__)
 
@@ -25,6 +25,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def mainPage():
     allPhotos = getPhotos()
     withImage = []
+    
 
     for photo in allPhotos:
         for car in photo[1].split('-'):
@@ -40,6 +41,16 @@ def mainPage():
     vlocity = getSets('Vlocity')
     sprinter = getSets('Sprinter')
     ncl = getSets('N Class')
+    
+    # tram sets
+    z = getTramSets('Z3')
+    a = getTramSets('A1') + getTramSets('A2')
+    b = getTramSets('B2')
+    c1 = getTramSets('C')
+    c2 = getTramSets('C2')
+    d = getTramSets('D1') + getTramSets('D2')
+    e = getTramSets('E') + getTramSets('E2')
+    w = getTramSets('W8')
     
     metroAndVLine = comeng + xtrap100 + siemens + hcmt + xtrap2 + vlocity + sprinter+ ncl
 
@@ -57,8 +68,8 @@ def mainPage():
             
     # statistics
     stats = siteStats()
-
-    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, otherTrains=otherTrains, linkedNumbers=withImage, stats=stats)
+    
+    return render_template('index.html', comeng_trains=comeng, xtrap100_trains=xtrap100, siemens_trains=siemens, hcmt_trains=hcmt, xtrap2_trains=xtrap2, vlocity_trains=vlocity, sprinter_trains=sprinter, ncl_trains = ncl, otherTrains=otherTrains, linkedNumbers=withImage, stats=stats,Zclass=z,Aclass=a,Bclass=b,C1class=c1,C2Class=c2,Dclass=d,Eclass=e,Wclass=w)
 
 
 
