@@ -15,7 +15,7 @@ app = Flask(__name__)
 limiter = Limiter(
     app=app,
     key_func=get_remote_address,
-    default_limits=["100 per hour"]
+    default_limits=["1000 per hour"]
 )
 
 UPLOAD_FOLDER = 'uploads'
