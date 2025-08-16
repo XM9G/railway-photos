@@ -62,14 +62,51 @@
 
     <div class="toggle-switch">
         <!-- search box -->
-        <input type="text" id="searchInput" placeholder="Enter carriage number...">
+        <!-- <input type="text" id="searchInput" placeholder="Enter carriage number...">
         <button onclick="searchCarriage()">Search</button>
-        <div id="notFound" style="display: none; color: red;">Carriage not found</div>
+        <div id="notFound" style="display: none; color: red;">Carriage not found</div> -->
         <!-- Background toggle -->
         <div class="bg-toggle">
         <label for="background-toggle">Background Image</label>
         <input type="checkbox" id="background-toggle"></div>
     </div>
+    <div class="searchForm">
+        <div class="handle">☰</div>
+        <form>
+                <p>Advanced Search</p><br>
+                <label for="number">Number:</label>
+                <input type="text" id="number" name="number"><br>
+
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type"><br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date"><br>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location"><br>
+
+                <label for="photographer">Photographer:</label>
+                <input type="text" id="photographer" name="photographer"><br>
+
+                <label for="featured">Featured Only</label>
+                <input type="checkbox" id="featured" name="featured" value="featured"><br>
+
+                <input type="submit" value="Search">
+
+            </form>
+        </div>
+    <script>
+    document.querySelector('.searchForm .handle').addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent event from bubbling up
+        document.querySelector('.searchForm').classList.toggle('active');
+    });
+
+    // Prevent form clicks from toggling the form
+    document.querySelector('.searchForm form').addEventListener('click', function(event) {
+        event.stopPropagation(); // Stop clicks inside the form from triggering the toggle
+    });
+    </script>
 
     <script>
     function searchCarriage() {
@@ -188,7 +225,9 @@
         <h2>Welcome!</h2>
         <b?>Welcome to VictorianRailPhotos.com, here we host hundreds of photos of Locomotives and Carriages in the state of Victoria, Australia. Our archive includes photos for most Metro and V/Line trains, as well as a growing collection of freight and heritage locomotives. We also have a large collection of photos of railway stations across Victoria, including suburban and regional stations.
         <br><br>
-        Enter a number in the search box above to find a specific train, or browse through the list below to see all the trains we have photos of.
+        Use the search menu on the right to find photos, or browse through the list below to see all the trains we have photos of below.
+        <br><br>
+        
         <br><br>
         Jump to:
         <br><a href="#metro">Metro Trains Melbourne</a>

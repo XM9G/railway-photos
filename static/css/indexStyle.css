@@ -52,10 +52,11 @@ body {
   z-index: 10;
   border-radius: 10px;
 
+
 }
 @media (max-width: 768px) {
 .toggle-switch {
-  /* display: none; */
+  display: none;
   
 }}
 
@@ -310,5 +311,58 @@ button:hover {
     max-width: 95vw;
     padding: 15px;
   }
+}
+
+.searchForm {
+    position: fixed;
+    top: 80px;
+    right: -280px;
+    z-index: 10;
+    display: flex;
+    backdrop-filter: blur(30px);
+    background-color: rgba(0, 0, 0, 0.589);
+    color: white;
+    padding: 10px;
+    border: 1px solid black;
+    margin-top: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: right 0.3s ease-in-out;
+    width: 300px;
+    /* cursor: pointer; */
+}
+
+.searchForm.active {
+    right: 0; /* Slides to fully visible when active class is applied */
+}
+
+.searchForm .handle {
+    position: absolute;
+    left: -30px; /* Position handle to the left of the form */
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+}
+
+.searchForm input[type="submit"] {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.searchForm input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchForm input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto;
 }
 

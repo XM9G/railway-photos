@@ -24,6 +24,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def mainPage():
+    if request.args: # if theres url params from the search
+        return redirect(url_for('advSearch', **request.args))
+    
     allPhotos = getPhotos()
     tramPhotos = getPhotos(mode='tram')
     withImage = []
@@ -170,7 +173,7 @@ def advSearch():
         if request.args.get('featured', None) == 'featured':
             featured = 1
         else:
-            featured = 0
+            featured = None
         
         photos = getPhotos(number=number, type=trainType, date=date, location=location, photographer=photographer, featured=featured)
         trains = []
