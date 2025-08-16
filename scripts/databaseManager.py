@@ -4,6 +4,8 @@ import sqlite3
 from httpx import get
 from numpy import add
 
+from scripts.cloudinaryAPI import getSmallerSize
+
 def addPhoto(number, type, date, location, photographer, featured:bool, url, note=None, mode='train'):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
@@ -73,7 +75,7 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     conn.close()
     return photos
 
-def getPhotoUrls(number, mode='train'):
+def getPhotoUrls(number, mode='train', optimise:bool=False):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     if mode.lower() == 'train':
@@ -88,6 +90,8 @@ def getPhotoUrls(number, mode='train'):
         return []
     urlsList = []
     for url, photographer, featured, type in urls:
+        if optimise:
+            url = getSmallerSize(url, 700, best=True)
 
         urlsList.append({
             'url': url,

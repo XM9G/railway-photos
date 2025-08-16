@@ -55,7 +55,8 @@ body {
 }
 @media (max-width: 768px) {
 .toggle-switch {
-  display: none;
+  /* display: none; */
+  
 }}
 
 img {

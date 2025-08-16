@@ -20,6 +20,28 @@ img:hover, frame:hover {
 
 }
 
+.searchForm {
+  margin-left:40%;
+  margin-right: 40%;
+  /* backdrop-filter: blur(30px);  */
+  background-color: rgba(141, 141, 141, 0.267);
+  color: white;
+  padding: 10px;
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.searchForm input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchForm input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto;
+}
+
 
 /* Mobile */
 @media only screen and (max-width: 767px) {

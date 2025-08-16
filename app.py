@@ -7,6 +7,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 
+from scripts.cloudinaryAPI import getSmallerSize
 from scripts.databaseManager import addPhoto, getPhotoUrls, getPhotos, siteStats
 from scripts.trainLists import getSets, getTramSets
 
@@ -91,7 +92,7 @@ def train_page(number):
                 'date': photo[3],
                 'location': photo[4],
                 'photographer': photo[5],
-                'url': photo[7],
+                'url': getSmallerSize(photo[7], 1000, best=True),
                 'featured': photo[6],
                 'note': photo[8],
                 'id': photo[0],
@@ -104,7 +105,7 @@ def train_page(number):
                 'date': photo[3],
                 'location': photo[4],
                 'photographer': photo[5],
-                'url': photo[7],
+                'url': getSmallerSize(photo[7], 1000, best=True),
                 'featured': photo[6],
                 'note': photo[8],
                 'id': photo[0],
@@ -128,7 +129,7 @@ def tram_page(number):
                 'date': photo[3],
                 'location': photo[4],
                 'photographer': photo[5],
-                'url': photo[7],
+                'url': getSmallerSize(photo[7], 1000, best=True),
                 'featured': photo[6],
                 'note': photo[8],
                 'id': photo[0],
@@ -141,7 +142,7 @@ def tram_page(number):
                 'date': photo[3],
                 'location': photo[4],
                 'photographer': photo[5],
-                'url': photo[7],
+                'url': getSmallerSize(photo[7], 1000, best=True),
                 'featured': photo[6],
                 'note': photo[8],
                 'id': photo[0],
@@ -155,6 +156,42 @@ def redirect_train(subpath, train_number):
     train_number = train_number.strip('.html')
     return redirect(url_for('train_page', number=train_number), code=301)
 
+# advanced search
+@app.route('/search')
+def advSearch():
+    if not request.args:
+     return render_template('search.html')
+    else:
+        number = request.args.get('number', None)
+        trainType = request.args.get('type', None)
+        date = request.args.get('date', None)
+        location = request.args.get('location', None)
+        photographer = request.args.get('photographer', None)
+        if request.args.get('featured', None) == 'featured':
+            featured = 1
+        else:
+            featured = 0
+        
+        photos = getPhotos(number=number, type=trainType, date=date, location=location, photographer=photographer, featured=featured)
+        trains = []
+        for photo in photos:
+            trains.append ({
+                'number': photo[1],
+                'type': photo[2],
+                'date': photo[3],
+                'location': photo[4],
+                'photographer': photo[5],
+                'url': getSmallerSize(photo[7], 500),
+                'featured': photo[6],
+                'note': photo[8],
+                'id': photo[0],
+                'mode': 'train',
+            })
+        trains.sort(key=lambda x: x['date'], reverse=True) # this thing sorts by the date 
+        lenght = len(trains)
+        return render_template('searchresults.html', trains=trains, length=lenght)
+        
+    
 # view counter
 @app.route('/api/view/<photoID>/<mode>')
 @limiter.limit("1000 per hour")
