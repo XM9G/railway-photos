@@ -21,7 +21,8 @@ body {
 }
 
 .train-card[data-featured="1"] {
-    border-color: #ff4500;
+    border-color: goldenrod;
+    box-shadow: 0 0 15px 1px rgba(218, 165, 32, 0.7);
     /* background-color: #fff5f0; */
 }
 
