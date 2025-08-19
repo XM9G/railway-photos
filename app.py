@@ -249,7 +249,7 @@ def line(line):
 @app.route('/api/photos/<path:filename>')
 def photo_url(filename):
 
-    urlsList = getPhotoUrls(filename)
+    urlsList = getPhotoUrls(filename, optimise=True)
     if len(urlsList) == 0:
         return jsonify({"error": "No photos found"}), 404
     else:
