@@ -91,7 +91,7 @@ def getPhotoUrls(number, mode='train', optimise:bool=False):
     urlsList = []
     for url, photographer, featured, type in urls:
         if optimise:
-            url = getSmallerSize(url, 700, best=True)
+            url = getSmallerSize(url, 1000, best=True)
 
         urlsList.append({
             'url': url,
