@@ -338,10 +338,10 @@ button:hover {
 
 .searchForm .handle {
     position: absolute;
-    left: -30px; /* Position handle to the left of the form */
+    left: -40px;
     top: 10px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     display: flex;
