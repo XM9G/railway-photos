@@ -254,11 +254,23 @@ def photo_url(filename):
         return jsonify({"error": "No photos found"}), 404
     else:
         return jsonify({"photos": urlsList})
+    
+@app.route('/api/photos/tram/<path:filename>')
+def Tramphoto_url(filename):
+
+    urlsList = getPhotoUrls(filename, optimise=True, mode='tram')
+    if len(urlsList) == 0:
+        return jsonify({"error": "No photos found"}), 404
+    else:
+        return jsonify({"photos": urlsList})
 
 # trainsets CSV download
 @app.route('/api/trainsets.csv')
 def trainsetsCSV():
     return send_file('trainsets.csv', as_attachment=True, download_name='trainsets.csv', mimetype='text/csv')
+@app.route('/api/tramsets.csv')
+def tramsetsCSV():
+    return send_file('tramsets.csv', as_attachment=True, download_name='tramsets.csv', mimetype='text/csv')
 
 # image adder api
 @app.route('/api/upload', methods=['POST'])
