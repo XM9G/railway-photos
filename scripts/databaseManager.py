@@ -35,7 +35,30 @@ def addPhoto(number, type, date, location, photographer, featured:bool, url, not
     conn.commit()
     conn.close()
     
-def getPhotos(number=None, type=None, date=None, location=None, photographer=None, featured=None, note=None, mode='train'):
+def addStationPhoto(station, photographer,date, url, featured:bool, note=None):
+    conn = sqlite3.connect('databases/trains.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS stationphotos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        station TEXT NOT NULL,
+        photographer TEXT NOT NULL,
+        date TEXT NOT NULL,
+        url TEXT NOT NULL,
+        featured BOOLEAN NOT NULL DEFAULT 0,
+        note TEXT
+    )''')
+    
+    cursor.execute('''
+    INSERT INTO stationphotos (station, photographer, date, url, featured, note)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ''', (station, photographer, date, url, featured, note))
+    
+    conn.commit()
+    conn.close()
+    
+def getPhotos(number=None, type=None, date=None, location=None, photographer=None, featured=None, note=None, mode='train', exact_match=False):
     conn = sqlite3.connect('databases/trains.db')
     cursor = conn.cursor()
     
@@ -43,32 +66,61 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
         tableName = 'photos'
     elif mode.lower() == 'tram':
         tableName = 'tramphotos'
+    else:
+        conn.close()
+        raise ValueError("Mode must be 'train' or 'tram'")
     
     query = f'SELECT * FROM {tableName} WHERE 1=1'
     params = []
     
     if number:
-        query += ' AND number=?'
-        params.append(number.upper())
+        query += ' AND ' + ('number=?' if exact_match else 'UPPER(number) LIKE ?')
+        params.append(number.upper() if exact_match else f'%{number.upper()}%')
     if type:
-        query += ' AND type=?'
-        params.append(type)
+        query += ' AND ' + ('type=?' if exact_match else 'UPPER(type) LIKE ?')
+        params.append(type if exact_match else f'%{type.upper()}%')
     if date:
         query += ' AND date=?'
         params.append(date)
     if location:
-        query += ' AND location=?'
-        params.append(location)
+        query += ' AND ' + ('location=?' if exact_match else 'UPPER(location) LIKE ?')
+        params.append(location if exact_match else f'%{location.upper()}%')
     if photographer:
-        query += ' AND photographer=?'
-        params.append(photographer)
+        query += ' AND ' + ('photographer=?' if exact_match else 'UPPER(photographer) LIKE ?')
+        params.append(photographer if exact_match else f'%{photographer.upper()}%')
     if featured is not None:
         query += ' AND featured=?'
         params.append(featured)
     if note is not None:
-        query += ' AND note=?'
-        params.append(note)
+        query += ' AND ' + ('note=?' if exact_match else 'UPPER(note) LIKE ?')
+        params.append(note if exact_match else f'%{note.upper()}%')
             
+    cursor.execute(query, params)
+    photos = cursor.fetchall()
+    
+    conn.close()
+    return photos
+
+def getStationPhotos(station=None, photographer=None, date=None, featured=None):
+    conn = sqlite3.connect('databases/trains.db')
+    cursor = conn.cursor()
+    
+    query = 'SELECT * FROM stationphotos WHERE 1=1'
+    params = []
+    
+    if station:
+        query += ' AND station=?'
+        params.append(station)
+    if photographer:
+        query += ' AND photographer=?'
+        params.append(photographer)
+    if date:
+        query += ' AND date=?'
+        params.append(date)
+    if featured is not None:
+        query += ' AND featured=?'
+        params.append(featured)
+    
     cursor.execute(query, params)
     photos = cursor.fetchall()
     

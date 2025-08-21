@@ -175,7 +175,7 @@ def advSearch():
         else:
             featured = None
         
-        photos = getPhotos(number=number, type=trainType, date=date, location=location, photographer=photographer, featured=featured)
+        photos = getPhotos(number=number, type=trainType, date=date, location=location, photographer=photographer, featured=featured, exact_match=False)
         trains = []
         for photo in photos:
             trains.append ({

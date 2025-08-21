@@ -1,4 +1,4 @@
-from databaseManager import addPhoto
+from scripts.databaseManager import addPhoto
 
 
 while True:

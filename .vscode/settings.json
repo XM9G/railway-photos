@@ -3,5 +3,8 @@
     "cSpell.words": [
         "Xtrapolis"
     ],
-    "python.analysis.autoImportCompletions": true
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.extraPaths": [
+        "./scripts"
+    ]
 }
