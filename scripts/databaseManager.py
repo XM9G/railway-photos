@@ -74,8 +74,8 @@ def getPhotos(number=None, type=None, date=None, location=None, photographer=Non
     params = []
     
     if number:
-        query += ' AND ' + ('number=?' if exact_match else 'UPPER(number) LIKE ?')
-        params.append(number.upper() if exact_match else f'%{number.upper()}%')
+        query += ' AND ' + ('number=?')
+        params.append(number.upper())
     if type:
         query += ' AND ' + ('type=?' if exact_match else 'UPPER(type) LIKE ?')
         params.append(type if exact_match else f'%{type.upper()}%')
