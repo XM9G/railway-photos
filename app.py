@@ -81,7 +81,7 @@ def mainPage():
 # Train image page
 @app.route('/trains/<number>')
 def train_page(number):
-    photos = getPhotos(number=number)
+    photos = getPhotos(number=number, exact_match=True)
     
     if len(photos) == 0:
         return render_template('noresults.html', number=number)
