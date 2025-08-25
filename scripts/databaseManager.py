@@ -181,3 +181,23 @@ def getViews(photoID):
     cursor = conn.cursor()
     cursor.execute('SELECT views FROM views WHERE id = ?', (photoID,))
     return cursor.fetchone()[0]
+
+def getTopPhotographers(limit=10, mode='train'):
+    conn = sqlite3.connect('databases/trains.db')
+    cursor = conn.cursor()
+    if mode.lower() == 'train':
+        tableName = 'photos'
+    elif mode.lower() == 'tram':
+        tableName = 'tramphotos'
+    
+    cursor.execute(f'''
+    SELECT photographer, COUNT(*) as photo_count
+    FROM {tableName}
+    GROUP BY photographer
+    ORDER BY photo_count DESC
+    LIMIT ?
+    ''', (limit,))
+    
+    photographers = cursor.fetchall()
+    conn.close()
+    return photographers

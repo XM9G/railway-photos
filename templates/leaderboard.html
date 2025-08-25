@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photos Leaderboard (WIP)</title>
+</head>
+<body>
+    <h1>Top Users</h1>
+    <ol>
+        {% for user, score in photographers %}
+            <li>{{ user }} - {{ score }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

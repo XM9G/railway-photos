@@ -8,7 +8,7 @@ from flask_limiter.util import get_remote_address
 
 
 from scripts.cloudinaryAPI import getSmallerSize
-from scripts.databaseManager import addPhoto, getPhotoUrls, getPhotos, siteStats
+from scripts.databaseManager import addPhoto, getPhotoUrls, getPhotos, getTopPhotographers, siteStats
 from scripts.trainLists import getSets, getTramSets
 
 app = Flask(__name__)
@@ -235,6 +235,12 @@ def count_view(photoID, mode):
     
     finally:
         conn.close()
+        
+# leaderboard page
+@app.route('/leaderboard')
+def leaderboard():
+    photographers = getTopPhotographers()
+    return render_template('leaderboard.html', photographers=photographers)
         
 # temp redirect for station photos
 @app.route('/stations/melbourne/<station>')
