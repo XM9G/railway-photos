@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/photoPage.css') }}"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -22,6 +24,44 @@
 </head>
 
 <body>
+    <div class="searchForm">
+        <div class="handle">🔍</div>
+        <form>
+                <p>Advanced Search</p><br>
+                <label for="number">Number:</label>
+                <input type="text" id="number" name="number"><br>
+
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type"><br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date"><br>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location"><br>
+
+                <label for="photographer">Photographer:</label>
+                <input type="text" id="photographer" name="photographer"><br>
+
+                <label for="featured">Featured Only</label>
+                <input type="checkbox" id="featured" name="featured" value="featured"><br>
+
+                <input type="submit" value="Search">
+
+            </form>
+    </div>
+    <script>
+        document.querySelector('.searchForm .handle').addEventListener('click', function(event) {
+            event.stopPropagation(); 
+            document.querySelector('.searchForm').classList.toggle('active');
+        });
+
+        // Prevent form clicks from toggling the form
+        document.querySelector('.searchForm form').addEventListener('click', function(event) {
+            event.stopPropagation(); 
+        });
+    </script>
+
     <h1>{{ length }} Results</h1>
 
     <div class="photos-list">

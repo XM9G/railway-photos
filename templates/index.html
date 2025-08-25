@@ -10,6 +10,7 @@
     <meta name="keywords" content="xm9g, trains, 9g, ">
     <meta name="author" content="XM9G">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/indexStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -98,13 +99,13 @@
         </div>
     <script>
     document.querySelector('.searchForm .handle').addEventListener('click', function(event) {
-        event.stopPropagation(); // Prevent event from bubbling up
+        event.stopPropagation(); 
         document.querySelector('.searchForm').classList.toggle('active');
     });
 
     // Prevent form clicks from toggling the form
     document.querySelector('.searchForm form').addEventListener('click', function(event) {
-        event.stopPropagation(); // Stop clicks inside the form from triggering the toggle
+        event.stopPropagation(); 
     });
     </script>
 
